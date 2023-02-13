@@ -1,5 +1,4 @@
 <!-- PROJECT LOGO -->
-<br />
 <p align="center">
 
   <h3 align="center">AI-Expense Saving App</h3>
@@ -7,6 +6,7 @@
   <p align="center">
     An awesome AI-powered expense-saving app to jumpstart that helps users in saving little by little for personal goals by letting users link their bank accounts and send daily summary alerts via SMS message. 
   </p>
+  <br/>
   <p>
     Further, AI and ML are at the core of the App. Its AI and ML algorithms help the platform to deliver the tailored response based on users personal finances. For instance, one can even ask questions such as whether you have the budget to buy a particular product that should not hurt the target goal — the assistant will take a dive into the graphs and data-driven insights and would answer your queries. That is not all, its users can also set a limit of  spare changes on the App and the assistant will put that amount aside as users savings, which helps to improve users overall financial wellness.
   </p>
@@ -24,12 +24,15 @@ This list includes:
 
 * **User profile**: Take care of personalization of user (e.g., Name, Email, Password, Phone, Location, ect.)
 
+* 
+
 
 ### How to design system features
 
 * [Understanding how a 2-factor authenticator works](https://blog.bytebytego.com/p/ep-16-design-google-placesyelp-also)
-* [What is SSO)(https://blog.bytebytego.com/p/what-is-sso-episode-7)
+* [What is SSO](https://blog.bytebytego.com/p/what-is-sso-episode-7)
 * [How to store Password safely in Database](https://www.youtube.com/watch?v=zt8Cocdy15c)
+* [Why Python integrate with PostgreSQL](https://blog.bytebytego.com/p/ep30-why-is-postgresql-the-most-loved)
 * 
 
 

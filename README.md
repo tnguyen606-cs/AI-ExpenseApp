@@ -5,12 +5,11 @@
   <h3 align="center">AI-Expense Saving App</h3>
 
   <p align="center">
-    An awesome AI-powered expense-saving app to jumpstart that helps users in saving little by little for personal goals! It also lets users link their bank accounts and send daily summary alerts via SMS message. 
-    
-    Further, AI and ML are at the core of the App. Its AI and ML algorithms help the platform to deliver the tailored response based on users personal finances. For instance, one can even ask questions such as whether you have the budget to buy a particular product that should not hurt the target goal — the assistant will take a dive into the graphs and data-driven insights and would answer your queries. That is not all, its users can also set a limit of  spare changes on the App and the assistant will put that amount aside as users savings, which helps to improve users overall financial wellness.
-
+    An awesome AI-powered expense-saving app to jumpstart that helps users in saving little by little for personal goals by letting users link their bank accounts and send daily summary alerts via SMS message. 
   </p>
 </p>
+
+Further, AI and ML are at the core of the App. Its AI and ML algorithms help the platform to deliver the tailored response based on users personal finances. For instance, one can even ask questions such as whether you have the budget to buy a particular product that should not hurt the target goal — the assistant will take a dive into the graphs and data-driven insights and would answer your queries. That is not all, its users can also set a limit of  spare changes on the App and the assistant will put that amount aside as users savings, which helps to improve users overall financial wellness.
 
 <!-- DESIGN SYSTEM -->
 # DESIGN SYSTEM

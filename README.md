@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <p align="center">
 
-  <h3 align="center">AI-Expense Saving App</h3>
+  <h1 align="center">AI-Expense Saving App</h3>
 
   <p align="center">
     An awesome AI-powered expense-saving app to jumpstart that helps users in saving little by little for personal goals by tracking users daily expenses and send summary alerts via SMS message. 
@@ -14,9 +14,9 @@
 
 <br/>
 <!-- DESIGN SYSTEM -->
-<h1 align="center">DESIGN SYSTEM</h1>
+<h2 align="center">DESIGN SYSTEM</h1>
 
-To get a big picture of how I develop this app, this is a preliminary list of features for financial software solution. 
+<p align="center">To get a big picture of how I develop this app, this is a preliminary list of features for financial software solution. </p>
 
 <br/>
 

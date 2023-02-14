@@ -19,6 +19,7 @@
 To get a big picture of how I develop this app, this is a preliminary list of features for financial software solution. 
 
 <br/>
+
 ### Key Features
 
 This list includes: 
@@ -32,6 +33,7 @@ This list includes:
 * **Notifications and alerts**: Users will receive SMS Transaction Notifications for their TransferWise Account with `Twilio API` and `Python`.
 
 <br/>
+
 ### Resources
 
 * [Understanding how a 2-factor authenticator works](https://blog.bytebytego.com/p/ep-16-design-google-placesyelp-also)
@@ -42,6 +44,7 @@ This list includes:
 * [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
 
 <br/>
+
 ### Steps 
 
 1. Set up enviroments

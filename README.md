@@ -46,11 +46,12 @@ This list includes:
 * [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
 * [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)
 
-### Steps 
+### Set-up Steps 
 
 1. Set up enviroments: install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
 2. Run `export FLASK_DEBUG=1` to activate the active Debug mode on the browser or use `__name__` in file
 3. Get a `secret` key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
+4. To use `TextField` with Form: Run `pip install flask-wtf`
 
 
 

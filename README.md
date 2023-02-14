@@ -31,6 +31,7 @@ This list includes:
 * **Analytics and reports**: Display categories through visible `charts` that give users a detailed view (*Net Income Over Time Chart, Total Monthly Expenses Chart, Expenses Breakdown Chart*). Define all users transactions based on categories such as Income, Restaurant, Gas, ect. Use `PostgreSQL` for analytical processing and `Data Visualizaiton` with `Mathplotlib`.
 * **Predict money flow**: As analyzing users financial situation, the app delivers financial suggestions when being asked that let users know where they can invest and increase capital. Use `AI` and `Machine learning` concepts in order to make decisions by feeding said data.
 * **Notifications and alerts**: Users will receive SMS Transaction Notifications for their TransferWise Account with `Twilio API` and `Python`.
+* **Deployments**: Heroku and AWS.
 
 <br/>
 
@@ -40,10 +41,10 @@ This list includes:
 * [What is SSO](https://blog.bytebytego.com/p/what-is-sso-episode-7)
 * [How to store Password safely in Database](https://www.youtube.com/watch?v=zt8Cocdy15c)
 * [Why Python integrate with PostgreSQL](https://blog.bytebytego.com/p/ep30-why-is-postgresql-the-most-loved)
+* [Matplotlib Data visualization](https://www.youtube.com/watch?v=UO98lJQ3QGI)
 * [How to send sms notifications](https://www.twilio.com/blog/sms-transaction-notifications-transferwise-twilio-python)
 * [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
-
-<br/>
+* [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)
 
 ### Steps 
 

@@ -48,8 +48,8 @@ This list includes:
 
 ### Steps 
 
-1. Set up enviroments
-2. 
+1. Set up enviroments: install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
+2. Run `export FLASK_DEBUG=1` to activate the active Debug mode on the browser or use `__name__` in file
 
 
 

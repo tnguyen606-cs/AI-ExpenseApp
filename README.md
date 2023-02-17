@@ -48,12 +48,12 @@ This list includes:
 
 <h2 align="center">Set-up Steps</h2>
 
-1. Set up enviroments: install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
-2. Run `export FLASK_DEBUG=1` to activate the active *Debug* mode on the browser or use `__name__` in file to reload page automatically
+1. Install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
+2. To activate the active *Debug* mode on the browser: Run `export FLASK_DEBUG=1` or use `__name__` in file to reload page automatically
 3. Run the app: `python flaskmain.py`
-4. Get a *secret* key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
-5. Fancy form library - *WTForms*. Ex, to use *TextField* with Form: Run `pip install flask-wtf`
-6. 
+4. To get a *secret* key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
+5. To get Fancy form library - *WTForms*. Ex, to use *TextField* with Form: Run `pip install flask-wtf`
+6. Install Datatase using SQL: Run `pip install flask-sqlalchemy`
 
 <h2 align="center">Progress</h2>
 

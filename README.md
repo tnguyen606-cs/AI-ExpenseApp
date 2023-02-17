@@ -14,7 +14,7 @@
 
 <br/>
 <!-- DESIGN SYSTEM -->
-<h2 align="center">DESIGN SYSTEM</h1>
+<h2 align="center">DESIGN SYSTEM</h2>
 
 <p align="center">To get a big picture of how I develop this app, this is a preliminary list of features for financial software solution. </p>
 <br/>
@@ -46,7 +46,7 @@ This list includes:
 * [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
 * [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)
 
-### Set-up Steps 
+<h2 align="center">Set-up Steps</h2>
 
 1. Set up enviroments: install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
 2. Run `export FLASK_DEBUG=1` to activate the active *Debug* mode on the browser or use `__name__` in file to reload page automatically
@@ -54,6 +54,13 @@ This list includes:
 4. Get a *secret* key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
 5. Fancy form library - *WTForms*. Ex, to use *TextField* with Form: Run `pip install flask-wtf`
 6. 
+
+<h2 align="center">Progress</h2>
+
+1. Created **Login/Register** pages
+2. **Database with Flask**: Use `SQLLite` for testing and `PostgreSQL` for development
+3. 
+
 
 
 

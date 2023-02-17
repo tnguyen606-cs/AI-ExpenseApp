@@ -17,7 +17,6 @@
 <h2 align="center">DESIGN SYSTEM</h1>
 
 <p align="center">To get a big picture of how I develop this app, this is a preliminary list of features for financial software solution. </p>
-
 <br/>
 
 ### Key Features
@@ -49,9 +48,11 @@ This list includes:
 ### Set-up Steps 
 
 1. Set up enviroments: install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
-2. Run `export FLASK_DEBUG=1` to activate the active Debug mode on the browser or use `__name__` in file
-3. Get a `secret` key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
-4. To use `TextField` with Form: Run `pip install flask-wtf`
+2. Run `export FLASK_DEBUG=1` to activate the active *Debug* mode on the browser or use `__name__` in file to reload page automatically
+3. Run the app: `python flaskmain.py`
+4. Get a *secret* key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
+5. Fancy form library - *WTForms*. Ex, to use *TextField* with Form: Run `pip install flask-wtf`
+6. 
 
 
 

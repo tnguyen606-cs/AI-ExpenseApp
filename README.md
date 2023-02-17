@@ -31,6 +31,7 @@ This list includes:
 * **Predict money flow**: As analyzing users financial situation, the app delivers financial suggestions when being asked that let users know where they can invest and increase capital. Use `AI` and `Machine learning` concepts in order to make decisions by feeding said data.
 * **Notifications and alerts**: Users will receive SMS Transaction Notifications for their TransferWise Account with `Twilio API` and `Python`.
 * **Deployments**: Heroku and AWS.
+* **Agile automations**: Zenhub.
 
 <br/>
 

@@ -58,8 +58,7 @@ This list includes:
 <h2 align="center">Progress</h2>
 
 1. Created **Login/Register** pages
-2. **Database with Flask**: Use `SQLLite` for testing and `PostgreSQL` for production
-3. 
+2. **Database with Flask**: Used `SQLLite` for testing and `PostgreSQL` for production
 
 
 

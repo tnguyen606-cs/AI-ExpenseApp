@@ -72,15 +72,15 @@ This list includes:
     ├── LICENSE
     ├── README.md
     ├── app
-    │   ├── **init**.py
-    │   ├── models.py
-    │   ├── routes.py
+    │   ├── init.py       # Initialize the app
+    │   ├── models.py     # Database's Models
+    │   ├── routes.py     # List of routes
     │   ├── Forms
-    │   │   ├── **pycache**
+    │   │   ├── pycache
     │   │   │   └── form.cpython-37.pyc
     │   │   └── form.py
-    │   ├── **pycache**
-    │   │   ├── **init**.cpython-37.pyc
+    │   ├── pycache
+    │   │   ├── init.cpython-37.pyc
     │   │   ├── models.cpython-37.pyc
     │   │   └── routes.cpython-37.pyc
     │   ├── instance

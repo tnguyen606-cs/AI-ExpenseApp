@@ -21,6 +21,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # CREATE TABLE
+
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)  # id for each User
     username = db.Column(db.String(21), unique=True, nullable=False)
@@ -76,7 +78,6 @@ def register():
         # if the form is validated properly
         return redirect(url_for('main'))
     return render_template('register.html', title='Register', form=form)
-
 
 
 # An Alternative Way to create a debug mode

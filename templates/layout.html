@@ -15,9 +15,9 @@
             <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
                 <div class="container">
                     <!-- Navbar Left Side -->
-                    <div class="collapse navbar-collapse" id="navbarToggle">
+                    <!-- <div class="collapse navbar-collapse" id="navbarToggle">
                         <a class="nav-item nav-link" href="{{ url_for('main') }}">Dashboard</a>
-                    </div>
+                    </div> -->
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
@@ -27,8 +27,11 @@
           </nav>
         </header>
         <main role="main" class="container">
-            <div class="container-fluid" style="text-align: center; color: blueviolet;">
+            <div class="container-fluid" style="text-align: center;">
                 <h1>Welcome to AI Expense Tracker App!</h1>
+            </div>
+            <div style="text-align: center;">
+                <p>An awesome AI-powered expense-saving app to jumpstart that helps users in saving little by little for personal goals by tracking users daily expenses and send summary alerts via SMS message.</p>
             </div>
             {% with messages = get_flashed_messages(with_categories=true) %}
                 {% if messages %}

@@ -21,47 +21,49 @@
 
 ### Key Features
 
-This list includes: 
-* **Registration/Log In**: Use `SSO` and `Google two-factor Authenticator` in `Python` to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, Single Sign-on (SSO) enables secure user authentication with one set of credentials to several applications. 
-* **User profile**: Take care of personalization of user (e.g., Name, Email, Password, Phone, Location, ect.)
-* **Tracking expenses**: The `data` for the expense report is taken from users inputs.
-* **Financial Goals**: Provide a range of predefined goals covering options such as paying off credit card debt or savings, leaving users the chance to create their own goals.
-* **Compliance**: Let users automate their savings by setting spending limits or automatically saving their spare change from daily purchases. 
-* **Analytics and reports**: Display categories through visible `charts` that give users a detailed view (*Net Income Over Time Chart, Total Monthly Expenses Chart, Expenses Breakdown Chart*). Define all users transactions based on categories such as Income, Restaurant, Gas, ect. Use `PostgreSQL` for analytical processing and `Data Visualizaiton` with `Mathplotlib`.
-* **Predict money flow**: As analyzing users financial situation, the app delivers financial suggestions when being asked that let users know where they can invest and increase capital. Use `AI` and `Machine learning` concepts in order to make decisions by feeding said data.
-* **Notifications and alerts**: Users will receive SMS Transaction Notifications for their TransferWise Account with `Twilio API` and `Python`.
-* **Deployments**: Heroku and AWS.
-* **Agile automations**: Zenhub.
+This list includes:
+
+- **Registration/Log In**: Use `SSO` and `Google two-factor Authenticator` in `Python` to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, Single Sign-on (SSO) enables secure user authentication with one set of credentials to several applications.
+- **User profile**: Take care of personalization of user (e.g., Name, Email, Password, Phone, Location, ect.)
+- **Tracking expenses**: The `data` for the expense report is taken from users inputs.
+- **Financial Goals**: Provide a range of predefined goals covering options such as paying off credit card debt or savings, leaving users the chance to create their own goals.
+- **Compliance**: Let users automate their savings by setting spending limits or automatically saving their spare change from daily purchases.
+- **Analytics and reports**: Display categories through visible `charts` that give users a detailed view (_Net Income Over Time Chart, Total Monthly Expenses Chart, Expenses Breakdown Chart_). Define all users transactions based on categories such as Income, Restaurant, Gas, ect. Use `PostgreSQL` for analytical processing and `Data Visualizaiton` with `Mathplotlib`.
+- **Predict money flow**: As analyzing users financial situation, the app delivers financial suggestions when being asked that let users know where they can invest and increase capital. Use `AI` and `Machine learning` concepts in order to make decisions by feeding said data.
+- **Notifications and alerts**: Users will receive SMS Transaction Notifications for their TransferWise Account with `Twilio API` and `Python`.
+- **Deployments**: Heroku and AWS.
+- **Agile automations**: Zenhub.
 
 <br/>
 
+### Tech Stack used
+
+1. Web framework: Flask
+2. Storing User Data with SQLAlchemy
+3. Database: SQLLite for development and PostgreSQL as deploying the App
+4.
+
 ### Resources
 
-* [Understanding how a 2-factor authenticator works](https://blog.bytebytego.com/p/ep-16-design-google-placesyelp-also)
-* [What is SSO](https://blog.bytebytego.com/p/what-is-sso-episode-7)
-* [How to store Password safely in Database](https://www.youtube.com/watch?v=zt8Cocdy15c)
-* [Why Python integrate with PostgreSQL](https://blog.bytebytego.com/p/ep30-why-is-postgresql-the-most-loved)
-* [Matplotlib Data visualization](https://www.youtube.com/watch?v=UO98lJQ3QGI)
-* [How to send sms notifications](https://www.twilio.com/blog/sms-transaction-notifications-transferwise-twilio-python)
-* [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
-* [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)
+- [Understanding how a 2-factor authenticator works](https://blog.bytebytego.com/p/ep-16-design-google-placesyelp-also)
+- [What is SSO](https://blog.bytebytego.com/p/what-is-sso-episode-7)
+- [How to store Password safely in Database](https://www.youtube.com/watch?v=zt8Cocdy15c)
+- [Why Python integrate with PostgreSQL](https://blog.bytebytego.com/p/ep30-why-is-postgresql-the-most-loved)
+- [Matplotlib Data visualization](https://www.youtube.com/watch?v=UO98lJQ3QGI)
+- [How to send sms notifications](https://www.twilio.com/blog/sms-transaction-notifications-transferwise-twilio-python)
+- [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
+- [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)
 
 <h2 align="center">Set-up Steps</h2>
 
 1. Install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
-2. To activate the active *Debug* mode on the browser: Run `export FLASK_DEBUG=1` or use `__name__` in file to reload page automatically
+2. To activate the active _Debug_ mode on the browser: Run `export FLASK_DEBUG=1` or use `__name__` in file to reload page automatically
 3. Run the app: `python flaskmain.py`
-4. To get a *secret* key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
-5. To get Fancy form library - *WTForms*. Ex, to use *TextField* with Form: Run `pip install flask-wtf`
+4. To get a _secret_ key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
+5. To get Fancy form library - _WTForms_. Ex, to use _TextField_ with Form: Run `pip install flask-wtf`
 6. Install Datatase using SQL: Run `pip install flask-sqlalchemy`
 
 <h2 align="center">Progress</h2>
 
 1. Created **Login/Register** pages
 2. **Database with Flask**: Used `SQLLite` for testing and `PostgreSQL` for production
-
-
-
-
-
-

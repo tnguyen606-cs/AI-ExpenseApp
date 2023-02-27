@@ -23,37 +23,37 @@
 
 This list includes:
 
-- **Registration/Log In**: Use `SSO` and `Google two-factor Authenticator` in `Python` to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, Single Sign-on (SSO) enables secure user authentication with one set of credentials to several applications.
+- **Registration/Log In**: Use **SSO** and **Google two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, Single Sign-on (SSO) enables secure user authentication with one set of credentials to several applications.
 - **User profile**: Take care of personalization of user (e.g., Name, Email, Password, Phone, Location, ect.)
-- **Tracking expenses**: The `data` for the expense report is taken from users inputs.
+- **Tracking expenses**: The data for the expense report is taken from users inputs.
 - **Financial Goals**: Provide a range of predefined goals covering options such as paying off credit card debt or savings, leaving users the chance to create their own goals.
 - **Compliance**: Let users automate their savings by setting spending limits or automatically saving their spare change from daily purchases.
-- **Analytics and reports**: Display categories through visible `charts` that give users a detailed view (_Net Income Over Time Chart, Total Monthly Expenses Chart, Expenses Breakdown Chart_). Define all users transactions based on categories such as Income, Restaurant, Gas, ect. Use `PostgreSQL` for analytical processing and `Data Visualizaiton` with `Mathplotlib`.
-- **Predict money flow**: As analyzing users financial situation, the app delivers financial suggestions when being asked that let users know where they can invest and increase capital. Use `AI` and `Machine learning` concepts in order to make decisions by feeding said data.
-- **Notifications and alerts**: Users will receive SMS Transaction Notifications for their TransferWise Account with `Twilio API` and `Python`.
+- **Analytics and reports**: Display categories through visible _charts_ that give users a detailed view (_Net Income Over Time Chart, Total Monthly Expenses Chart, Expenses Breakdown Chart_). Define all users transactions based on categories such as Income, Restaurant, Gas, ect. Use **PostgreSQL** for analytical processing and _Data Visualizaiton_ with **Mathplotlib**.
+- **Predict money flow**: As analyzing users financial situation, the app delivers financial suggestions when being asked that let users know where they can invest and increase capital. Use **AI** and **Machine learning** concepts in order to make decisions by feeding said data.
+- **Notifications and alerts**: Users will receive SMS Transaction Notifications for their TransferWise Account with **Twilio API** and **Python**.
 - **Deployments**: Heroku and AWS.
 - **Agile automations**: Zenhub.
 
 <h2 align="center">Tech Stack</h2>
 
-1. Web framework: `Flask`
-2. Storing User Data: `SQLAlchemy`
-3. Database: `SQLLite` for testing and `PostgreSQL` for production
+1. Web framework: **Flask**
+2. Storing User Data: **SQLAlchemy**
+3. Database: **SQLLite** for testing and **PostgreSQL** for production
 4.
 
 <h2 align="center">Set-up Steps</h2>
 
 1. Install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
-2. To activate the active _Debug_ mode on the browser: Run `export FLASK_DEBUG=1` or use `__name__` in file to reload page automatically
+2. Activate the active _Debug_ mode on the browser: Run `export FLASK_DEBUG=1` or use `__name__` in file to reload page automatically
 3. Run the app: `python flaskmain.py`
-4. To get a _secret_ key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
-5. To get Fancy form library - _WTForms_. Ex, to use _TextField_ with Form: Run `pip install flask-wtf`
+4. Get a _secret_ key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
+5. Get Fancy form library - _WTForms_. Ex, to use _TextField_ with Form: Run `pip install flask-wtf`
 6. Install SQLAlchemy: Run `pip install flask-sqlalchemy`
 
 <h2 align="center">Progress</h2>
 
 1. Created **Login/Register** pages
-2. Set up a Database and Stored User Data with SQLAlchemy
+2. Set up a **Database** and Stored User Data with SQLAlchemy
 
 <br/>
 

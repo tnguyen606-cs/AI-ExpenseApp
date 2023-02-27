@@ -67,32 +67,34 @@ This list includes:
 
 ### A top-level directory layout
 
-.
-├── LICENSE
-├── README.md
-├── app
-│   ├── Forms
-│   │   ├── **pycache**
-│   │   │   └── form.cpython-37.pyc
-│   │   └── form.py
-│   ├── **init**.py
-│   ├── **pycache**
-│   │   ├── **init**.cpython-37.pyc
-│   │   ├── models.cpython-37.pyc
-│   │   └── routes.cpython-37.pyc
-│   ├── instance
-│   │   └── site.db
-│   ├── models.py
-│   ├── routes.py
-│   ├── static
-│   │   └── main.css
-│   └── templates
-│   ├── home.html
-│   ├── layout.html
-│   ├── login.html
-│   └── register.html
-├── instance
-└── run.py
+```bash
+    .
+    ├── LICENSE
+    ├── README.md
+    ├── app
+    │   ├── **init**.py
+    │   ├── models.py
+    │   ├── routes.py
+    │   ├── Forms
+    │   │   ├── **pycache**
+    │   │   │   └── form.cpython-37.pyc
+    │   │   └── form.py
+    │   ├── **pycache**
+    │   │   ├── **init**.cpython-37.pyc
+    │   │   ├── models.cpython-37.pyc
+    │   │   └── routes.cpython-37.pyc
+    │   ├── instance
+    │   │   └── site.db
+    │   ├── static
+    │   │   └── main.css
+    │   └── templates
+    │       ├── home.html
+    │       ├── layout.html
+    │       ├── login.html
+    │       └── register.html
+    ├── instance
+    └── run.py
+```
 
 <br/>
 

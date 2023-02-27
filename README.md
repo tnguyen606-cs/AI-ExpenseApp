@@ -63,6 +63,8 @@ This list includes:
 1. Created **Login/Register** pages
 2. Set up a **Database** and Stored User Data with SQLAlchemy
 
+### Video Walkthrough
+
 <br/>
 
 ### Resources

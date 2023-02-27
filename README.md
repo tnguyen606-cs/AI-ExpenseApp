@@ -34,23 +34,12 @@ This list includes:
 - **Deployments**: Heroku and AWS.
 - **Agile automations**: Zenhub.
 
-### Tech Stack used
+<h2 align="center">Tech Stack</h2>
 
-1. Web framework: Flask
-2. Storing User Data with SQLAlchemy
-3. Database: SQLLite for development and PostgreSQL as deploying the App
+1. Web framework: `Flask`
+2. Storing User Data: `SQLAlchemy`
+3. Database: `SQLLite` for testing and `PostgreSQL` for production
 4.
-
-### Resources
-
-- [Understanding how a 2-factor authenticator works](https://blog.bytebytego.com/p/ep-16-design-google-placesyelp-also)
-- [What is SSO](https://blog.bytebytego.com/p/what-is-sso-episode-7)
-- [How to store Password safely in Database](https://www.youtube.com/watch?v=zt8Cocdy15c)
-- [Why Python integrate with PostgreSQL](https://blog.bytebytego.com/p/ep30-why-is-postgresql-the-most-loved)
-- [Matplotlib Data visualization](https://www.youtube.com/watch?v=UO98lJQ3QGI)
-- [How to send sms notifications](https://www.twilio.com/blog/sms-transaction-notifications-transferwise-twilio-python)
-- [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
-- [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)
 
 <h2 align="center">Set-up Steps</h2>
 
@@ -64,4 +53,17 @@ This list includes:
 <h2 align="center">Progress</h2>
 
 1. Created **Login/Register** pages
-2. **Database with Flask**: Used `SQLLite` for testing and `PostgreSQL` for production
+2. Set up a Database and Stored User Data with SQLAlchemy
+
+<br/>
+
+### Resources
+
+- [Understanding how a 2-factor authenticator works](https://blog.bytebytego.com/p/ep-16-design-google-placesyelp-also)
+- [What is SSO](https://blog.bytebytego.com/p/what-is-sso-episode-7)
+- [How to store Password safely in Database](https://www.youtube.com/watch?v=zt8Cocdy15c)
+- [Why Python integrate with PostgreSQL](https://blog.bytebytego.com/p/ep30-why-is-postgresql-the-most-loved)
+- [Matplotlib Data visualization](https://www.youtube.com/watch?v=UO98lJQ3QGI)
+- [How to send sms notifications](https://www.twilio.com/blog/sms-transaction-notifications-transferwise-twilio-python)
+- [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
+- [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)

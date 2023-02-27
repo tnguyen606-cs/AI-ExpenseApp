@@ -35,6 +35,7 @@ This list includes:
 - **Agile automations**: Zenhub.
 
 <!-- TECH STACK -->
+<br/>
 <h2 align="center">Tech Stack</h2>
 
 1. Web framework: **Flask**
@@ -43,6 +44,7 @@ This list includes:
 4.
 
 <!-- STEPS -->
+<br/>
 <h2 align="center">Set-up Steps</h2>
 
 1. Install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
@@ -55,6 +57,7 @@ This list includes:
 8. Re-create DB: Run `db.drop_all()` and `db.create_all()`
 
 <!-- ZENHUB -->
+<br/>
 <h2 align="center">Progress</h2>
 
 1. Created **Login/Register** pages

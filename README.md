@@ -34,6 +34,7 @@ This list includes:
 - **Deployments**: Heroku and AWS.
 - **Agile automations**: Zenhub.
 
+<!-- TECH STACK -->
 <h2 align="center">Tech Stack</h2>
 
 1. Web framework: **Flask**
@@ -41,6 +42,7 @@ This list includes:
 3. Database: **SQLLite** for testing and **PostgreSQL** for production
 4.
 
+<!-- STEPS -->
 <h2 align="center">Set-up Steps</h2>
 
 1. Install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
@@ -49,7 +51,10 @@ This list includes:
 4. Get a _secret_ key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
 5. Get Fancy form library - _WTForms_. Ex, to use _TextField_ with Form: Run `pip install flask-wtf`
 6. Install SQLAlchemy: Run `pip install flask-sqlalchemy`
+7. Create DB: Run `db.create_all()`
+8. Re-create DB: Run `db.drop_all()` and `db.create_all()`
 
+<!-- ZENHUB -->
 <h2 align="center">Progress</h2>
 
 1. Created **Login/Register** pages

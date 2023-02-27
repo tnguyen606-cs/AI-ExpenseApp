@@ -34,8 +34,6 @@ This list includes:
 - **Deployments**: Heroku and AWS.
 - **Agile automations**: Zenhub.
 
-<br/>
-
 ### Tech Stack used
 
 1. Web framework: Flask
@@ -61,7 +59,7 @@ This list includes:
 3. Run the app: `python flaskmain.py`
 4. To get a _secret_ key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
 5. To get Fancy form library - _WTForms_. Ex, to use _TextField_ with Form: Run `pip install flask-wtf`
-6. Install Datatase using SQL: Run `pip install flask-sqlalchemy`
+6. Install SQLAlchemy: Run `pip install flask-sqlalchemy`
 
 <h2 align="center">Progress</h2>
 

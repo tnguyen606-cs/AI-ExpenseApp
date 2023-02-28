@@ -85,7 +85,8 @@ This list includes:
     │       ├── home.html
     │       ├── layout.html
     │       ├── login.html
-    │       └── register.html
+    │       ├── register.html
+    │       └── two_factor_setup.html
     │   ├── Forms
     │   │   ├── pycache
     │   │   │   └── form.cpython-37.pyc

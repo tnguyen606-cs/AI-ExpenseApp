@@ -36,6 +36,7 @@ This list includes:
 
 <!-- TECH STACK -->
 <br/>
+
 ### Tech Stack
 
 1. Web framework: **Flask**

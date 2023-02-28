@@ -3,11 +3,6 @@ from datetime import datetime
 from app import db, login_manager
 from flask_login import UserMixin
 
-# Reloading user id from stored users so that the app can find user by ID
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
-
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)  # id for each User
@@ -23,7 +18,7 @@ class User(db.Model, UserMixin):
 
     # Optional: this will allow each User object to be identified by its username,email,image when printed.
     def __repr__(self):
-        return f"User('{ self.username}', '{ self.email}', '{ self.password}')"
+        return f"User('{ self.username}', '{ self.email}', '{ self.otp_secret}')"
 
 
 class Post(db.Model):
@@ -36,3 +31,9 @@ class Post(db.Model):
 
     def __repr__(self):
         return f'<Post {self.title}, {self.date_posted}>'
+
+
+# Reloading user id from stored users so that the app can find user by ID
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))

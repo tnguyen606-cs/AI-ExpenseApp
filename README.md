@@ -23,7 +23,7 @@
 
 This list includes:
 
-- **Registration/Log In**: Use **SSO** and **Google two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, Single Sign-on (SSO) enables secure user authentication with one set of credentials to several applications and **BCrypt Algorithm** which is used to hash and salt passwords securely.
+- **Registration/Log In**: Use **TOTP** and **Google Two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, **BCrypt Algorithm** is used to hash and save passwords securely.
 - **User profile**: Take care of personalization of user (e.g., Name, Email, Password, ect.).
 - **Tracking expenses**: The data for the expense report is taken from users inputs.
 - **Financial Goals**: Provide a range of predefined goals covering options such as paying off credit card debt or savings, leaving users the chance to create their own goals.
@@ -51,12 +51,13 @@ This list includes:
 3. Run the app: `python flaskmain.py`
 4. Get a _secret_ key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
 5. Get Fancy form library - _WTForms_. Ex, to use _TextField_ with Form: Run `pip install flask-wtf`
-6. Install SQLAlchemy: Run `pip install flask-sqlalchemy`
+6. Install _SQLAlchemy_: Run `pip install flask-sqlalchemy`
 7. Create DB: Run `db.create_all()`
 8. Re-create DB: Run `db.drop_all()` and `db.create_all()`
-9. Install bcrypt: Run `pip install flask-bcrypt`
+9. Install _Bcrypt_: Run `pip install flask-bcrypt`
 10. Install _User_ model: Run `from app import db` - `from app.models import User` - `user`
 11. Install user session management for Flask: `pip install flask-login`
+12. Install the _PyOTP_ library : Run `pip install pyotp`
 
 <!-- ZENHUB -->
 <br/>
@@ -65,6 +66,7 @@ This list includes:
 1. Created **Login/Register** pages
 2. Set up a **Database** and Stored User Data with SQLAlchemy
 3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
+4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask
 
 <br/>
 
@@ -78,24 +80,27 @@ This list includes:
     │   ├── init.py       # Initialize the app
     │   ├── models.py     # Database's Models
     │   ├── routes.py     # List of routes
+    │   └── templates
+    │       ├── account.html
+    │       ├── home.html
+    │       ├── layout.html
+    │       ├── login.html
+    │       ├── register.html
+    │       └── two_factor_setup.html
     │   ├── Forms
     │   │   ├── pycache
     │   │   │   └── form.cpython-37.pyc
     │   │   └── form.py
+    │   ├── static
+    │   │   └── main.css
+    │   ├── instance
+    │   │   └── site.db
     │   ├── pycache
     │   │   ├── init.cpython-37.pyc
     │   │   ├── models.cpython-37.pyc
     │   │   └── routes.cpython-37.pyc
-    │   ├── instance
-    │   │   └── site.db
-    │   ├── static
-    │   │   └── main.css
-    │   └── templates
-    │       ├── home.html
-    │       ├── layout.html
-    │       ├── login.html
-    │       └── register.html
     ├── instance
+    │   └── user_info.db
     └── run.py
 ```
 

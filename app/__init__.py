@@ -28,6 +28,6 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
 # Load the views
-from app import models
 from app import routes
+from app import models
 # No change

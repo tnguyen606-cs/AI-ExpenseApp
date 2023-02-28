@@ -57,9 +57,7 @@ This list includes:
 9. Install _Bcrypt_: Run `pip install flask-bcrypt`
 10. Install _User_ model: Run `from app import db` - `from app.models import User` - `user`
 11. Install user session management for Flask: `pip install flask-login`
-12. Install the _OTP_ and _QRcode_ required dependencies: Run `pip install pyotp qrcode`
-13. Users also need to Download and install the `Google Authenticator app` from the Playstore / Appstore onto their phones.
-
+12. Install the _PyOTP_ library : Run `pip install pyotp`
 
 <!-- ZENHUB -->
 <br/>

@@ -2,7 +2,6 @@
 from datetime import datetime
 from app import db, login_manager
 from flask_login import UserMixin
-import onetimepass
 
 
 class User(db.Model, UserMixin):
@@ -14,17 +13,12 @@ class User(db.Model, UserMixin):
                            default='default.jpg')
     # pp can have same password
     password = db.Column(db.String(60), nullable=False)
-    # secret token
-    otp_secret = db.Column(db.String(16))
     # lazy=true means db created
     posts = db.relationship('Post', backref='author', lazy=True)
 
     # Optional: this will allow each User object to be identified by its username,email,image when printed.
     def __repr__(self):
-        return f"User('{ self.username}', '{ self.email}', '{ self.password}')"
-
-    def verify_totp(self, token):
-        return onetimepass.valid_totp(token, self.otp_secret)
+        return f"User('{ self.username}', '{ self.email}', '{ self.otp_secret}')"
 
 
 class Post(db.Model):

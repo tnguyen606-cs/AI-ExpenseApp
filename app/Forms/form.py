@@ -30,7 +30,6 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[
                            DataRequired(), Length(min=8, max=21)])
     password = PasswordField('Password', validators=[DataRequired()])
-    token = StringField('Token', validators=[DataRequired()])
     # This helps Users still stay login for a little while after closing the app
     remember = BooleanField('Remember Me')
-    submit = SubmitField('Login')
+    submit = SubmitField('Authenticate User')

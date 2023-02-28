@@ -23,8 +23,8 @@
 
 This list includes:
 
-- **Registration/Log In**: Use **SSO** and **Google two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, Single Sign-on (SSO) enables secure user authentication with one set of credentials to several applications.
-- **User profile**: Take care of personalization of user (e.g., Name, Email, Password, Phone, Location, ect.)
+- **Registration/Log In**: Use **SSO** and **Google two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, Single Sign-on (SSO) enables secure user authentication with one set of credentials to several applications and **BCrypt Algorithm** which is used to hash and salt passwords securely.
+- **User profile**: Take care of personalization of user (e.g., Name, Email, Password, ect.).
 - **Tracking expenses**: The data for the expense report is taken from users inputs.
 - **Financial Goals**: Provide a range of predefined goals covering options such as paying off credit card debt or savings, leaving users the chance to create their own goals.
 - **Compliance**: Let users automate their savings by setting spending limits or automatically saving their spare change from daily purchases.
@@ -41,7 +41,6 @@ This list includes:
 1. Web framework: **Flask**
 2. Storing User Data: **SQLAlchemy**
 3. Database: **SQLLite** for testing and **PostgreSQL** for production
-4.
 
 <!-- STEPS -->
 <br/>
@@ -55,6 +54,9 @@ This list includes:
 6. Install SQLAlchemy: Run `pip install flask-sqlalchemy`
 7. Create DB: Run `db.create_all()`
 8. Re-create DB: Run `db.drop_all()` and `db.create_all()`
+9. Install bcrypt: Run `pip install flask-bcrypt`
+10. Install _User_ model: Run `from app import db` - `from app.models import User` - `user`
+11. Install user session management for Flask: `pip install flask-login`
 
 <!-- ZENHUB -->
 <br/>
@@ -62,6 +64,7 @@ This list includes:
 
 1. Created **Login/Register** pages
 2. Set up a **Database** and Stored User Data with SQLAlchemy
+3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
 
 <br/>
 

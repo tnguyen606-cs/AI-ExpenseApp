@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
 
 
@@ -30,6 +30,7 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[
                            DataRequired(), Length(min=8, max=21)])
     password = PasswordField('Password', validators=[DataRequired()])
+    token = StringField('Token', validators=[DataRequired()])
     # This helps Users still stay login for a little while after closing the app
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')

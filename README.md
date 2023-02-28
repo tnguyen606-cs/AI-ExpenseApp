@@ -36,7 +36,7 @@ This list includes:
 
 <!-- TECH STACK -->
 <br/>
-<h2 align="center">Tech Stack</h2>
+### Tech Stack
 
 1. Web framework: **Flask**
 2. Storing User Data: **SQLAlchemy**

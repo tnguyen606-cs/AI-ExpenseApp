@@ -62,3 +62,12 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError(
                     'That email is taken. Please choose a different one.')
+
+
+class ExpenseForm(FlaskForm):
+    title = StringField('Description', validators=[DataRequired()])
+    amount = StringField('Amount', validators=[DataRequired()])
+    date_spend = StringField('Date of Spend', validators=[DataRequired()])
+    category = StringField('Category', validators=[DataRequired()])
+    merchant = StringField('Merchant', validators=[DataRequired()])
+    submit = SubmitField('Save Expense')

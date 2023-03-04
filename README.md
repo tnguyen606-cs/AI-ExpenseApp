@@ -60,6 +60,7 @@ This list includes:
 11. Install user session management for Flask: `pip install flask-login`
 12. Install the _PyOTP_ library : Run `pip install pyotp`
 13. Install _Pillow?_ library to help reduce the image size: Run `pip install Pillow`
+14. Install _Flask-Currency_ library, Currency handling extension for Flask and SQLAlchemy: Run `pip install FlaskCurrency`
 
 <!-- ZENHUB -->
 <br/>
@@ -70,6 +71,7 @@ This list includes:
 3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
 4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask
 5. Created **User Account** and Profile picture where users can update their info
+6. Created **Add Expense** option in navbar so that user can now add new expense
 
 <br/>
 

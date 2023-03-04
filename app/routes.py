@@ -1,7 +1,7 @@
 from flask import render_template, url_for, flash, redirect, request
 from app import app, db, bcrypt
-from app.Forms.form import RegistrationForm, LoginForm, UpdateAccountForm
-from app.models import User, Post
+from app.Forms.form import RegistrationForm, LoginForm, UpdateAccountForm, ExpenseForm
+from app.models import User, Expense
 from flask_login import login_user, current_user, logout_user, login_required
 import os
 import secrets
@@ -11,7 +11,8 @@ import pyotp
 
 @app.route("/")
 def main():
-    return render_template('home.html')
+    expenses = Expense.query.all()
+    return render_template('home.html', expenses=expenses)
 
 
 @app.route("/logout")
@@ -117,3 +118,22 @@ def account():
         'static', filename='images/' + current_user.image_file)
     return render_template('account.html', title='Account',
                            image_file=image_file, form=form)
+
+
+@app.route("/expense/add", methods=['GET', 'POST'])
+@login_required
+def new_expense():
+    form = ExpenseForm()
+    if form.validate_on_submit():
+        add = ExpenseForm(title=form.title.data, amount=form.amount.data,
+                          date_spend=form.date_spend.data,
+                          category=form.category.data,
+                          merchant=form.content.data, user=current_user)
+        db.session.add(add)
+        db.session.commit()
+        flash('Your new expense has been created!', 'success')
+        return redirect(url_for('home'))
+    elif request.method == 'GET':
+        form.title.data = 'Enter a description'
+        form.amount.data = '$'
+    return render_template('create_expense.html', title='New Expense', form=form, legend='New Expense')

@@ -59,6 +59,7 @@ This list includes:
 10. Install _User_ model: Run `from app import db` - `from app.models import User` - `user`
 11. Install user session management for Flask: `pip install flask-login`
 12. Install the _PyOTP_ library : Run `pip install pyotp`
+13. Install _Pillow?_ library to help reduce the image size: Run `pip install Pillow`
 
 <!-- ZENHUB -->
 <br/>
@@ -68,6 +69,7 @@ This list includes:
 2. Set up a **Database** and Stored User Data with SQLAlchemy
 3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
 4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask
+5. Created **User Account** and Profile picture where users can update their info
 
 <br/>
 

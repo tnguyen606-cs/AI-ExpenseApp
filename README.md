@@ -38,7 +38,7 @@
 ### Tech Stack
 
 1. Web framework: **Flask**
-2. Storing User Data: **SQLAlchemy**
+2. Storing User Data: [SQLAlchemy](https://github.com/tnguyen606-cs/AI-ExpenseApp/blob/main/Tech%20Stack%20Contents/SQLAlchemy.md)
 3. Database: **SQLLite** for testing and **PostgreSQL** for production
 
 <!-- STEPS -->

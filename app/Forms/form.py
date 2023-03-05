@@ -65,9 +65,10 @@ class UpdateAccountForm(FlaskForm):
 
 
 class ExpenseForm(FlaskForm):
-    title = StringField('Description', validators=[DataRequired()])
-    amount = StringField('Amount', validators=[DataRequired()])
-    date_spend = StringField('Date of Spend', validators=[DataRequired()])
+    title = StringField('Description Details:', validators=[DataRequired()])
+    amount = StringField('Amount (Dollards)', validators=[DataRequired()])
+    date_spend = StringField('Date of Spend (mm/dd/yy)',
+                             validators=[DataRequired()])
     category = StringField('Category', validators=[DataRequired()])
     merchant = StringField('Merchant', validators=[DataRequired()])
     submit = SubmitField('Save Expense')

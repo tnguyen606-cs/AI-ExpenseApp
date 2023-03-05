@@ -1,5 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from app import app, db, bcrypt
+from datetime import datetime
 from app.Forms.form import RegistrationForm, LoginForm, UpdateAccountForm, ExpenseForm
 from app.models import User, Expense
 from flask_login import login_user, current_user, logout_user, login_required
@@ -11,6 +12,12 @@ import pyotp
 
 @app.route("/")
 def main():
+    return render_template('main.html')
+
+
+@app.route("/home")
+@login_required
+def home():
     expenses = Expense.query.all()
     return render_template('home.html', expenses=expenses)
 
@@ -24,7 +31,7 @@ def logout():
 @app.route("/register", methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('main'))
+        return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         # fake password created from the password input
@@ -62,6 +69,7 @@ def login():
 
 
 @app.route("/login/2fa/")
+@login_required
 def login_2fa():
     # getting secret key used by user
     secret = pyotp.random_base32()
@@ -69,6 +77,7 @@ def login_2fa():
 
 
 @app.route("/login/2fa/", methods=["POST"])
+@login_required
 def login_2fa_form():
     # getting secret key used by user
     secret = request.form.get("secret")
@@ -79,7 +88,7 @@ def login_2fa_form():
     if pyotp.TOTP(secret).verify(otp):
         # inform users if OTP is valid
         flash("The TOTP 2FA token is valid", "success")
-        return redirect(url_for("main"))
+        return redirect(url_for("home"))
     else:
         # inform users if OTP is invalid
         flash("You have supplied an invalid 2FA token!", "danger")
@@ -134,15 +143,16 @@ def account():
 @login_required
 def new_expense():
     form = ExpenseForm()
+    date = datetime.now()
     if form.validate_on_submit():
-        add = ExpenseForm(title=form.title.data, amount=form.amount.data,
-                          date_spend=form.date_spend.data,
-                          category=form.category.data,
-                          merchant=form.content.data, user=current_user)
-        db.session.add(add)
+        new_expense = Expense(title=form.title.data, amount=form.amount.data,
+                              date_spend=date.strftime("%m/%d/%y"),
+                              category=form.category.data,
+                              merchant=form.merchant.data, user=current_user)
+        db.session.add(new_expense)
         db.session.commit()
         flash('Your new expense has been created!', 'success')
         return redirect(url_for('home'))
     elif request.method == 'GET':
-        form.title.data = 'Enter a description'
+        form.date_spend.data = date.strftime("%m/%d/%y")
     return render_template('create_expense.html', title='New Expense', form=form, legend='New Expense')

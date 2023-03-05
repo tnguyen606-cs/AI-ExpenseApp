@@ -67,9 +67,10 @@
 1. Created **Login/Register** pages
 2. Set up a **Database** and Stored User Data with SQLAlchemy
 3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
-4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask
-5. Created **User Account** and Profile picture where users can update their info
+4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask as logging in
+5. Created **User Account** with Profile picture where users can update their info
 6. Created **Add Expense** option in navbar so that user can now add new expense
+7. Created **Table view of Expenses** in homepage contains the list of all transactions with datetime
 
 <br/>
 

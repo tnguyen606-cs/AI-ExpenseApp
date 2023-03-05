@@ -56,7 +56,7 @@ This list includes:
 7. Create DB: Run `db.create_all()`
 8. Re-create DB: Run `db.drop_all()` and `db.create_all()`
 9. Install _Bcrypt_: Run `pip install flask-bcrypt`
-10. Install _User_ model: Run `from app import db` - `from app.models import User` - `user`
+10. Install _User_ model: Run `from app import db` - `from app.models import User` - `User.query.all()` - `user`
 11. Install user session management for Flask: `pip install flask-login`
 12. Install the _PyOTP_ library : Run `pip install pyotp`
 13. Install _Pillow?_ library to help reduce the image size: Run `pip install Pillow`

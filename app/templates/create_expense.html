@@ -11,7 +11,7 @@
                     {{ form.title(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.title.errors %}
-                            <span>{{ error }}</span>
+                            <span style="color:red">{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
@@ -24,7 +24,7 @@
                     {{ form.amount(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.amount.errors %}
-                            <span>{{ error }}</span>
+                            <span style="color:red">{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
@@ -37,7 +37,7 @@
                     {{ form.date_spend(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.date_spend.errors %}
-                            <span>{{ error }}</span>
+                            <span style="color:red">{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
@@ -50,7 +50,7 @@
                     {{ form.category(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.category.errors %}
-                            <span>{{ error }}</span>
+                            <span style="color:red">{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}
@@ -63,7 +63,7 @@
                     {{ form.merchant(class="form-control form-control-lg is-invalid") }}
                     <div class="invalid-feedback">
                         {% for error in form.merchant.errors %}
-                            <span>{{ error }}</span>
+                            <span style="color:red">{{ error }}</span>
                         {% endfor %}
                     </div>
                 {% else %}

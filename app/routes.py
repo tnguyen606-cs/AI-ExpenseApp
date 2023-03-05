@@ -30,12 +30,13 @@ def register():
         # fake password created from the password input
         hashed_pw = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
-        user = User(username=form.username.data,
-                    email=form.email.data, password=hashed_pw)
-        db.session.add(user)
+        new_user = User(username=form.username.data,
+                        email=form.email.data, password=hashed_pw)
+        db.session.add(new_user)
         db.session.commit()
         # An alert function indicate the existing user
-        flash(f'Account created for {form.username.data}!', 'success')
+        flash(
+            f'Account created for {form.username.data}, please login with your existing account!', 'success')
         # if the form is validated properly
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
@@ -45,16 +46,20 @@ def register():
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user, remember=form.remember.data)
+    login_form = LoginForm()
+    login_form.validate_on_submit()
+    # Find user by username entered.
+    user = User.query.filter_by(username=login_form.username.data).first()
+    if user:
+        # Check stored password hash against entered password hashed.
+        if bcrypt.check_password_hash(user.password, login_form.password.data):
+            login_user(user, remember=login_form.remember.data)
+            # This helps us login to the previous we just closed without a double-login-steps
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('login_2fa'))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
-    return render_template('login.html', title='Login', form=form)
+    else:
+        flash('Login Unsuccessful. Please check email and password', 'danger')
+    return render_template('login.html', title='Login', form=login_form)
 
 
 @app.route("/login/2fa/")
@@ -114,6 +119,7 @@ def account():
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
+        form.new_password.data = current_user.password
     image_file = url_for(
         'static', filename='images/' + current_user.image_file)
     return render_template('account.html', title='Account',
@@ -135,5 +141,4 @@ def new_expense():
         return redirect(url_for('home'))
     elif request.method == 'GET':
         form.title.data = 'Enter a description'
-        form.amount.data = '$'
     return render_template('create_expense.html', title='New Expense', form=form, legend='New Expense')

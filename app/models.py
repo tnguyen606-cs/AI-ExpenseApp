@@ -12,17 +12,21 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False,
                            default='default.jpg')
     # pp can have same password
-    password = db.Column(db.String(60), nullable=False)
+    password = db.Column(db.String(100), nullable=False)
     # lazy=true means db created
+    # This will act like a List of Expense objects attached to each User.
+    # The "user" refers to the user property in the Expense class.
     expenses = db.relationship('Expense', backref='user', lazy=True)
+    # backref is a shortcut for configuring both parent.children and child.parent relationships at one place only on the parent or the child class (not both).
 
     # Optional: this will allow each User object to be identified by its username,email,image when printed.
     def __repr__(self):
-        return f"User('{ self.username}', '{ self.email}', '{ self.otp_secret}')"
+        return f"User('{ self.username}', '{ self.email}', '{ self.password}'"
 
 
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    # Create Foreign Key, "users.id" the users refers to the tablename of User.
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     title = db.Column(db.String(100), nullable=False)
     amount = db.Column(db.Float(asdecimal=True), nullable=False)

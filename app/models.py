@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(21), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     # user has a unique default picture
-    image_file = db.Column(db.String(20), nullable=False,
+    image_file = db.Column(db.String(50), nullable=False,
                            default='default.jpg')
     # pp can have same password
     password = db.Column(db.String(100), nullable=False)
@@ -21,7 +21,7 @@ class User(db.Model, UserMixin):
 
     # Optional: this will allow each User object to be identified by its username,email,image when printed.
     def __repr__(self):
-        return f"User('{ self.username}', '{ self.email}', '{ self.password}'"
+        return f"User('{ self.username}', '{ self.image_file}', '{ self.password}'"
 
 
 class Expense(db.Model):

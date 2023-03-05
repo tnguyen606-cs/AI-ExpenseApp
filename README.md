@@ -21,8 +21,6 @@
 
 ### Key Features
 
-This list includes:
-
 - **Registration/Log In**: Use **TOTP** and **Google Two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, **BCrypt Algorithm** is used to hash and save passwords securely.
 - **User profile**: Take care of personalization of user (e.g., Name, Email, Password, ect.).
 - **Tracking expenses**: The data for the expense report is taken from users inputs.

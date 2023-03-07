@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 from app import app, db, bcrypt
 from datetime import datetime
 from app.Forms.form import RegistrationForm, LoginForm, UpdateAccountForm, ExpenseForm
@@ -142,15 +142,58 @@ def account():
 @login_required
 def new_expense():
     form = ExpenseForm()
+    today_date = datetime.now()
     if form.validate_on_submit():
         new_expense = Expense(title=form.title.data, amount=form.amount.data,
                               date_spend=form.date_spend.data,
                               category=form.category.data,
-                              merchant=form.merchant.data, user=current_user)
+                              merchant=form.merchant.data,
+                              user=current_user, date_posted=today_date)
         db.session.add(new_expense)
         db.session.commit()
         flash('Your new expense has been created!', 'success')
         return redirect(url_for('home'))
     elif request.method == 'GET':
-        form.date_spend.data = datetime.now()
+        form.date_spend.data = today_date
     return render_template('create_expense.html', title='New Expense', form=form, legend='New Expense')
+
+
+@app.route("/expense/<int:expense_id>")
+def expense(expense_id):
+    expense = Expense.query.get_or_404(expense_id)
+    return render_template('expense.html', title=expense.title, expense=expense)
+
+
+@app.route("/expense/<int:expense_id>/update", methods=['GET', 'POST'])
+@login_required
+def expense_update(expense_id):
+    expense = Expense.query.get_or_404(expense_id)
+    form = ExpenseForm()
+    if form.validate_on_submit():
+        expense.title = form.title.data
+        expense.amount = form.amount.data
+        expense.date_spend = form.date_spend.data
+        expense.category = form.category.data
+        expense.merchant = form.merchant.data
+        expense.date_posted = datetime.now()
+        db.session.commit()
+        flash('Your expense has been updated!', 'success')
+        return redirect(url_for('expense', expense_id=expense.id))
+    elif request.method == 'GET':
+        form.title.data = expense.title
+        form.amount.data = expense.amount
+        form.date_spend.data = expense.date_spend
+        form.category.data = expense.category
+        form.merchant.data = expense.merchant
+    return render_template('create_expense.html', title='Edit Expense',
+                           form=form, legend='Edit Expense')
+
+
+@app.route("/expense/<int:expense_id>/delete", methods=['POST'])
+@login_required
+def delete_expense(expense_id):
+    expense = Expense.query.get_or_404(expense_id)
+    db.session.delete(expense)
+    db.session.commit()
+    flash('Your expense has been deleted!', 'success')
+    return redirect(url_for('home'))

@@ -1,5 +1,4 @@
 # CREATE TABLE
-from datetime import datetime
 from app import db, login_manager
 from flask_login import UserMixin
 
@@ -40,8 +39,8 @@ class Expense(db.Model):
     merchant = db.Column(db.String(30), nullable=False)
     # Create Foreign Key, "users.id" the users refers to the tablename of User.
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    date_posted = db.Column(db.DateTime, nullable=False,
-                            default=datetime.utcnow)  # get the default time
+    # get the default time
+    date_posted = db.Column(db.DateTime, nullable=False)
 
     def __repr__(self):
-        return f'<Expense {self.title}, {self.amount}, {self.date_spend}, {self.date_posted}>'
+        return f'<Expense {self.title}, {self.id}, {self.date_spend}, {self.date_posted}>'

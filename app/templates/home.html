@@ -18,7 +18,7 @@
                       <tr class="table-row">
                         <td class="text-center" style="width: 18%;">{{ expense.date_spend.strftime("%B %d, %Y") }}</td>
                         <th class="text-center" style="width: 18%;">${{ expense.amount }}</th>
-                        <td class="text-wrap">{{ expense.title }}</td>
+                        <td class="text-wrap"><a href="{{ url_for('expense', expense_id=expense.id) }}">{{ expense.title }}</a></td>
                         <td class="text-center">{{ expense.category }}</td>
                         <td class="text-center">{{ expense.merchant }}</td>
                       </tr>

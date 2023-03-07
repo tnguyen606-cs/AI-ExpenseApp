@@ -135,18 +135,16 @@ def account():
     # Get the path of the image saves in database
     image_file = url_for(
         'static', filename='images/' + current_user.image_file)
-    return render_template('account.html', title='Account',
-                           image_file=image_file, form=form)
+    return render_template('account.html', title='Account', form=form, image_file=image_file)
 
 
 @app.route("/expense/add", methods=['GET', 'POST'])
 @login_required
 def new_expense():
     form = ExpenseForm()
-    date = datetime.now()
     if form.validate_on_submit():
         new_expense = Expense(title=form.title.data, amount=form.amount.data,
-                              date_spend=date.strftime("%m/%d/%y"),
+                              date_spend=form.date_spend.data,
                               category=form.category.data,
                               merchant=form.merchant.data, user=current_user)
         db.session.add(new_expense)
@@ -154,5 +152,5 @@ def new_expense():
         flash('Your new expense has been created!', 'success')
         return redirect(url_for('home'))
     elif request.method == 'GET':
-        form.date_spend.data = date.strftime("%m/%d/%y")
+        form.date_spend.data = datetime.now()
     return render_template('create_expense.html', title='New Expense', form=form, legend='New Expense')

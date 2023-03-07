@@ -74,38 +74,42 @@
 
 <br/>
 
-### A top-level directory layout
+### A top-level directory structure
 
 ```bash
     .
-    ├── LICENSE
-    ├── README.md
-    ├── app
-    │   ├── init.py       # Initialize the app
-    │   ├── models.py     # Database's Models
-    │   ├── routes.py     # List of routes
-    │   └── templates
-    │       ├── account.html
-    │       ├── home.html
-    │       ├── layout.html
-    │       ├── login.html
-    │       ├── register.html
-    │       └── two_factor_setup.html
+    ├── app                           # The main Flask application directory
+    │   ├── init.py                   # A special file to make the app a package for imports to work properly
+    │   ├── models.py                 # The file that will contain Flask-SQLAlchemy models.
+    │   ├── routes.py                 # The file that will contain all routes in the application.
     │   ├── Forms
     │   │   ├── pycache
     │   │   │   └── form.cpython-37.pyc
-    │   │   └── form.py
+    │   │   └── form.py               # The file that will contain all filling forms needed in the applciation.
     │   ├── static
+    │   │   ├── images
+    │   │   │   └── dfac787292d3cd2f.png
     │   │   └── main.css
-    │   ├── instance
-    │   │   └── site.db
     │   ├── pycache
     │   │   ├── init.cpython-37.pyc
     │   │   ├── models.cpython-37.pyc
     │   │   └── routes.cpython-37.pyc
+    │   └── templates                 # The templates directory that will contain files for the main blueprint and a directory for each blueprint.
+    │       ├── account.html          # The account blueprint for managing user info.
+    │       ├── create_expense.html
+    │       ├── home.html             # The home blueprint serving as the home page.
+    │       ├── layout.html           # The layout blueprint to act as the base template for all routes.
+    │       ├── login.html
+    │       ├── main.html             # The main blueprint for main routes before login and after logout.
+    │       ├── register.html
+    │       └── two_factor_setup.html
     ├── instance
     │   └── user_info.db
     └── run.py
+    ├── LICENSE
+    ├── README.md
+    ├── Tech Stack Contents
+    │   └── SQLAlchemy.md
 ```
 
 <br/>

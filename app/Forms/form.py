@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
 
@@ -65,10 +65,11 @@ class UpdateAccountForm(FlaskForm):
 
 
 class ExpenseForm(FlaskForm):
-    title = StringField('Description Details:', validators=[DataRequired()])
-    amount = StringField('Amount (Dollards)', validators=[DataRequired()])
-    date_spend = StringField('Date of Spend (mm/dd/yy)',
-                             validators=[DataRequired()])
-    category = StringField('Category', validators=[DataRequired()])
-    merchant = StringField('Merchant', validators=[DataRequired()])
+    title = StringField('Purpose:', validators=[DataRequired()])
+    amount = StringField('Amount (Dollards):', validators=[DataRequired()])
+    date_spend = DateField('Date of Spend:', validators=[DataRequired()])
+    category = SelectField('Category:', choices=["Food & Dining",
+                                                 "Groceries", "Gas & Fuel", "Bills & Utilities", "Loan", "Shopping", "Transfer", "Other Spending"],
+                           validators=[DataRequired()])
+    merchant = StringField('Merchant:', validators=[DataRequired()])
     submit = SubmitField('Save Expense')

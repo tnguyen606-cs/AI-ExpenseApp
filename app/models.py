@@ -32,12 +32,12 @@ class User(db.Model, UserMixin):
 
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(150), nullable=False)
     amount = db.Column(db.Numeric(precision=8, asdecimal=False,
                        decimal_return_scale=2), nullable=False)
-    date_spend = db.Column(db.String(10), nullable=False)
+    date_spend = db.Column(db.DateTime, nullable=False)
     category = db.Column(db.String(20), nullable=False)
-    merchant = db.Column(db.String(25), nullable=False)
+    merchant = db.Column(db.String(30), nullable=False)
     # Create Foreign Key, "users.id" the users refers to the tablename of User.
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False,

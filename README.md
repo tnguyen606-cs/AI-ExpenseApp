@@ -16,7 +16,7 @@
 <!-- DESIGN SYSTEM -->
 <h2 align="center">DESIGN SYSTEM</h2>
 
-<p align="center">To get a big picture of how I develop this app, this is a preliminary list of features for financial software solution. </p>
+<p align="center">To get a big picture of how I develop this app, this is a preliminary list of features for thi financial software solution. </p>
 <br/>
 
 ### Key Features
@@ -37,28 +37,11 @@
 
 ### Tech Stack
 
-1. Web framework: **Flask**
-2. Storing User Data: [SQLAlchemy](https://github.com/tnguyen606-cs/AI-ExpenseApp/blob/main/Tech%20Stack%20Contents/SQLAlchemy.md)
-3. Database: **SQLLite** for testing and **PostgreSQL** for production
-
-<!-- STEPS -->
-<br/>
-<h2 align="center">Set-up Steps</h2>
-
-1. Install [Flask](https://flask.palletsprojects.com/en/2.2.x/quickstart/) and Python
-2. Activate the active _Debug_ mode on the browser: Run `export FLASK_DEBUG=1` or use `__name__` in file to reload page automatically
-3. Run the app: `python flaskmain.py`
-4. Get a _secret_ key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
-5. Get Fancy form library - _WTForms_. Ex, to use _TextField_ with Form: Run `pip install flask-wtf`
-6. Install _SQLAlchemy_: Run `pip install flask-sqlalchemy`
-7. Create DB: Run `db.create_all()`
-8. Re-create DB: Run `db.drop_all()` and `db.create_all()`
-9. Install _Bcrypt_: Run `pip install flask-bcrypt`
-10. Install _User_ model: Run `from app import db` - `from app.models import User` - `User.query.all()` - `user`
-11. Install user session management for Flask: `pip install flask-login`
-12. Install the _PyOTP_ library : Run `pip install pyotp`
-13. Install _Pillow?_ library to help reduce the image size: Run `pip install Pillow`
-14. Install _Flask-Currency_ library, Currency handling extension for Flask and SQLAlchemy: Run `pip install FlaskCurrency`
+1. Web Framework: **Flask**
+2. Front-end Library: **Bootstrap**
+3. HTML forms with our Flask server: **Flask-WTF**
+4. Storing User Data: **SQLAlchemy**
+5. Advanced Database: **SQLLite** for testing and **PostgreSQL** for production
 
 <!-- ZENHUB -->
 <br/>
@@ -67,10 +50,13 @@
 1. Created **Login/Register** pages
 2. Set up a **Database** and Stored User Data with SQLAlchemy
 3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
-4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask as logging in
-5. Created **User Account** with Profile picture where users can update their info
-6. Created **Add Expense** option in navbar so that user can now add new expense
+4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask when logging in
+5. Created **User Account** with Profile picture where user can update their info
+6. Created **Add Expense** option in navbar so that user can now add a new expense
 7. Created **Table view of Expenses** in homepage contains the list of all transactions with datetime
+8. Created **Expense Details** where user can review expense's details
+9. Created **Edit/Delete** option so that user can now edit/delete an existing expense
+10.
 
 <br/>
 
@@ -88,7 +74,7 @@
     │   │   └── form.py               # The file that will contain all filling forms needed in the applciation.
     │   ├── static
     │   │   ├── images
-    │   │   │   └── dfac787292d3cd2f.png
+    │   │   │   └── 78442eb9768a5147.png  # Profile picture
     │   │   └── main.css
     │   ├── pycache
     │   │   ├── init.cpython-37.pyc
@@ -97,6 +83,7 @@
     │   └── templates                 # The templates directory that will contain files for the main blueprint and a directory for each blueprint.
     │       ├── account.html          # The account blueprint for managing user info.
     │       ├── create_expense.html
+    │       ├── expense.html          # The expense blueprint display all details of the expense
     │       ├── home.html             # The home blueprint serving as the home page.
     │       ├── layout.html           # The layout blueprint to act as the base template for all routes.
     │       ├── login.html
@@ -106,21 +93,10 @@
     ├── instance
     │   └── user_info.db
     └── run.py
+    ├── Documentation
+    │   ├── Flask-WTF.md
+    │   ├── SQLAlchemy.md
+    │   └── Setup Process.md
     ├── LICENSE
     ├── README.md
-    ├── Tech Stack Contents
-    │   └── SQLAlchemy.md
 ```
-
-<br/>
-
-### Resources
-
-- [Understanding how a 2-factor authenticator works](https://blog.bytebytego.com/p/ep-16-design-google-placesyelp-also)
-- [What is SSO](https://blog.bytebytego.com/p/what-is-sso-episode-7)
-- [How to store Password safely in Database](https://www.youtube.com/watch?v=zt8Cocdy15c)
-- [Why Python integrate with PostgreSQL](https://blog.bytebytego.com/p/ep30-why-is-postgresql-the-most-loved)
-- [Matplotlib Data visualization](https://www.youtube.com/watch?v=UO98lJQ3QGI)
-- [How to send sms notifications](https://www.twilio.com/blog/sms-transaction-notifications-transferwise-twilio-python)
-- [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
-- [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)

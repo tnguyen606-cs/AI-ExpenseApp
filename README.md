@@ -16,10 +16,10 @@
 <!-- DESIGN SYSTEM -->
 <h2 align="center">DESIGN SYSTEM</h2>
 
-<p align="center">To get a big picture of how I develop this app, this is a preliminary list of features for thi financial software solution. </p>
+<p align="center">🧐 To get a big picture of how I develop this app</p>
 <br/>
 
-### Key Features
+### 🥳 Preliminary List of Key Features
 
 - **Registration/Log In**: Use **TOTP** and **Google Two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, **BCrypt Algorithm** is used to hash and save passwords securely.
 - **User profile**: Take care of personalization of user (e.g., Name, Email, Password, ect.).
@@ -35,7 +35,9 @@
 <!-- TECH STACK -->
 <br/>
 
-### Tech Stack
+### 👨‍💻 Tech Stack
+
+Here's a brief high-level overview of the tech stack the app uses:
 
 1. Web Framework: **Flask**
 2. Front-end Library: **Bootstrap**
@@ -44,19 +46,21 @@
 5. Advanced Database: **SQLLite** for testing and **PostgreSQL** for production
 
 <!-- ZENHUB -->
+<details>
+  <summary>🚀 Release Notes</summary>
+  
+  1. Created **Login/Register** pages
+  2. Set up a **Database** and Stored User Data with SQLAlchemy
+  3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
+  4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask when logging in
+  5. Created **User Account** with Profile picture where user can update their info
+  6. Created **Add Expense** option in navbar so that user can now add a new expense
+  7. Created **Table view of Expenses** in homepage contains the list of all transactions with datetime
+  8. Created **Expense Details** where user can review expense's details
+  9. Created **Edit/Delete** option so that user can now edit/delete an existing expense
+</details>
 <br/>
-<h2 align="center">Progress</h2>
-
-1. Created **Login/Register** pages
-2. Set up a **Database** and Stored User Data with SQLAlchemy
-3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
-4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask when logging in
-5. Created **User Account** with Profile picture where user can update their info
-6. Created **Add Expense** option in navbar so that user can now add a new expense
-7. Created **Table view of Expenses** in homepage contains the list of all transactions with datetime
-8. Created **Expense Details** where user can review expense's details
-9. Created **Edit/Delete** option so that user can now edit/delete an existing expense
-10.
+<h2 align="center">Release Notes</h2>
 
 <br/>
 
@@ -100,3 +104,9 @@
     ├── LICENSE
     ├── README.md
 ```
+
+---
+
+<br />
+
+# 💛

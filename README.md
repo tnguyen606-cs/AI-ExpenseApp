@@ -4,7 +4,7 @@
   <h1 align="center">AI-Expense Saving App</h3>
 
   <p align="center">
-    An awesome AI-powered expense-saving app to jumpstart that helps users in saving little by little for personal goals by managing and tracking users expenses and send summary alerts via SMS message. 
+    🥳 An awesome AI-powered expense-saving app to jumpstart that helps users in saving little by little for personal goals by managing and tracking users expenses and send summary alerts via SMS message. 
   </p>
   <br/>
   <p>
@@ -19,7 +19,7 @@
 <p align="center">🧐 To get a big picture of how I develop this app</p>
 <br/>
 
-### 🥳 Preliminary List of Key Features
+### Preliminary List of Key Features
 
 - **Registration/Log In**: Use **TOTP** and **Google Two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, **BCrypt Algorithm** is used to hash and save passwords securely.
 - **User profile**: Take care of personalization of user (e.g., Name, Email, Password, ect.).
@@ -46,8 +46,9 @@ Here's a brief high-level overview of the tech stack the app uses:
 5. Advanced Database: **SQLLite** for testing and **PostgreSQL** for production
 
 <!-- ZENHUB -->
+<br/>
 <details>
-  <summary>🚀 Release Notes</summary>
+  <h2>🚀 Release Notes</h2>
   
   1. Created **Login/Register** pages
   2. Set up a **Database** and Stored User Data with SQLAlchemy
@@ -59,10 +60,6 @@ Here's a brief high-level overview of the tech stack the app uses:
   8. Created **Expense Details** where user can review expense's details
   9. Created **Edit/Delete** option so that user can now edit/delete an existing expense
 </details>
-<br/>
-<h2 align="center">Release Notes</h2>
-
-<br/>
 
 ### A top-level directory structure
 

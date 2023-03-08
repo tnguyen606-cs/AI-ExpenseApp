@@ -18,7 +18,8 @@ def main():
 @app.route("/home")
 @login_required
 def home():
-    expenses = Expense.query.all()
+    page = request.args.get('page', 1, type=int)
+    expenses = Expense.query.order_by(Expense.date_spend.desc()).paginate(page=page, per_page=5)
     return render_template('home.html', expenses=expenses)
 
 

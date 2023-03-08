@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateField, DecimalField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from app.models import User
 
 
@@ -66,7 +66,7 @@ class UpdateAccountForm(FlaskForm):
 
 class ExpenseForm(FlaskForm):
     title = StringField('Purpose:', validators=[DataRequired()])
-    amount = StringField('Amount (Dollards):', validators=[DataRequired()])
+    amount = DecimalField('Amount (Dollards):', validators=[DataRequired(), NumberRange(min=0.5, max=10000)])
     date_spend = DateField('Date of Spend:', validators=[DataRequired()])
     category = SelectField('Category:', choices=["Food & Dining",
                                                  "Groceries", "Gas & Fuel", "Bills & Utilities", "Loan", "Shopping", "Transfer", "Other Spending"],

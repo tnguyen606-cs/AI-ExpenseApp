@@ -60,6 +60,7 @@ Here's a brief high-level overview of the tech stack the app uses:
   7. Created **Table view of Expenses** in homepage contains the list of all transactions with datetime
   8. Created **Expense Details** where user can review expense's details
   9. Created **Edit/Delete** option so that user can now edit/delete an existing expense
+  10. Created **Pagination** for pages
 
 <br/>
 

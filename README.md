@@ -20,7 +20,7 @@
 
 <details>
   <summary>
-    <h2>Preliminary List of Key Features</h2>
+    <h3>Preliminary List of Key Features</h3>
   </summary>
 
 - **Registration/Log In**: Use **TOTP** and **Google Two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, **BCrypt Algorithm** is used to hash and save passwords securely.

@@ -11,13 +11,15 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)  # id for each User
-    username = db.Column(db.String(21), unique=True, nullable=False)
+    username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     # user has a unique default picture
     image_file = db.Column(db.String(50), nullable=False,
                            default='default.jpg')
     # pp can have same password
     password = db.Column(db.String(100), nullable=False)
+    # phone number to use SMS message
+    phone = db.Column(db.Integer, unique=True, nullable=False)
     # lazy=true means db created
     # This will act like a List of Expense objects attached to each User.
     # The "user" refers to the user property in the Expense class.
@@ -26,12 +28,12 @@ class User(db.Model, UserMixin):
 
     # Optional: this will allow each User object to be identified by its username,email,image when printed.
     def __repr__(self):
-        return f"User('{ self.username}', '{ self.image_file}', '{ self.password}'"
+        return f"User('{ self.username}', '{ self.phone}', '{ self.password}'"
 
 
 class Expense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(150), nullable=False)
+    title = db.Column(db.String(100), nullable=False)
     amount = db.Column(db.Numeric(precision=8, asdecimal=False,
                        decimal_return_scale=2), nullable=False)
     date_spend = db.Column(db.DateTime, nullable=False)

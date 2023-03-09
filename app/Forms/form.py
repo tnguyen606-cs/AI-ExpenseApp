@@ -4,6 +4,7 @@ from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField, DateField, DecimalField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from app.models import User
+import phonenumbers
 
 
 class RegistrationForm(FlaskForm):
@@ -13,6 +14,7 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[
                                      DataRequired(), EqualTo('password')])
+    phone = StringField('Phone', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -26,6 +28,15 @@ class RegistrationForm(FlaskForm):
         if user:
             raise ValidationError(
                 'That email is taken. Please choose a different one.')
+    
+    def validate_phone(self, phone):
+        try:
+            p = phonenumbers.parse(phone.data)
+            user = User.query.filter_by(phone=phone.data).first()
+            if not phonenumbers.is_valid_number(p) or user:
+                raise ValueError()            
+        except (phonenumbers.phonenumberutil.NumberParseException, ValueError):
+            raise ValidationError('Invalid phone number. Please enter a correct phone number.')
 
 
 class LoginForm(FlaskForm):
@@ -45,6 +56,7 @@ class UpdateAccountForm(FlaskForm):
     new_password = PasswordField('New Password')
     confirm_password = PasswordField('Confirm Password', validators=[
                                      EqualTo('new_password')])
+    phone = StringField('Phone')
     picture = FileField('Update Profile Picture', validators=[
                         FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
@@ -63,10 +75,17 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError(
                     'That email is taken. Please choose a different one.')
 
+    def validate_phone(self, phone):
+        try:
+            p = phonenumbers.parse(phone.data)
+            if not phonenumbers.is_valid_number(p):
+                raise ValueError()            
+        except (phonenumbers.phonenumberutil.NumberParseException, ValueError):
+            raise ValidationError('Invalid phone number. Please enter a correct phone number.')
 
 class ExpenseForm(FlaskForm):
     title = StringField('Purpose:', validators=[DataRequired()])
-    amount = DecimalField('Amount (Dollards):', validators=[DataRequired(), NumberRange(min=0.5, max=10000)])
+    amount = DecimalField('Amount (Maximum 10,000 Dollards):', validators=[DataRequired(), NumberRange(min=0.5, max=10000)])
     date_spend = DateField('Date of Spend:', validators=[DataRequired()])
     category = SelectField('Category:', choices=["Food & Dining",
                                                  "Groceries", "Gas & Fuel", "Bills & Utilities", "Loan", "Shopping", "Transfer", "Other Spending"],

@@ -14,6 +14,7 @@
 12. Install the _PyOTP_ library : Run `pip install pyotp`
 13. Install _Pillow?_ library to help reduce the image size: Run `pip install Pillow`
 14. Install _Flask-Currency_ library, Currency handling extension for Flask and SQLAlchemy: Run `pip install FlaskCurrency`
+14. Install [_Twilio_](https://www.twilio.com/docs/sms/quickstart/python): Run `pip install twilio`
 
 ### Resources
 

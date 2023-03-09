@@ -18,7 +18,7 @@
                       <tr class="table-row">
                         <td class="text-center" style="width: 18%;">{{ expense.date_spend.strftime("%B %d, %Y") }}</td>
                         <th class="text-center" style="width: 18%;">${{ expense.amount }}</th>
-                        <td class="text-wrap"><a href="{{ url_for('expense', expense_id=expense.id) }}">{{ expense.title }}</a></td>
+                        <td class="text-wrap"><a href="{{ url_for('expenses.expense', expense_id=expense.id) }}">{{ expense.title }}</a></td>
                         <td class="text-center">{{ expense.category }}</td>
                         <td class="text-center">{{ expense.merchant }}</td>
                       </tr>
@@ -29,9 +29,9 @@
         {% for page_num in expenses.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
           {% if page_num %}
             {% if expenses.page == page_num %}
-              <a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+              <a class="btn btn-info mb-4" href="{{ url_for('head.home', page=page_num) }}">{{ page_num }}</a>
             {% else %}
-              <a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+              <a class="btn btn-outline-info mb-4" href="{{ url_for('head.home', page=page_num) }}">{{ page_num }}</a>
             {% endif %}
           {% else %}
             ...

@@ -30,7 +30,7 @@
 - **Compliance**: Let users automate their savings by setting spending limits or automatically saving their spare change from daily purchases.
 - **Analytics and reports**: Display categories through visible _charts_ that give users a detailed view (_Net Income Over Time Chart, Total Monthly Expenses Chart, Expenses Breakdown Chart_). Define all users transactions based on categories such as Income, Restaurant, Gas, ect. Use **PostgreSQL** for analytical processing and _Data Visualizaiton_ with **Mathplotlib**.
 - **Predict money flow**: As analyzing users financial situation, the app delivers financial suggestions when being asked that let users know where they can invest and increase capital. Use **AI** and **Machine learning** concepts in order to make decisions by feeding said data.
-- **Notifications and Alerts**: Users will receive SMS Notifications when they *Update Account Information* or *Add/Edit/Delete a Transaction* (**Twilio API** and **Python**).
+- **Notifications and Alerts**: Users will receive SMS Notifications when they _Update Account Information_ or _Add/Edit/Delete a Transaction_ (**Twilio API** and **Python**).
 - **Deployments**: Heroku and AWS.
 - **Agile automations**: Zenhub.
 
@@ -71,42 +71,51 @@ Here's a brief high-level overview of the tech stack the app uses:
 
 The documentation for this app can be found [here](https://github.com/tnguyen606-cs/AI-ExpenseApp/tree/main/Documentation).
 
-
 ### A top-level directory structure
 
 ```bash
     .
-    ├── app                           # The main Flask application directory
-    │   ├── init.py                   # A special file to make the app a package for imports to work properly
-    │   ├── models.py                 # The file that will contain Flask-SQLAlchemy models.
-    │   ├── routes.py                 # The file that will contain all routes in the application.
-    │   ├── Forms
-    │   │   └── form.py               # The file that will contain all filling forms needed in the applciation.
-    │   ├── Helpers
-    │   │   └── helpers.py            # The file contains all helper functions used in routes
-    │   ├── static
-    │   │   ├── images
-    │   │   │   └── 78442eb9768a5147.png  # Profile picture
-    │   │   └── main.css
-    │   └── templates                 # The templates directory that will contain files for the main blueprint and a directory for each blueprint.
-    │       ├── account.html          # The account blueprint for managing user info.
-    │       ├── create_expense.html
-    │       ├── expense.html          # The expense blueprint display all details of the expense
-    │       ├── home.html             # The home blueprint serving as the home page.
-    │       ├── layout.html           # The layout blueprint to act as the base template for all routes.
-    │       ├── login.html
-    │       ├── main.html             # The main blueprint for main routes before login and after logout.
-    │       ├── register.html
-    │       └── two_factor_setup.html
-    ├── instance
-    │   └── user_info.db
-    └── run.py
     ├── Documentation
     │   ├── Flask-WTF.md
     │   ├── SQLAlchemy.md
     │   └── Setup Process.md
     ├── LICENSE
     ├── README.md
+    ├── app                     # The main Flask application directory
+    │   ├── __init__.py         # A special file to make the app a package for imports to work properly
+    │   ├── config.py
+    │   ├── models.py           # The file that will contain Flask-SQLAlchemy models.
+    │   ├── users               # The users blueprint for managing users
+    │   │   ├── __init__.py
+    │   │   ├── forms.py
+    │   │   ├── routes.py
+    │   │   └── utils.py
+    │   ├── expenses            # The expenses blueprint of expenses
+    │   │   ├── __init__.py
+    │   │   ├── forms.py
+    │   │   ├── routes.py
+    │   │   └── utils.py
+    │   ├── main                # The main blueprint serving as the home page
+    │   │   ├── __init__.py
+    │   │   └── routes.py
+    │   ├── static
+    │   │   ├── images
+    │   │   │   ├── 54b147f2e1c9f467.png
+    │   │   │   ├── 78442eb9768a5147.png
+    │   │   │   ├── 980c76b8223154fa.png
+    │   │   │   └── a7d950e43d1cc7ad.png
+    │   │   └── main.css
+    │   ├── templates           # The templates directory contains files for all blueprints.
+    │   │   ├── account.html
+    │   │   ├── create_expense.html
+    │   │   ├── expense.html
+    │   │   ├── home.html
+    │   │   ├── layout.html
+    │   │   ├── login.html
+    │   │   ├── main.html
+    │   │   ├── register.html
+    │   │   └── two_factor_setup.html
+    ├── instance
+    │   └── user_info.db
+    └── run.py
 ```
-
----

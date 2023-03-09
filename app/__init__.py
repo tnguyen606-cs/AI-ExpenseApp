@@ -4,36 +4,39 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from twilio.rest import Client
+from app.config import Config
 
-# Initialize the app
-# __name__ === __main__ tells Flask where to look for at running
-app = Flask(__name__)
-
-# test code
-app.app_context().push()
-
-# Set a secret key: a key used to secure the sessions that remember information from one request to another
-app.config['SECRET_KEY'] = '9bed793b88c55537107733b2340c652f'
-
-# Set SQLALCHEMY as config: The database URI specifies the database you want to establish a connection with using SQLAlchemy.
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_info.db'
-
-# Optional: A configuration to enable or disable tracking modifications of objects.
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Set the database
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+db = SQLAlchemy()
+bcrypt = Bcrypt()
+login_manager = LoginManager()
+login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 
 # TWILIO_ACCOUNT
 account_sid = 'AC26c8dffe2e5379741a1f8efc0f2ede4f'
-auth_token = '4ae79a4b00eadc45c24fa149aadff7ae'
+auth_token = 'a3fc413ae20897ee7d492c1024f31e21'
 client = Client(account_sid, auth_token)
 
-# Load the views
-from app import routes
-from app import models
-# No change
+
+def create_app(config_class=Config):
+    # __name__ === __main__ tells Flask where to look for at running
+    app = Flask(__name__)
+    app.config.from_object(Config)
+
+    # test code
+    app.app_context().push()
+
+    db.init_app(app)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
+
+    from app.users.routes import users
+    from app.expenses.routes import expenses
+    from app.main.routes import head
+    app.register_blueprint(users)
+    app.register_blueprint(expenses)
+    app.register_blueprint(head)
+
+    return app

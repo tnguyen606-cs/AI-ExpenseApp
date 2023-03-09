@@ -3,7 +3,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
-from flask_currency import Currency
+from twilio.rest import Client
 
 # Initialize the app
 # __name__ === __main__ tells Flask where to look for at running
@@ -27,7 +27,11 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
-currency = Currency(app, db)
+
+# TWILIO_ACCOUNT
+account_sid = 'AC26c8dffe2e5379741a1f8efc0f2ede4f'
+auth_token = '4ae79a4b00eadc45c24fa149aadff7ae'
+client = Client(account_sid, auth_token)
 
 # Load the views
 from app import routes

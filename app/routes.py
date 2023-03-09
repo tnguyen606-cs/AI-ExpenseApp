@@ -1,14 +1,11 @@
 from flask import render_template, url_for, flash, redirect, request, abort
-from app import app, db, bcrypt
+from flask_login import login_user, current_user, logout_user, login_required
+from app import app, db, bcrypt, client
 from datetime import datetime
 from app.Forms.form import RegistrationForm, LoginForm, UpdateAccountForm, ExpenseForm
 from app.models import User, Expense
-from flask_login import login_user, current_user, logout_user, login_required
-import os
-import secrets
-from PIL import Image
+from app.Helpers.helpers import send_sms_to, save_picture
 import pyotp
-
 
 @app.route("/")
 def main():
@@ -31,15 +28,13 @@ def logout():
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         # fake password created from the password input
         hashed_pw = bcrypt.generate_password_hash(
             form.password.data).decode('utf-8')
         new_user = User(username=form.username.data,
-                        email=form.email.data, password=hashed_pw)
+                        email=form.email.data, password=hashed_pw, phone=form.phone.data)
         db.session.add(new_user)
         db.session.commit()
         # An alert function indicate the existing user
@@ -96,21 +91,6 @@ def login_2fa_form():
         return redirect(url_for("login_2fa"))
 
 
-def save_picture(form_picture):
-    random_hex = secrets.token_hex(8)
-    _, f_ext = os.path.splitext(form_picture.filename)
-    picture_fn = random_hex + f_ext
-    picture_path = os.path.join(
-        app.root_path, 'static/images', picture_fn)
-
-    output_size = (125, 125)
-    i = Image.open(form_picture)
-    i.thumbnail(output_size)
-    i.save(picture_path)
-
-    return picture_fn
-
-
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
@@ -126,12 +106,21 @@ def account():
             current_user.password = hashed_pw
         current_user.username = form.username.data
         current_user.email = form.email.data
+        current_user.phone = form.phone.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
+        # Send account updated message via Twilio
+        # phone="+{}".format(form.phone.data)
+        message = client.messages.create(
+            to=send_sms_to(), 
+            from_="+18776647341",
+            body="We noticed you just updated your account information!"
+        )
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
+        form.phone.data = send_sms_to()
 
     # Get the path of the image saves in database
     image_file = url_for(
@@ -153,6 +142,11 @@ def new_expense():
         db.session.add(new_expense)
         db.session.commit()
         flash('Your new expense has been created!', 'success')
+        message = client.messages.create(
+            to=send_sms_to(), 
+            from_="+18776647341",
+            body="We noticed you just added a new expense with an amount of {}!".format(new_expense.amount)
+        )
         return redirect(url_for('home'))
     elif request.method == 'GET':
         form.date_spend.data = today_date
@@ -160,6 +154,7 @@ def new_expense():
 
 
 @app.route("/expense/<int:expense_id>")
+@login_required
 def expense(expense_id):
     expense = Expense.query.get_or_404(expense_id)
     return render_template('expense.html', title=expense.title, expense=expense)
@@ -194,6 +189,11 @@ def expense_update(expense_id):
 @login_required
 def delete_expense(expense_id):
     expense = Expense.query.get_or_404(expense_id)
+    message = client.messages.create(
+            to=send_sms_to(), 
+            from_="+18776647341",
+            body="We noticed you just deleted an expense with an amount of {}!".format(expense.amount)
+        )
     db.session.delete(expense)
     db.session.commit()
     flash('Your expense has been deleted!', 'success')

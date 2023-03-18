@@ -15,7 +15,7 @@ def new_expense():
     form = ExpenseForm()
     today_date = datetime.now()
     if form.validate_on_submit():
-        new_expense = Expense(title=form.title.data, amount=form.amount.data,
+        new_expense = Expense(title=form.title.data, amount=round(form.amount.data, 2),
                               date_spend=form.date_spend.data,
                               category=form.category.data,
                               merchant=form.merchant.data,
@@ -23,12 +23,12 @@ def new_expense():
         db.session.add(new_expense)
         db.session.commit()
         flash('Your new expense has been created!', 'success')
-        message = client.messages.create(
-            to=send_sms_to(),
-            from_="+18776647341",
-            body="We noticed you just added a new expense with an amount of {}!".format(
-                new_expense.amount)
-        )
+        # message = client.messages.create(
+        #     to=send_sms_to(),
+        #     from_="+18776647341",
+        #     body="We noticed you just added a new expense with an amount of {}!".format(
+        #         new_expense.amount)
+        # )
         return redirect(url_for('head.home'))
     elif request.method == 'GET':
         form.date_spend.data = today_date
@@ -49,7 +49,7 @@ def expense_update(expense_id):
     form = ExpenseForm()
     if form.validate_on_submit():
         expense.title = form.title.data
-        expense.amount = form.amount.data
+        expense.amount = round(form.amount.data, 2)
         expense.date_spend = form.date_spend.data
         expense.category = form.category.data
         expense.merchant = form.merchant.data
@@ -71,12 +71,12 @@ def expense_update(expense_id):
 @login_required
 def delete_expense(expense_id):
     expense = Expense.query.get_or_404(expense_id)
-    message = client.messages.create(
-        to=send_sms_to(),
-        from_="+18776647341",
-        body="We noticed you just deleted an expense with an amount of {}!".format(
-            expense.amount)
-    )
+    # message = client.messages.create(
+    #     to=send_sms_to(),
+    #     from_="+18776647341",
+    #     body="We noticed you just deleted an expense with an amount of {}!".format(
+    #         expense.amount)
+    # )
     db.session.delete(expense)
     db.session.commit()
     flash('Your expense has been deleted!', 'success')

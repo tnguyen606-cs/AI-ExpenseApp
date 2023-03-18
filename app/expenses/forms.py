@@ -4,11 +4,11 @@ from wtforms.validators import DataRequired, NumberRange
 
 
 class ExpenseForm(FlaskForm):
-    title = StringField('Purpose:', validators=[DataRequired()])
+    title = StringField('Description:', validators=[DataRequired()])
     amount = DecimalField('Amount (Maximum 10,000 Dollards):', validators=[
                           DataRequired(), NumberRange(min=0.5, max=10000)])
     date_spend = DateField('Date of Spend:', validators=[DataRequired()])
-    category = SelectField('Category:', choices=["Food & Dining",
+    category = SelectField('Category:', choices=["Food & Dining", 
                                                  "Gas & Fuel", "Bills & Utilities", "Health & Fitness", "Travel", "Shopping", "Transfer", "Other Spending"],
                            validators=[DataRequired()])
     merchant = StringField('Merchant:', validators=[DataRequired()])

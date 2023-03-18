@@ -64,7 +64,7 @@ Here's a brief high-level overview of the tech stack the app uses:
   9. Created **Edit/Delete** option so that user can now edit/delete an existing expense
   10. Created **Pagination** for pages
   11. Sending **SMS via the Twilio API**. Message will be sent out when users register new account, update account info, add/edit/delete an expense.
-
+  12. Created **Add Budget** option in navbar so that user can now set a budget for financial goals themselves. 
 <!-- DOCUMENTATION -->
 <br/>
 <h2>Documentation</h2>

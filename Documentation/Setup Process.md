@@ -26,3 +26,4 @@
 - [How to send sms notifications](https://www.twilio.com/blog/sms-transaction-notifications-transferwise-twilio-python)
 - [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
 - [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)
+- [How to access environment variables from Python](https://www.twilio.com/blog/environment-variables-python)

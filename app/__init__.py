@@ -5,6 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from twilio.rest import Client
 from app.config import Config
+import os
 
 
 # Set the database
@@ -15,8 +16,8 @@ login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 
 # TWILIO_ACCOUNT
-account_sid = 'AC26c8dffe2e5379741a1f8efc0f2ede4f'
-auth_token = 'a3fc413ae20897ee7d492c1024f31e21'
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
 client = Client(account_sid, auth_token)
 
 

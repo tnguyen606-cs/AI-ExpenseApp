@@ -47,7 +47,7 @@ class Expense(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False)
 
     def __repr__(self):
-        return f'<Expense {self.title}, {self.id}, {self.date_spend}, {self.date_posted}>'
+        return f'<Expense {self.id}, {self.date_spend}, {self.date_posted}>'
 
 
 class Budget(db.Model):

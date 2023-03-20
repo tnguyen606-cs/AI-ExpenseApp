@@ -1,10 +1,10 @@
-from flask import render_template, url_for, flash, redirect, request, Blueprint
+from flask import render_template, url_for, flash, redirect, Blueprint
 from flask_login import current_user, login_required
 from app import db
 from datetime import datetime
 from app.budgets.forms import BudgetForm
 from app.models import Budget
-from app.budgets.utils import calculateSavingAmount
+from app.budgets.utils import calculateSavingAmount, duration
 
 budgets = Blueprint('budgets', __name__)
 
@@ -15,13 +15,13 @@ def new_goal():
     form = BudgetForm()
     today_date = datetime.now()
     if form.validate_on_submit():
-        if form.date_end.data > form.date_start.data:
-            date_start = form.date_start.data
-            date_end = form.date_end.data
+        date_start = form.date_start.data
+        date_end = form.date_end.data
+        dur = duration(date_start, date_end)
+        if dur > 30:
             amount = form.amount.data
             period = form.period.data
-            amount_saving = calculateSavingAmount(
-                date_start, date_end, amount, period)
+            amount_saving = calculateSavingAmount(dur, amount, period)
             new_goal = Budget(title=form.title.data,
                               purpose=form.purpose.data,
                               amount=amount,
@@ -35,5 +35,6 @@ def new_goal():
             flash('Your New Goal has been created!', 'success')
             return redirect(url_for('head.home'))
         else:
-            flash('Please select valid date start and date end!', 'danger')
+            flash(
+                'Please select the number of saving dates greater than 30 days!', 'danger')
     return render_template('create_budget.html', title='New Goal', form=form, legend='New Goal')

@@ -16,14 +16,15 @@ login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
 
 # TWILIO_ACCOUNT
-account_sid = os.environ['TWILIO_ACCOUNT_SID']
-auth_token = os.environ['TWILIO_AUTH_TOKEN']
-client = Client(account_sid, auth_token)
+# account_sid = os.environ['TWILIO_ACCOUNT_SID']
+# auth_token = os.environ['TWILIO_AUTH_TOKEN']
+# client = Client(account_sid, auth_token)
 
 
 def create_app(config_class=Config):
     # __name__ === __main__ tells Flask where to look for at running
     app = Flask(__name__)
+
     app.config.from_object(Config)
 
     db.init_app(app)
@@ -33,7 +34,7 @@ def create_app(config_class=Config):
     from app.users.routes import users
     from app.expenses.routes import expenses
     from app.main.routes import head
-    from app.budget.routes import budgets
+    from app.budgets.routes import budgets
     app.register_blueprint(users)
     app.register_blueprint(expenses)
     app.register_blueprint(head)

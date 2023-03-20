@@ -1,4 +1,5 @@
 # CREATE TABLE
+from datetime import datetime
 from app import db, login_manager
 from flask_login import UserMixin
 
@@ -55,7 +56,8 @@ class Budget(db.Model):
     purpose = db.Column(db.String(100), nullable=False)
     amount = db.Column(db.Numeric(precision=8, asdecimal=False,
                                   scale=2), nullable=False)
-    date_start = db.Column(db.DateTime, nullable=False)
+    date_start = db.Column(db.DateTime, nullable=False,
+                           default=datetime.utcnow)
     date_end = db.Column(db.DateTime, nullable=False)
     period = db.Column(db.String(20), nullable=False)
     amount_saving = db.Column(db.Numeric(precision=8, asdecimal=False,

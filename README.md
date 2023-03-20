@@ -64,7 +64,8 @@ Here's a brief high-level overview of the tech stack the app uses:
   9. Created **Edit/Delete** feature so that user can now edit/delete an existing expense
   10. Created **Pagination** feature for pages
   11. Sending **SMS via the Twilio API**. Message will be sent out when users register new account, update account info, add/edit/delete an expense.
-  12. Created **Budget Goal** feature where user can now create a new saving goal
+  12. Created **Goal** feature where user can now create a new saving goal
+  12. Created **Budget** feature where user can now create a new monthly budget to keep track the expenses and achieve the goal
 
 <!-- DOCUMENTATION -->
 <br/>
@@ -96,7 +97,12 @@ The documentation for this app can be found [here](https://github.com/tnguyen606
     │   │   ├── forms.py
     │   │   ├── routes.py
     │   │   └── utils.py
-    │   ├── budgets             # The budgets blueprint of saving goal
+    │   ├── budgets             # The budgets blueprint of monthly budget
+    │   │   ├── __init__.py
+    │   │   ├── forms.py
+    │   │   ├── routes.py
+    │   │   └── utils.py
+    │   ├── goals             # The goals blueprint of saving goal
     │   │   ├── __init__.py
     │   │   ├── forms.py
     │   │   ├── routes.py
@@ -115,6 +121,7 @@ The documentation for this app can be found [here](https://github.com/tnguyen606
     │   │   ├── account.html
     │   │   ├── create_budget.html
     │   │   ├── create_expense.html
+    │   │   ├── create_goal.html
     │   │   ├── expense.html
     │   │   ├── home.html
     │   │   ├── layout.html

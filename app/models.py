@@ -25,12 +25,13 @@ class User(db.Model, UserMixin):
     # This will act like a List of Expense objects attached to each User.
     # The "user" refers to the user property in the Expense/Budget class.
     expenses = db.relationship('Expense', backref='user', lazy=True)
-    budget = db.relationship('Goal', backref='user', lazy=True)
+    goals = db.relationship('Goal', backref='user', lazy=True)
+    budgets = db.relationship('Budget', backref='user', lazy=True)
     # backref is a shortcut for configuring both parent.children and child.parent relationships at one place only on the parent or the child class (not both).
 
     # Optional: this will allow each User object to be identified by its username,email,image when printed.
     def __repr__(self):
-        return f"User('{ self.username}', '{ self.phone}', '{ self.password}'"
+        return f"User('{ self.id}', '{ self.goals}', '{ self.expenses}')"
 
 
 class Expense(db.Model):
@@ -69,3 +70,17 @@ class Goal(db.Model):
 
     def __repr__(self):
         return f'<Goals {self.id}, {self.amount_saving}, {self.amount}>'
+
+
+class Budget(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    month = db.Column(db.String(10), unique=True, nullable=False)
+    income = db.Column(db.Integer, nullable=False)
+    budget = db.Column(db.Integer, nullable=False)
+    left_cash = db.Column(db.Integer, nullable=False, default=0)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    # get the default time
+    date_posted = db.Column(db.DateTime, nullable=False)
+
+    def __repr__(self):
+        return f'<Budget {self.id}, {self.budget}, {self.income}>'

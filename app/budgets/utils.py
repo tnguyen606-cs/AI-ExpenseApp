@@ -1,5 +1,4 @@
-def calculateSavingAmount(date_start, date_end, amount, period):
-    duration = (date_end - date_start).days
+def calculateSavingAmount(duration, amount, period):
     # saving amount per day
     money = round(amount / duration, 2)
     # Find the amount saving based on the days
@@ -14,3 +13,7 @@ def calculateSavingAmount(date_start, date_end, amount, period):
     else:
         days = 30
         return money * days
+
+
+def duration(date_start, date_end):
+    return (date_end - date_start).days

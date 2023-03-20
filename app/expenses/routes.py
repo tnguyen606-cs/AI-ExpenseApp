@@ -71,12 +71,12 @@ def expense_update(expense_id):
 @login_required
 def delete_expense(expense_id):
     expense = Expense.query.get_or_404(expense_id)
-    message = client.messages.create(
-        to=send_sms_to(),
-        from_="+18776647341",
-        body="We noticed you just deleted an expense with an amount of {}!".format(
-            expense.amount)
-    )
+    # message = client.messages.create(
+    #     to=send_sms_to(),
+    #     from_="+18776647341",
+    #     body="We noticed you just deleted an expense with an amount of {}!".format(
+    #         expense.amount)
+    # )
     db.session.delete(expense)
     db.session.commit()
     flash('Your expense has been deleted!', 'success')

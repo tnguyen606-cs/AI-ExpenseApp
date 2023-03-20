@@ -53,17 +53,18 @@ Here's a brief high-level overview of the tech stack the app uses:
 <br/>
 <h2>🚀 Release Notes</h2>
   
-  1. Created **Login/Register** pages
+  1. Created **Login/Register** feature pages
   2. Set up a **Database** and Stored User Data with SQLAlchemy
   3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
   4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask when logging in
-  5. Created **User Account** with Profile picture where user can update their info
-  6. Created **Add Expense** option in navbar so that user can now add a new expense
-  7. Created **Table view of Expenses** in homepage contains the list of all transactions with datetime
-  8. Created **Expense Details** where user can review expense's details
-  9. Created **Edit/Delete** option so that user can now edit/delete an existing expense
-  10. Created **Pagination** for pages
+  5. Created **User Account** feature with Profile picture where user can update their info
+  6. Created **Add Expense** feature in navbar so that user can now add a new expense
+  7. Created **Table view of Expenses** feature in homepage contains the list of all transactions with datetime
+  8. Created **Expense Details** feature where user can review expense's details
+  9. Created **Edit/Delete** feature so that user can now edit/delete an existing expense
+  10. Created **Pagination** feature for pages
   11. Sending **SMS via the Twilio API**. Message will be sent out when users register new account, update account info, add/edit/delete an expense.
+  12. Created **Budget Goal** feature where user can now create a new saving goal
 
 <!-- DOCUMENTATION -->
 <br/>
@@ -95,6 +96,11 @@ The documentation for this app can be found [here](https://github.com/tnguyen606
     │   │   ├── forms.py
     │   │   ├── routes.py
     │   │   └── utils.py
+    │   ├── budgets             # The budgets blueprint of saving goal
+    │   │   ├── __init__.py
+    │   │   ├── forms.py
+    │   │   ├── routes.py
+    │   │   └── utils.py
     │   ├── main                # The main blueprint serving as the home page
     │   │   ├── __init__.py
     │   │   └── routes.py
@@ -107,6 +113,7 @@ The documentation for this app can be found [here](https://github.com/tnguyen606
     │   │   └── main.css
     │   ├── templates           # The templates directory contains files for all blueprints.
     │   │   ├── account.html
+    │   │   ├── create_budget.html
     │   │   ├── create_expense.html
     │   │   ├── expense.html
     │   │   ├── home.html

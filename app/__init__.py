@@ -36,10 +36,10 @@ def create_app(config_class=Config):
     from app.users.routes import users
     from app.expenses.routes import expenses
     from app.main.routes import head
-    from app.budgets.routes import budgets
+    from app.goals.routes import goals
     app.register_blueprint(users)
     app.register_blueprint(expenses)
     app.register_blueprint(head)
-    app.register_blueprint(budgets)
+    app.register_blueprint(goals)
 
     return app

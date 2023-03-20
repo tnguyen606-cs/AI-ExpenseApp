@@ -3,7 +3,7 @@ from wtforms import StringField, SubmitField, SelectField, DateField, DecimalFie
 from wtforms.validators import DataRequired
 
 
-class BudgetForm(FlaskForm):
+class GoalForm(FlaskForm):
     purpose = SelectField("What's your goal?", choices=["Buy a Car",
                                                         "Buy a Home", "Investment", "Pay Off Debt", "Retirement", "Emergency Fund", "Travel", "College", "Improve Credit Score", "Other"],
                           validators=[DataRequired()])

@@ -6,15 +6,21 @@
 4. Get a _secret_ key: Run `python` -> `import secrets` -> `secrets.token_hex(16)`
 5. Get Fancy form library - _WTForms_. Ex, to use _TextField_ with Form: Run `pip install flask-wtf`
 6. Install _SQLAlchemy_: Run `pip install flask-sqlalchemy`
-7. Create DB: Run `db.create_all()`
-8. Re-create DB: Run `db.drop_all()` and `db.create_all()`
-9. Install _Bcrypt_: Run `pip install flask-bcrypt`
-10. Install _User_ model: Run `from app import db` - `from app.models import User` - `User.query.all()` - `user`
-11. Install user session management for Flask: `pip install flask-login`
-12. Install the _PyOTP_ library : Run `pip install pyotp`
-13. Install _Pillow?_ library to help reduce the image size: Run `pip install Pillow`
-14. Install _Flask-Currency_ library, Currency handling extension for Flask and SQLAlchemy: Run `pip install FlaskCurrency`
-14. Install [_Twilio_](https://www.twilio.com/docs/sms/quickstart/python): Run `pip install twilio`
+7. Install _Bcrypt_: Run `pip install flask-bcrypt`
+8. Install _Authentication_ Flask: `pip install flask-login`
+9. Install _PyOTP_ library : Run `pip install pyotp`
+10. Install _Pillow_ library that helps reduce the image size: Run `pip install Pillow`
+11. Install _Flask-Currency_ library, the Currency handling extension for Flask and SQLAlchemy: Run `pip install FlaskCurrency`
+12. Install [_Twilio_](https://www.twilio.com/docs/sms/quickstart/python): Run `pip install twilio`
+13. Create DB or Re-create DB: Run `db.drop_all()` and `db.create_all()`
+14. Note: Use `flask shell` to start a Python shell that already has an app context and the db object imported.
+
+```
+$ flask shell
+>>> db.create_all()
+```
+
+15. Install _User_ model: Run `from app import db` - `from app.models import User` - `User.query.all()` - `user`
 
 ### Resources
 

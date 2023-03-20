@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import login_user, current_user, logout_user, login_required
-from app import db, bcrypt, client
+from app import db, bcrypt
 from app.models import User
 from app.users.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from app.users.utils import send_sms_to, save_picture
@@ -26,11 +26,11 @@ def register():
                         email=form.email.data, password=hashed_pw, phone=form.phone.data)
         db.session.add(new_user)
         db.session.commit()
-        message = client.messages.create(
-            to=send_sms_to(),
-            from_="+18776647341",
-            body="Welcome to the AI-Expense App!"
-        )
+        # message = client.messages.create(
+        #     to=send_sms_to(),
+        #     from_="+18776647341",
+        #     body="Welcome to the AI-Expense App!"
+        # )
         # An alert function indicate the existing user
         flash(
             f'Account created for {form.username.data}, please login with your existing account!', 'success')
@@ -105,11 +105,11 @@ def account():
         flash('Your account has been updated!', 'success')
         # Send account updated message via Twilio
         # phone="+{}".format(form.phone.data)
-        message = client.messages.create(
-            to=send_sms_to(),
-            from_="+18776647341",
-            body="We noticed you just updated your account information!"
-        )
+        # message = client.messages.create(
+        #     to=send_sms_to(),
+        #     from_="+18776647341",
+        #     body="We noticed you just updated your account information!"
+        # )
         return redirect(url_for('users.account'))
     elif request.method == 'GET':
         form.username.data = current_user.username

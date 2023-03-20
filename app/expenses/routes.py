@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from flask_login import current_user, login_required
-from app import db, client
+from app import db
 from datetime import datetime
 from app.expenses.forms import ExpenseForm
 from app.models import Expense
@@ -23,12 +23,12 @@ def new_expense():
         db.session.add(new_expense)
         db.session.commit()
         flash('Your new expense has been created!', 'success')
-        message = client.messages.create(
-            to=send_sms_to(),
-            from_="+18776647341",
-            body="We noticed you just added a new expense with an amount of {}!".format(
-                new_expense.amount)
-        )
+        # message = client.messages.create(
+        #     to=send_sms_to(),
+        #     from_="+18776647341",
+        #     body="We noticed you just added a new expense with an amount of {}!".format(
+        #         new_expense.amount)
+        # )
         return redirect(url_for('head.home'))
     elif request.method == 'GET':
         form.date_spend.data = today_date

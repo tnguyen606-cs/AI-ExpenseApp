@@ -36,15 +36,11 @@ def home():
         Goal.date_posted.desc()).first()
     noGoal = True if goal is None else False
     # TODO: Display the Goal's total saving_amount
-    today_date = datetime.now()
 
     # range = Expense.query.filter(goal.date_start <= Budget.date_spend,
     #                              goal.date_end >= Budget.date_spend).all()
     # expenses_within = get_total_expenses_inrange(range)
     total_saving = left_cash + goal.amount_saving
-    goal.amount_saving = total_saving
-    # Update DATABASES
-    db.session.commit()
     print(total_saving)
     return render_template('home.html',
                            expenses=expenses,

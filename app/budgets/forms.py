@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SubmitField, IntegerField, SelectField
+from wtforms import SubmitField, IntegerField, SelectField, DecimalField
 from wtforms.validators import DataRequired, ValidationError
 from app.models import Budget
 
@@ -9,7 +9,8 @@ class BudgetForm(FlaskForm):
                         validators=[DataRequired()])
     income = IntegerField('Income budget', validators=[DataRequired()])
     budget = IntegerField('Monthly budget', validators=[DataRequired()])
-    submit = SubmitField('Create Budget')
+    left_cash = DecimalField('Leftover cash', validators=[DataRequired()])
+    submit = SubmitField('Save Budget')
 
     def validate_month(self, month):
         if Budget.query.filter_by(month=month.data).first():

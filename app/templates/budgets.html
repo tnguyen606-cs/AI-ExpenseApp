@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1 style="text-align: center;">Budgets</h1>
+<b><a style="text-align: center;" href="{{ url_for('budgets.new_budget') }}" target="_blank"><h2 class="create">Create a New Budget</h2></a></b>
+<div class="row row-cols-3 g-3">
+    {% for budget in budgets %}
+        <div class="col">
+            <div class="budget">
+                <h4 class="card-title">#{{ budget.id }} - {{ budget.month }} Budget</h4>
+                <div class="card-body">
+                    <i><p class="card-text">Income: ${{ budget.income }}</p></i>
+                    <i><p class="card-text">Budget: ${{ budget.budget }}</p></i>
+                    <i><p class="left_cash">Leftover cash: ${{ budget.left_cash }}</p></i>
+                </div>
+                <div class="text-center">
+                    <a class="btn btn-primary mr-3" href="{{ url_for('budgets.budget_update', budget_id=budget.id) }}" class="button">Update</a>
+                    <button type="button" class="btn btn-danger btn-medium" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                </div>
+            </div>
+        </div>
+        <!-- DELETION Modal-->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete budget</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete this budget? This will remove this budget from ALL.</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <form action="{{ url_for('budgets.delete_budget', budget_id=budget.id) }}" method="POST">
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock content %}

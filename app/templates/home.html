@@ -13,7 +13,7 @@
       <div>
         <h4>Amount</h4>
         <p>{{ total_expenses[0] }}</p>
-        <a class="nav-item nav-link" href="{{ url_for('expenses.new_expense') }}">Add Expense</a>
+        <a href="{{ url_for('expenses.new_expense') }}">Add Expense</a>
       </div>
     </div>
   </div>
@@ -21,7 +21,7 @@
     <div class="left_front">
       <div>
         <hr>
-        <h2>Left Cash</h2>
+        <h2>Leftover Cash</h2>
         <p>{{ left_cash }}</p>
       </div>
     </div>
@@ -40,7 +40,7 @@
         {% if current_budget.month == currentMonth %}
           <p>{{ current_budget.budget }}</p>
         {% endif %}
-        <a class="nav-item nav-link" href="{{ url_for('budgets.new_budget') }}">Update Budget</a>
+        <a href="{{ url_for('budgets.budget_update', budget_id=current_budget.id) }}">Update Budget</a>
       </div>
     </div>
   </div>
@@ -50,7 +50,7 @@
         <div>
           <hr>
           <h2>Goal</h2>
-          <a style="font-size: large;" class="nav-item nav-link" href="{{ url_for('goals.new_goal') }}">Add Goal</a>
+          <a style="font-size: large;" href="{{ url_for('goals.new_goal') }}">Add Goal</a>
         </div>
       </div>
     {% else %}
@@ -65,7 +65,7 @@
         <div>
           <h4>Total Saving</h4>
           <p>{{ goal.amount_saving }}</p>
-          <a class="nav-item nav-link" href="{{ url_for('budgets.new_budget') }}">Update Goal</a>
+          <a href="{{ url_for('goals.new_goal') }}">Update Goal</a>
         </div>
       </div>
     {% endif %}

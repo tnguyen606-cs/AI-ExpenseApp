@@ -11,7 +11,7 @@
     Further, AI and ML are at the core of the App. Its AI and ML algorithms help the platform deliver tailored responses based on users personal finances. For instance, one can even ask questions such as "whether I have the budget to buy a particular product that should not hurt the target goal" — then, the assistant of the app will take a dive into the graphs and data-driven insights and would answer queries. That is not all, the users can also set a limit of spare changes on the App and the app will put that amount aside as users savings, which helps to improve users overall financial wellness.
   </p>
 
-  <img src="expenses.gif" width="900" height="800" title='Current_Stage'/>
+  <img align="center" src="expenses.gif" width="900" height="800" title='Current_Stage'/>
 </p>
 
 <!-- DESIGN SYSTEM -->

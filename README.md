@@ -49,6 +49,7 @@ Here's a brief high-level overview of the tech stack the app uses:
 4. Storing User Data: **SQLAlchemy**
 5. Advanced Database: **SQLLite** for testing and **PostgreSQL** for production
 6. SMS memssage: **Twilio API** and **Python**
+7. Essential data science tools: **Numpy** and **Pandas**
 
 <!-- ZENHUB -->
 <br/>

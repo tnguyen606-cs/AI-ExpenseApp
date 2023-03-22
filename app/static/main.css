@@ -5,64 +5,76 @@ body {
 }
 
 h2, h3, h4, h5, h6 {
-  color: #444444;
+  color: #3c3c3c;
 }
 
 h1 {
   color: #1c1919;
 }
 
+hr {
+  width: 100px;
+  margin-left: 0;
+  border: 1px solid rgb(54, 200, 164);
+}
+
+.create {
+  color: blue;
+  margin: 25px;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
 .bg-steel {
   background-color: rgb(54, 200, 164);
 }
 
-.site-header .navbar-nav .nav-link {
-  color: white;
-}
-
-.site-header .navbar-nav .nav-link:hover {
-  color: #ffffff;
-}
-
-.site-header .navbar-nav .nav-link.active {
-  font-weight: 700;
-}
-
-.topnav {
-  background-color: whitesmoke;
-  padding: 20px;
-  text-align: center;
-}
-
 /* Style the links inside the navigation bar */
-.topnav a {
+.site-header .navbar-nav .nav-link {
+  color: #ffffff;
+  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 15px;
+}
+/* Change the color of links on hover */
+.site-header .navbar-nav .nav-link:hover {
+  background-color: #d87189;
+  color: black;
+  border-radius: 20px;
+}
+/* Add a color to the active/current link */
+.site-header .navbar-nav .nav-link.active {
+  background-color: rgb(104, 132, 149);
+  color: white;
+  border-radius: 25px;
+}
+
+.site-header .navbar-nav .nav-link-log-out {
   color: black;
   padding: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   text-decoration: none;
-  border-radius: 6px;
-  font-size: 18px;
+  border-radius: 5px;
+  font-size: 15px;
 }
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: lightgrey;
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: darkslategrey;
+.site-header .navbar-nav .nav-link-log-out:hover {
+  background-color: rgb(73, 71, 71);
   color: white;
 }
 
+/* Style the Content Box*/
 .content-section {
   background: #ffffff;
   padding: 10px 20px;
   border: 1px solid #dddddd;
   border-radius: 3px;
-  margin-top: 50px;
+  margin-top: 35px;
   margin-bottom: 20px;
 }
 
@@ -71,6 +83,7 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* Style the Expense Details Box */
 .article-title {
   color: #444444;
 }
@@ -118,6 +131,7 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 
+/* Style the Table Expenses */
 .table {
   width: 100%;
   border-spacing: 0;
@@ -138,9 +152,138 @@ a.article-title:hover {
 }
 
 .text-wrap {
-  width: 330px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+/* Style the column cards */
+.card {
+  color: inherit;
+  cursor: pointer;
+  width: calc(25% - 35px);
+  height: 150px;
+  perspective: 1000px;
+  margin-left: 25px;
+  position: relative;
+  float:left;
+  border-radius: 10px;
+}
+
+.cardContainer:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 500px) {
+  .card {
+    width: calc(50% - 3rem);
+  }
+}
+
+.front, .back {
+  display: flex;
+  border-radius: 10px;
+  background-position: center;
+	background-size: cover;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: ease-in-out 600ms;
+}
+.front {
+  background-size: cover;
+  padding: 1rem;
+  color: black;
+  font-size: 1.618rem;
+  font-weight: 600;
+  overflow: hidden;
+  font-family: Poppins, sans-serif;
+}
+.front:before, .left_front::before {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #b0c3cd, #c5a8b9);
+  opacity: 0.25;
+  z-index: -1;
+}
+.card:hover .front {
+  transform: rotateY(180deg);
+}
+.card:nth-child(even):hover .front {
+  transform: rotateY(-180deg);
+}
+.back {
+  background: #fff;
+  transform: rotateY(-180deg);
+  padding: 0 2em;
+  text-align: center;
+  justify-content: center;
+}
+
+.back h4 {
+  color:#5d5c5c;
+}
+
+.back p {
+  font-size: 2.5rem;
+  font-weight: 650;
+  color: black;
+}
+
+.back a {
+  font-size: 18px;
+  padding: 0px;
+}
+.card:hover .back {
+  transform: rotateY(0deg);
+}
+.card:nth-child(even) .back {
+  transform: rotateY(180deg);
+}
+.card:nth-child(even):hover .back {
+  transform: rotateY(0deg);
+}
+
+.left_front {
+  background-size: cover;
+  padding: 1rem;
+  overflow: hidden;
+  font-family: Poppins, sans-serif;
+}
+
+.left_front p {
+  color: rgb(242, 58, 58);
+  font-size: 1.618rem;
+  font-weight: 600;
+}
+
+/* Style the list of budgets as cards */
+.budget {
+  padding: 20px;
+  margin: 30px;
+  background-color: #eeecec;
+  width: calc(30% - 25px);
+  height: 260px;
+  float:left;
+  border-radius: 10px;
+}
+
+.card-text {
+  font-size: 20px;
+}
+
+.left_cash {
+  color: rgb(242, 58, 58);
+  font-size: 20px;
+  font-weight: 600;
+}

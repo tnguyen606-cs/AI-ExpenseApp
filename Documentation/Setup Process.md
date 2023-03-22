@@ -21,6 +21,7 @@ $ flask shell
 ```
 
 15. Install _User_ model: Run `from app import db` - `from app.models import User` - `User.query.all()` - `user`
+16. Install `pip install Flask-Migrate` to everything is handled by Alembic so you get exactly the same functionality.
 
 ### Resources
 

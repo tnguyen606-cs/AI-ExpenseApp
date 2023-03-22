@@ -1,19 +1,18 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, DateField, DecimalField
-from wtforms.validators import DataRequired
+from wtforms import SubmitField, IntegerField, SelectField, DecimalField
+from wtforms.validators import DataRequired, ValidationError
+from app.models import Budget
 
 
 class BudgetForm(FlaskForm):
-    purpose = SelectField("What's your goal?", choices=["Buy a Car",
-                                                        "Buy a Home", "Investment", "Pay Off Debt", "Retirement", "Emergency Fund", "Travel", "College", "Improve Credit Score", "Other"],
-                          validators=[DataRequired()])
-    title = StringField('Name your goal', validators=[DataRequired()])
-    amount = DecimalField('How much do you want to save?', places=2,
-                          validators=[DataRequired()])
-    date_start = DateField('When do you want to start?',
-                           validators=[DataRequired()])
-    date_end = DateField('When do you need it by?',
-                         validators=[DataRequired()])
-    period = SelectField('Saving', choices=["Daily", "Weekly", "Bi-Weekly", "Monthly"],
-                         validators=[DataRequired()])
-    submit = SubmitField('Create Goal')
+    month = SelectField("Month", choices=["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                        validators=[DataRequired()])
+    income = IntegerField('Income budget', validators=[DataRequired()])
+    budget = IntegerField('Monthly budget', validators=[DataRequired()])
+    left_cash = DecimalField('Leftover cash', validators=[DataRequired()])
+    submit = SubmitField('Save Budget')
+
+    def validate_month(self, month):
+        if Budget.query.filter_by(month=month.data).first():
+            raise ValidationError(
+                "Please enter different month or go back to update the existing monthly budget!")

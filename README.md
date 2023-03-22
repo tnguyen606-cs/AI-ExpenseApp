@@ -10,6 +10,8 @@
   <p>
     Further, AI and ML are at the core of the App. Its AI and ML algorithms help the platform deliver tailored responses based on users personal finances. For instance, one can even ask questions such as "whether I have the budget to buy a particular product that should not hurt the target goal" — then, the assistant of the app will take a dive into the graphs and data-driven insights and would answer queries. That is not all, the users can also set a limit of spare changes on the App and the app will put that amount aside as users savings, which helps to improve users overall financial wellness.
   </p>
+
+  <img src="expenses.gif" width="700" height="700" title='Current_Stage'/>
 </p>
 
 <br/>
@@ -59,12 +61,14 @@ Here's a brief high-level overview of the tech stack the app uses:
   4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask when logging in
   5. Created **User Account** feature with Profile picture where user can update their info
   6. Created **Add Expense** feature in navbar so that user can now add a new expense
-  7. Created **Table view of Expenses** feature in homepage contains the list of all transactions with datetime
+  7. Created **Table view of Expenses** feature in homepage contains the list of all transactions, sorted with newest date of spend.
   8. Created **Expense Details** feature where user can review expense's details
   9. Created **Edit/Delete** feature so that user can now edit/delete an existing expense
   10. Created **Pagination** feature for pages
   11. Sending **SMS via the Twilio API**. Message will be sent out when users register new account, update account info, add/edit/delete an expense.
-  12. Created **Budget Goal** feature where user can now create a new saving goal
+  12. Created **Goal** feature where user can now create a new saving goal
+  12. Created **Budget** feature where user can now create a new monthly budget to keep track the expenses and achieve the goal
+  13. Enhanced **Home Page** UI features that displays all spending expenses, goals, budgets, and leftover cash.
 
 <!-- DOCUMENTATION -->
 <br/>
@@ -96,7 +100,12 @@ The documentation for this app can be found [here](https://github.com/tnguyen606
     │   │   ├── forms.py
     │   │   ├── routes.py
     │   │   └── utils.py
-    │   ├── budgets             # The budgets blueprint of saving goal
+    │   ├── budgets             # The budgets blueprint of monthly budget
+    │   │   ├── __init__.py
+    │   │   ├── forms.py
+    │   │   ├── routes.py
+    │   │   └── utils.py
+    │   ├── goals             # The goals blueprint of saving goal
     │   │   ├── __init__.py
     │   │   ├── forms.py
     │   │   ├── routes.py
@@ -115,6 +124,7 @@ The documentation for this app can be found [here](https://github.com/tnguyen606
     │   │   ├── account.html
     │   │   ├── create_budget.html
     │   │   ├── create_expense.html
+    │   │   ├── create_goal.html
     │   │   ├── expense.html
     │   │   ├── home.html
     │   │   ├── layout.html

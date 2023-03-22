@@ -15,7 +15,7 @@ def new_expense():
     form = ExpenseForm()
     today_date = datetime.now()
     if form.validate_on_submit():
-        new_expense = Expense(title=form.title.data, amount=form.amount.data,
+        new_expense = Expense(title=form.title.data, amount=round(form.amount.data, 2),
                               date_spend=form.date_spend.data,
                               category=form.category.data,
                               merchant=form.merchant.data,

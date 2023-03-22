@@ -4,7 +4,7 @@ from app import db
 from datetime import datetime
 from app.goals.forms import GoalForm
 from app.models import Goal
-from app.goals.utils import calculateSavingAmount, duration
+from app.goals.utils import duration
 
 goals = Blueprint('goals', __name__)
 
@@ -21,14 +21,12 @@ def new_goal():
         if dur > 30:
             amount = form.amount.data
             period = form.period.data
-            amount_saving = calculateSavingAmount(dur, amount, period)
             new_goal = Goal(title=form.title.data,
                             purpose=form.purpose.data,
                             amount=amount,
                             date_start=date_start,
                             date_end=date_end,
                             period=period,
-                            amount_saving=amount_saving,
                             user=current_user, date_posted=today_date)
             db.session.add(new_goal)
             db.session.commit()

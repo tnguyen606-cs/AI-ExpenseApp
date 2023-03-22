@@ -3,13 +3,10 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
-from dotenv import load_dotenv
 # from twilio.rest import Client
 from app.config import Config
 
 # take environment variables from .env.
-load_dotenv()
-
 
 # Set the database
 db = SQLAlchemy()  # db intitialized here

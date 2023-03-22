@@ -1,4 +1,4 @@
-def calculateSavingAmount(duration, amount, period):
+def calculateSavingPeriod(duration, amount, period):
     # saving amount per day
     money = round(amount / duration, 2)
     # Find the amount saving based on the days

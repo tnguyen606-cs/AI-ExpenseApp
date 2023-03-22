@@ -74,10 +74,11 @@ class Goal(db.Model):
 
 class Budget(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    month = db.Column(db.String(10), unique=True, nullable=False)
+    month = db.Column(db.String(20), unique=True, nullable=False, default="")
     income = db.Column(db.Integer, nullable=False)
     budget = db.Column(db.Integer, nullable=False)
-    left_cash = db.Column(db.Integer, nullable=False, default=0)
+    left_cash = db.Column(db.Numeric(precision=8, asdecimal=False,
+                                     decimal_return_scale=2), nullable=False, default=0)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     # get the default time
     date_posted = db.Column(db.DateTime, nullable=False)

@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, DateField, DecimalField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, ValidationError
+from datetime import datetime
 
 
 class GoalForm(FlaskForm):
@@ -17,3 +18,9 @@ class GoalForm(FlaskForm):
     period = SelectField('Saving', choices=["Daily", "Weekly", "Bi-Weekly", "Monthly"],
                          validators=[DataRequired()])
     submit = SubmitField('Create Goal')
+
+    def validate_date_start(self, date_start):
+        # The date_start has to be after the current date to start
+        if date_start.data.strftime("%Y-%m-%d") < datetime.now().strftime("%Y-%m-%d"):
+            raise ValidationError(
+                "Please enter the saving date begins from today or afterwards!")

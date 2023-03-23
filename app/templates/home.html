@@ -1,6 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="cardContainer">
+  <!-- EXPENSES TRACK-->
   <div class="card" >
     <div class="front">
       <div>
@@ -17,15 +18,17 @@
       </div>
     </div>
   </div>
+  <!-- LEFTOVER CASH FLOW -->
   <div class="card" >
     <div class="left_front">
       <div>
         <hr>
         <h2>Leftover Cash</h2>
-        <p>{{ left_cash }}</p>
+        <p>$ {{ left_cash }}</p>
       </div>
     </div>
   </div>
+  <!-- BUDGET TRACK -->
   <div class="card" >
     <div class="front">
       <div>
@@ -35,37 +38,44 @@
       </div>
     </div>
     <div class="back">
-      <div>
-        <h4>Amount</h4>
-        {% if current_budget.month == currentMonth %}
+      {% if current_budget %}
+        <div>
+          <h4>Amount</h4>
           <p>{{ current_budget.budget }}</p>
-        {% endif %}
-        <a href="{{ url_for('budgets.budget_update', budget_id=current_budget.id) }}">Update Budget</a>
-      </div>
+          <a href="{{ url_for('budgets.budget_update') }}">Update Budget</a>
+        </div>
+      {% else %}  
+        <div>
+          <h4>Amount</h4>
+          <p>None</p>
+          <a href="{{ url_for('budgets.new_budget') }}">Add Budget</a>
+        </div>
+      {% endif %}
     </div>
   </div>
+  <!-- GOAL TRACK -->
   <div class="card" >
-    {% if noGoal %}
-      <div class="left_front ">
-        <div>
-          <hr>
-          <h2>Goal</h2>
-          <a style="font-size: large;" href="{{ url_for('goals.new_goal') }}">Add Goal</a>
-        </div>
-      </div>
-    {% else %}
+    {% if currennt_goal %}
       <div class="front">
         <div>
           <hr>
           <h2>Goal</h2>
-          <p>{{ goal.purpose }}</p>
+          <p>{{ currennt_goal.purpose }}</p>
         </div>
       </div>
       <div class="back">
         <div>
-          <h4>Total Saving</h4>
-          <p>{{ goal.amount_saving }}</p>
-          <a href="{{ url_for('goals.new_goal') }}">Update Goal</a>
+          <h4>Amount</h4>
+          <p>{{ currennt_goal.amount_saving }}</p>
+          <a href="{{ url_for('goals.new_goal') }}">Add Goal</a>
+        </div>
+      </div>
+    {% else %}  
+      <div class="left_front">
+        <div>
+          <hr>
+          <h2>Goal</h2>
+          <a style="font-size: large;" href="{{ url_for('goals.new_goal') }}">Add Goal</a>
         </div>
       </div>
     {% endif %}

@@ -62,13 +62,14 @@ Here's a brief high-level overview of the tech stack the app uses:
   5. Created **User Account** feature with Profile picture where user can update their info
   6. Created **Add Expense** feature in navbar so that user can now add a new expense
   7. Created **Table view of Expenses** feature in homepage contains the list of all transactions, sorted with newest date of spend.
-  8. Created **Expense Details** feature where user can review expense's details
+  8. Created **Expense Details** feature where user can review/update/delete expense's details
   9. Created **Edit/Delete** feature so that user can now edit/delete an existing expense
   10. Created **Pagination** feature for pages
   11. Sending **SMS via the Twilio API**. Message will be sent out when users register new account, update account info, add/edit/delete an expense.
-  12. Created **Goal** feature where user can now create a new saving goal
+  12. Created **Goal** feature where user can now create/update/delete a new saving goal
   12. Created **Budget** feature where user can now create a new monthly budget to keep track the expenses and achieve the goal
-  13. Enhanced **Home Page** UI features that displays all spending expenses, goals, budgets, and leftover cash.
+  13. Enhanced **Home Page** UI features that help users track income, budget, savings, and spending.
+  14. Created **Goals** and **Budgets** features which provide a summary for saving and budget.
 
 <!-- DOCUMENTATION -->
 <br/>
@@ -113,6 +114,7 @@ The documentation for this app can be found [here](https://github.com/tnguyen606
     │   ├── main                # The main blueprint serving as the home page
     │   │   ├── __init__.py
     │   │   └── routes.py
+    │   │   └── utils.py
     │   ├── static
     │   │   ├── images
     │   │   │   ├── 54b147f2e1c9f467.png
@@ -122,10 +124,14 @@ The documentation for this app can be found [here](https://github.com/tnguyen606
     │   │   └── main.css
     │   ├── templates           # The templates directory contains files for all blueprints.
     │   │   ├── account.html
+    │   │   ├── budget_update.html
+    │   │   ├── budgets.html
     │   │   ├── create_budget.html
     │   │   ├── create_expense.html
     │   │   ├── create_goal.html
     │   │   ├── expense.html
+    │   │   ├── goal_update.html
+    │   │   ├── goals.html
     │   │   ├── home.html
     │   │   ├── layout.html
     │   │   ├── login.html

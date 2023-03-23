@@ -42,7 +42,7 @@
         <div>
           <h4>Amount</h4>
           <p>{{ current_budget.budget }}</p>
-          <a href="{{ url_for('budgets.budget_update') }}">Update Budget</a>
+          <a href="{{ url_for('budgets.budget_update', budget_id=current_budget.id) }}">Update Budget</a>
         </div>
       {% else %}  
         <div>
@@ -67,7 +67,7 @@
         <div>
           <h4>Amount</h4>
           <p>{{ currennt_goal.amount_saving }}</p>
-          <a href="{{ url_for('goals.new_goal') }}">Add Goal</a>
+          <a href="{{ url_for('goals.goal_update', goal_id=currennt_goal.id) }}">Update Goal</a>
         </div>
       </div>
     {% else %}  

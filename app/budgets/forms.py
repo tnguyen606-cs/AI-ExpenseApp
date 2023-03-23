@@ -10,7 +10,7 @@ class BudgetForm(FlaskForm):
                         validators=[DataRequired()])
     income = IntegerField('Income budget', validators=[DataRequired()])
     budget = IntegerField('Monthly budget', validators=[DataRequired()])
-    submit = SubmitField('Save Budget')
+    submit = SubmitField('Create Budget')
 
     def validate_unique_month(self, month):
         if Budget.query.filter_by(month=month.data).first():

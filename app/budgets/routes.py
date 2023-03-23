@@ -47,6 +47,7 @@ def budget_update(budget_id):
     if form.validate_on_submit():
         if percent_saving(form.income.data, form.budget.data):
             if budget.month != form.month.data or budget.income != form.income.data or budget.left_cash != form.left_cash.data or budget.budget != form.budget.data:
+                budget.id = convert_monthTextToInt(form.month.data)
                 budget.month = form.month.data
                 budget.income = form.income.data
                 budget.budget = form.budget.data

@@ -1,8 +1,8 @@
 {% extends "layout.html" %}
 {% block content %}
 <h1 style="text-align: center;">Budgets</h1>
-<b><a style="text-align: center;" href="{{ url_for('budgets.new_budget') }}" target="_blank"><h2 class="create">Create a New Budget</h2></a></b>
-<div class="row row-cols-3 g-3">
+<b><a style="text-align: center;" href="{{ url_for('budgets.new_budget') }}"><h2 class="create">Create a New Budget</h2></a></b>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
     {% for budget in budgets %}
         <div class="col">
             <div class="budget">

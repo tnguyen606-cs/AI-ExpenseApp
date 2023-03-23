@@ -2,8 +2,9 @@ from flask import render_template, url_for, flash, redirect, Blueprint, request
 from flask_login import current_user, login_required
 from app import db
 from datetime import datetime
-from app.budgets.forms import BudgetForm
+from app.budgets.forms import BudgetForm, BudgetUpdateForm
 from app.models import Budget
+from app.budgets.utils import convert_monthTextToInt, percent_saving
 
 budgets = Blueprint('budgets', __name__)
 
@@ -14,35 +15,27 @@ def new_budget():
     form = BudgetForm()
     today_date = datetime.now()
     if form.validate_on_submit():
-        income = form.income.data
-        budget = form.budget.data
-        mm = form.month.data
-        if income > budget:
-            new_budget = Budget(id=datetime.strptime(mm, '%B').month,
-                                month=mm,
+        if percent_saving(form.income.data, form.budget.data):
+            new_budget = Budget(id=convert_monthTextToInt(form.month.data),
+                                month=form.month.data,
                                 income=form.income.data,
-                                budget=budget,
+                                budget=form.budget.data,
                                 user=current_user, date_posted=today_date)
             db.session.add(new_budget)
             db.session.commit()
             flash('Your New Budget has been created!', 'success')
-            return redirect(url_for('head.home'))
+            return redirect(url_for('budgets.list_budget'))
         else:
             flash(
-                'Please enter the income higher than your budget', 'danger')
+                'Please enter the budget is less than the income!', 'danger')
     return render_template('create_budget.html', title='New Budget', form=form, legend='New Budget')
 
 
 @budgets.route("/budgets")
 @login_required
-def budget():
+def list_budget():
     # This line creates a list of all the budgets sorted by month
     all_budgets = Budget.query.order_by(Budget.id).all()
-    # This line loops through all the budgets
-    for i in range(len(all_budgets)):
-        # This line gives each movie a new ranking reversed from their order in all_movies
-        all_budgets[i].id = len(all_budgets) - i
-    db.session.commit()
     return render_template('budgets.html', title="Budgets", budgets=all_budgets)
 
 
@@ -50,9 +43,9 @@ def budget():
 @login_required
 def budget_update(budget_id):
     budget = Budget.query.get_or_404(budget_id)
-    form = BudgetForm()
+    form = BudgetUpdateForm()
     if form.validate_on_submit():
-        if form.income.data > form.budget.data:
+        if percent_saving(form.income.data, form.budget.data):
             if budget.month != form.month.data or budget.income != form.income.data or budget.left_cash != form.left_cash.data or budget.budget != form.budget.data:
                 budget.month = form.month.data
                 budget.income = form.income.data
@@ -61,7 +54,7 @@ def budget_update(budget_id):
                 budget.date_posted = datetime.now()
                 db.session.commit()
                 flash('Your budget has been updated!', 'success')
-                return redirect(url_for('budgets.budget'))
+                return redirect(url_for('budgets.list_budget'))
             else:
                 flash('There is no update!', 'danger')
         else:
@@ -72,7 +65,7 @@ def budget_update(budget_id):
         form.income.data = budget.income
         form.budget.data = budget.budget
         form.left_cash.data = budget.left_cash
-    return render_template('update_budget.html', title='Update Budget',
+    return render_template('budget_update.html', title='Update Budget',
                            form=form, legend='Update Budget', budget_id=budget_id)
 
 
@@ -89,4 +82,4 @@ def delete_budget(budget_id):
     db.session.delete(budget)
     db.session.commit()
     flash('Your budget has been deleted!', 'success')
-    return redirect(url_for('head.home'))
+    return redirect(url_for('budgets.list_budget'))

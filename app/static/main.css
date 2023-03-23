@@ -270,9 +270,9 @@ a.article-title:hover {
 /* Style the list of budgets as cards */
 .budget {
   padding: 20px;
-  margin: 30px;
+  margin: 10px;
   background-color: #eeecec;
-  width: calc(30% - 25px);
+  width: 300px;
   height: 260px;
   float:left;
   border-radius: 10px;

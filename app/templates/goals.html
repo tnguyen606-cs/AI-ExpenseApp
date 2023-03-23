@@ -1,19 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1 style="text-align: center;">You go, budget-setter!</h1>
-<b><a style="text-align: center;" href="{{ url_for('budgets.new_budget') }}"><h2 class="create">Create a new budget</h2></a></b>
+<h1 style="text-align: center;">You go, goal-getter!</h1>
+<b><a style="text-align: center;" href="{{ url_for('goals.new_goal') }}"><h2 class="create">Create a new goal</h2></a></b>
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-    {% for budget in budgets %}
+    {% for goal in goals %}
         <div class="col">
-            <div class="budget">
-                <h4 class="card-title">#{{ budget.id }} - {{ budget.month }} Budget</h4>
+            <div class="goal">
+                <h4 class="card-title">{{ goal.title }}</h4>
+                <hr>
                 <div class="card-body">
-                    <i><p class="card-text">Income: <b>${{ budget.income }}</b></p></i>
-                    <i><p class="card-text">Budget: <b>${{ budget.budget }}</b></p></i>
-                    <i><p class="left_cash">Leftover cash: <b>${{ budget.left_cash }}</b></p></i>
+                    <i><p class="card-text">Total you're saving: <b>${{ goal.amount_saving }} of ${{ goal.amount }}</b></p></i>
+                    <i><p class="card-text">To achieve your plan for {{ goal.purpose }}, you need to save <b>${{ goal.amount - goal.amount_saving}}</b> more.</p></i>
                 </div>
                 <div class="text-center">
-                    <a class="btn btn-primary mr-3" href="{{ url_for('budgets.budget_update', budget_id=budget.id) }}" class="button">Update</a>
+                    <a class="btn btn-primary mr-3" href="{{ url_for('goals.goal_update', goal_id=goal.id) }}" class="button">Update</a>
                     <button type="button" class="btn btn-danger btn-medium" data-toggle="modal" data-target="#deleteModal">Delete</button>
                 </div>
             </div>
@@ -23,17 +23,17 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Delete budget</h5>
+                        <h5 class="modal-title" id="deleteModalLabel">Delete goal</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
                         <div class="modal-body">
-                            <p>Are you sure you want to delete this budget? This will remove this budget from ALL.</p>
+                            <p>Are you sure you want to delete this goal? This will remove this goal from ALL.</p>
                         </div>
                         <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <form action="{{ url_for('budgets.delete_budget', budget_id=budget.id) }}" method="POST">
+                        <form action="{{ url_for('goals.delete_goal', goal_id=goal.id) }}" method="POST">
                             <input class="btn btn-danger" type="submit" value="Delete">
                         </form>
                     </div>

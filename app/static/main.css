@@ -287,3 +287,14 @@ a.article-title:hover {
   font-size: 20px;
   font-weight: 600;
 }
+
+/* Style the list of goals as cards */
+.goal {
+  padding: 20px;
+  margin: 10px;
+  background-color: #eeecec;
+  width: 500px;
+  height: 260px;
+  float:left;
+  border-radius: 10px;
+}

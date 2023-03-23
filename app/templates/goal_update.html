@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }} can be achieved if you save <b>${{ saving_regular }}</b> {{ period }}</legend>
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.title.errors %}
+                            <span style="color:red">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.title(class="form-control form-control-lg col-6") }}             
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.amount.label }}
+                {% if form.amount.errors %}
+                    {{ form.amount(class="form-control form-control-lg col-6 is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.amount.errors %}
+                            <span style="color:red">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.amount(class="form-control form-control-lg col-6", placeholder="$") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.date_start.label }}
+                {% if form.date_start.errors %}
+                    {{ form.date_start(class="datepicker form-control form-control-lg col-6 is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.date_start.errors %}
+                            <span style="color:red">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.date_start(class="datepicker form-control form-control-lg col-6") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.date_end.label }}
+                {% if form.date_end.errors %}
+                    {{ form.date_end(class="datepicker form-control form-control-lg col-6 is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.date_end.errors %}
+                            <span style="color:red">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.date_end(class="datepicker form-control form-control-lg col-6") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.period.label(class="form-control-label") }}
+                {% if form.period.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.period.errors %}
+                            <span style="color:red">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.period(class="form-control form-control-lg col-6") }}             
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+{% endblock content %}

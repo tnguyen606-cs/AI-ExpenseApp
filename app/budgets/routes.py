@@ -4,7 +4,7 @@ from app import db
 from datetime import datetime
 from app.budgets.forms import BudgetForm, BudgetUpdateForm
 from app.models import Budget
-from app.budgets.utils import convert_monthTextToInt, percent_saving
+from app.budgets.utils import convert_monthTextToInt, percent_saving, get_total_expenses, get_date_str_to_num
 
 budgets = Blueprint('budgets', __name__)
 
@@ -16,10 +16,14 @@ def new_budget():
     today_date = datetime.now()
     if form.validate_on_submit():
         if percent_saving(form.income.data, form.budget.data):
+            m = get_date_str_to_num(form.month.data)
+            left_cash = get_total_expenses(
+                datetime(2023, m, 1), datetime(2023, m, 28))[0]
             new_budget = Budget(id=convert_monthTextToInt(form.month.data),
                                 month=form.month.data,
                                 income=form.income.data,
                                 budget=form.budget.data,
+                                left_cash=form.income.data - left_cash,
                                 user=current_user, date_posted=today_date)
             db.session.add(new_budget)
             db.session.commit()

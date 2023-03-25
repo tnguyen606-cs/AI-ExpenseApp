@@ -14,10 +14,12 @@ def main():
 @head.route("/home")
 @login_required
 def home():
+    # Retrieve only five entries per page.
+    ROWS_PER_PAGE = 5
     page = request.args.get('page', 1, type=int)
     # This line creates a list of all the expenses sorted by date_spend
     expenses = Expense.query.order_by(
-        Expense.date_spend.desc()).paginate(page=page, per_page=5)
+        Expense.date_spend.desc()).paginate(page=page, per_page=ROWS_PER_PAGE)
 
     # TODO: EXPENSES TRACK
     num_expenses = get_num_rows(Expense)

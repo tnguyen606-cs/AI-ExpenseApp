@@ -272,8 +272,8 @@ a.article-title:hover {
   padding: 20px;
   margin: 10px;
   background-color: #eeecec;
-  width: 300px;
-  height: 260px;
+  width: 340px;
+  height: 280px;
   float:left;
   border-radius: 10px;
 }
@@ -294,7 +294,7 @@ a.article-title:hover {
   margin: 10px;
   background-color: #eeecec;
   width: 500px;
-  height: 260px;
+  height: 330px;
   float:left;
   border-radius: 10px;
 }

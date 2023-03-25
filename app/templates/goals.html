@@ -7,10 +7,11 @@
         <div class="col">
             <div class="goal">
                 <h4 class="card-title">{{ goal.title }}</h4>
+                <i><p>Start saving from {{ goal.date_start.strftime('%b %d, %Y') }}  to {{ goal.date_end.strftime('%b %d, %Y') }}</p></i>
                 <hr>
                 <div class="card-body">
-                    <i><p class="card-text">Total you're saving: <b>${{ goal.amount_saving }} of ${{ goal.amount }}</b></p></i>
-                    <i><p class="card-text">To achieve your plan for {{ goal.purpose }}, you need to save <b>${{ goal.amount - goal.amount_saving}}</b> more.</p></i>
+                    <p class="card-text">Total you're saving: <b>${{ goal.amount_saving }} of ${{ goal.amount }}</b></p>
+                    <p class="card-text">To achieve your plan for {{ goal.purpose }}, you need to save <b>${{ goal.amount - goal.amount_saving}}</b> more.</p>
                 </div>
                 <div class="text-center">
                     <a class="btn btn-primary mr-3" href="{{ url_for('goals.goal_update', goal_id=goal.id) }}" class="button">Update</a>

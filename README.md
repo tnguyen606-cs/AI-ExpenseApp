@@ -70,6 +70,7 @@ Here's a brief high-level overview of the tech stack the app uses:
   12. Created **Budget** feature where user can now create a new monthly budget to keep track the expenses and achieve the goal
   13. Enhanced **Home Page** UI features that help users track income, budget, savings, and spending.
   14. Created **Goals** and **Budgets** features which provide a summary for saving and budget.
+  15. Created **Sorting** features for expenses based on time period.
 
 <!-- DOCUMENTATION -->
 <br/>
@@ -114,6 +115,7 @@ The documentation for this app can be found [here](https://github.com/tnguyen606
     │   ├── main                # The main blueprint serving as the home page
     │   │   ├── __init__.py
     │   │   └── routes.py
+    │   │   ├── forms.py
     │   │   └── utils.py
     │   ├── static
     │   │   ├── images

@@ -3,7 +3,7 @@
 
   <h1 align="center">AI-Expense Saving App</h3>
 
-  <p align="center">
+  <p>
     🥳 Introducing an innovative AI-powered expense-saving app designed to assist users in achieving their personal financial goals. The app is equipped with advanced AI and ML algorithms, enabling it to deliver personalized responses based on each user's unique financial situation. The app allows users to manage and track their expenses effectively, receiving summary alerts via SMS messages.
   </p>
   <br/>

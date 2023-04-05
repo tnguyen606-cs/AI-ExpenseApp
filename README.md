@@ -11,7 +11,7 @@
     One standout feature of the app is its ability to provide tailored responses to user queries related to their finances. For instance, users can ask questions like "do I have enough funds to buy a particular product without impacting my target goal?" The app's assistant will leverage graphs and data-driven insights to provide precise and personalized answers.
   </p>
   <p>
-Furthermore, the app allows users to set a limit of spare change, which the app will set aside as savings, improving the overall financial wellness of the user. This app is a game-changer for anyone looking to save money and achieve their financial goals.
+Furthermore, the app allows users to set a limit of spare change, which the app will set aside as savings, improving the overall financial wellness of the user. This app is a game-changer for anyone looking to save money and achieve their financial goals!
   </p>
 
   <img align="center" src="expenses.gif" width="900" height="800" title='Current_Stage'/>

@@ -32,10 +32,12 @@ def home():
     total_expenses = get_total_expenses(input_dt, TODAY)[0]
 
     # TODO: LEFTOVER CASH FLOW
+    left_cash = 0
     if current_budget is not None:
         current_budget.left_cash = round(
             current_budget.budget - total_expenses, 2)
         db.session.commit()
+        left_cash = current_budget.left_cash
     else:  # This is no month has been created, Create it
         current_budget = []
 
@@ -74,7 +76,7 @@ def home():
                            total_expenses=total_expenses,
                            currentMonth=currentMonth,
                            current_budget=current_budget,
-                           left_cash=current_budget.left_cash,
+                           left_cash=left_cash,
                            current_goal=current_goal,
                            form=search_form,
                            is_pagination=is_pagination)

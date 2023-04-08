@@ -14,7 +14,7 @@
 Furthermore, the app allows users to set a limit of spare change, which the app will set aside as savings, improving the overall financial wellness of the user. This app is a game-changer for anyone looking to save money and achieve their financial goals!
   </p>
 
-  <img align="center" src="expenses.gif" width="900" height="800" title='Current_Stage'/>
+  <img align="center" src="Images/expenses.gif" width="900" height="800" title='Current_Stage'/>
 </p>
 
 <!-- DESIGN SYSTEM -->
@@ -22,10 +22,7 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
 
 <p align="center">🧐 To get a big picture of how I develop this app</p>
 
-<details>
-  <summary>
-    <h3>Preliminary List of Key Features</h3>
-  </summary>
+<h3>Preliminary List of Key Features</h3>
 
 - **Registration/Login**: Use **TOTP** and **Google Two-factor Authenticator** in _Python_ to make sure that users’ log-in flow is secured and no unauthorized person can get into the account. Also, **BCrypt Algorithm** is used to hash and save passwords securely. Unique **Login** for each user, i.e. no two users can have the same username, email and phone number.
 - **User profile**: Take care of personalization of user (e.g., Name, Email, Password, Phone, ect.).
@@ -38,11 +35,9 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
 - **Deployments**: Heroku and AWS.
 - **Agile automations**: Zenhub.
 
-</details>
-
 <!-- TECH STACK -->
 <br/>
-<h2>👨‍💻 Tech Stack</h2>
+<h3>👨‍💻 Tech Stack</h3>
 
 Here's a brief high-level overview of the tech stack the app uses:
 
@@ -57,7 +52,7 @@ Here's a brief high-level overview of the tech stack the app uses:
 
 <!-- ZENHUB -->
 <br/>
-<h2>🚀 Release Notes</h2>
+<h3>🚀 Release Notes</h3>
   
   1. Created **Login/Register** feature pages
   2. Set up a **Database** and Stored User Data with SQLAlchemy
@@ -77,75 +72,23 @@ Here's a brief high-level overview of the tech stack the app uses:
   15. Created **Sorting** features for expenses based on time period.
   16. Read/Write/Update data analysis with **Pandas**
 
+<!-- SQL -->
+<br/>
+<h3>Relational Databases</h3>
+
+The following diagram shows which tables will be created and what is their One-to-Many relationship between tables.
+
+The application has 4 tables:
+
+1. Users will store the personal data of our user such as their name, email, password.
+2. Expenses will store the information about the type of expenses, a description, the date of purchase/expense and finally the amount spent.
+3. Budgets will store the information about each month's budget and income.
+4. Goals will store the information about saving goal to achieve.
+
+<img align="center" src="Images/Database ER diagram.png" width="700" height="700" title='SQL_Table'/>
+
 <!-- DOCUMENTATION -->
 <br/>
-<h2>Documentation</h2>
+<h2 align="center">Documentation</h2>
 
 The documentation for this app can be found [here](https://github.com/tnguyen606-cs/AI-ExpenseApp/tree/main/Documentation).
-
-### A top-level directory structure
-
-```bash
-    .
-    ├── Documentation
-    │   ├── Flask-WTF.md
-    │   ├── SQLAlchemy.md
-    │   └── Setup Process.md
-    ├── LICENSE
-    ├── README.md
-    ├── app                     # The main Flask application directory
-    │   ├── __init__.py         # A special file to make the app a package for imports to work properly
-    │   ├── config.py
-    │   ├── models.py           # The file that will contain Flask-SQLAlchemy models.
-    │   ├── users               # The users blueprint for managing users
-    │   │   ├── __init__.py
-    │   │   ├── forms.py
-    │   │   ├── routes.py
-    │   │   └── utils.py
-    │   ├── expenses            # The expenses blueprint of expenses
-    │   │   ├── __init__.py
-    │   │   ├── forms.py
-    │   │   ├── routes.py
-    │   │   └── utils.py
-    │   ├── budgets             # The budgets blueprint of monthly budget
-    │   │   ├── __init__.py
-    │   │   ├── forms.py
-    │   │   ├── routes.py
-    │   │   └── utils.py
-    │   ├── goals             # The goals blueprint of saving goal
-    │   │   ├── __init__.py
-    │   │   ├── forms.py
-    │   │   ├── routes.py
-    │   │   └── utils.py
-    │   ├── main                # The main blueprint serving as the home page
-    │   │   ├── __init__.py
-    │   │   └── routes.py
-    │   │   ├── forms.py
-    │   │   └── utils.py
-    │   ├── static
-    │   │   ├── images
-    │   │   │   ├── 54b147f2e1c9f467.png
-    │   │   │   ├── 78442eb9768a5147.png
-    │   │   │   ├── 980c76b8223154fa.png
-    │   │   │   └── a7d950e43d1cc7ad.png
-    │   │   └── main.css
-    │   ├── templates           # The templates directory contains files for all blueprints.
-    │   │   ├── account.html
-    │   │   ├── budget_update.html
-    │   │   ├── budgets.html
-    │   │   ├── create_budget.html
-    │   │   ├── create_expense.html
-    │   │   ├── create_goal.html
-    │   │   ├── expense.html
-    │   │   ├── goal_update.html
-    │   │   ├── goals.html
-    │   │   ├── home.html
-    │   │   ├── layout.html
-    │   │   ├── login.html
-    │   │   ├── main.html
-    │   │   ├── register.html
-    │   │   └── two_factor_setup.html
-    ├── instance
-    │   └── user_info.db
-    └── run.py
-```

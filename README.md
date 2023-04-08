@@ -32,7 +32,7 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
 - **Tracking expenses**: The data for the expense report is taken from users inputs.
 - **Financial Goals**: Provide a range of predefined goals covering options such as paying off credit card debt or savings, leaving users the chance to create their own goals.
 - **Compliance**: Let users automate their savings by setting spending limits or automatically saving their spare change from daily purchases.
-- **Analytics and reports**: Display categories through visible _charts_ that give users a detailed view (_Net Income Over Time Chart, Total Monthly Expenses Chart, Expenses Breakdown Chart_). Define all users transactions based on categories such as Income, Restaurant, Gas, ect. Use **PostgreSQL** for analytical processing and _Data Visualizaiton_ with **Mathplotlib**.
+- **Analytics and reports**: Display categories through visible _charts_ that give users a detailed view (_Net Income Over Time Chart, Total Monthly Expenses Chart, Expenses Breakdown Chart_). Define all users transactions based on categories such as Income, Restaurant, Gas, ect. Use **Pandas** for analytical processing and _Data Visualizaiton_ with **Mathplotlib**.
 - **Predict money flow**: As analyzing users financial situation, the app delivers financial suggestions when being asked that help users know where they can invest and increase capital. Use the **System Design and Recommendation algorithm** concepts in order to make decisions by feeding said data.
 - **Notifications and Alerts**: Users will receive SMS Notifications when they _Update Account Information_ or _Add/Edit/Delete a Transaction_ (**Twilio API** and **Python**).
 - **Deployments**: Heroku and AWS.
@@ -53,6 +53,7 @@ Here's a brief high-level overview of the tech stack the app uses:
 5. Advanced Database: **SQLLite** for testing and **PostgreSQL** for production
 6. SMS memssage: **Twilio API** and **Python**
 7. Essential data science tools: **Numpy** and **Pandas**
+8. Data visualization tool: **Mathplotlib**
 
 <!-- ZENHUB -->
 <br/>

@@ -85,7 +85,7 @@ The application has 4 tables:
 3. Budgets will store the information about each month's budget and income.
 4. Goals will store the information about saving goal to achieve.
 
-<img align="center" src="Images/Database ER diagram.png" width="800" height="700" title='SQL_Table'/>
+<img align="center" src="Images/Database ER diagram.png" width="900" height="700" title='SQL_Table'/>
 
 <!-- DOCUMENTATION -->
 <br/>

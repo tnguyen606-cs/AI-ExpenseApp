@@ -35,43 +35,6 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
 - **Deployments**: Heroku and AWS.
 - **Agile automations**: Zenhub.
 
-<!-- TECH STACK -->
-<br/>
-<h3>👨‍💻 Tech Stack</h3>
-
-Here's a brief high-level overview of the tech stack the app uses:
-
-1. Web Framework: **Flask**
-2. Front-end Library: **Bootstrap**
-3. HTML forms with our Flask server: **Flask-WTF**
-4. Storing User Data: **SQLAlchemy**
-5. Advanced Database: **SQLLite** for testing and **PostgreSQL** for production
-6. SMS memssage: **Twilio API** and **Python**
-7. Essential data science tool: **Pandas**
-8. Data visualization tool: **Mathplotlib**
-
-<!-- ZENHUB -->
-<br/>
-<h3>🚀 Release Notes</h3>
-  
-  1. Created **Login/Register** feature pages
-  2. Set up a **Database** and Stored User Data with SQLAlchemy
-  3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
-  4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask when logging in
-  5. Created **User Account** feature with Profile picture where user can update their info
-  6. Created **Add Expense** feature in navbar so that user can now add a new expense
-  7. Created **Table view of Expenses** feature in homepage contains the list of all transactions, sorted with newest date of spend.
-  8. Created **Expense Details** feature where user can review/update/delete expense's details
-  9. Created **Edit/Delete** feature so that user can now edit/delete an existing expense
-  10. Created **Pagination** feature for pages
-  11. Sending **SMS via the Twilio API**. Message will be sent out when users register new account, update account info, add/edit/delete an expense.
-  12. Created **Goal** feature where user can now create/update/delete a new saving goal
-  12. Created **Budget** feature where user can now create a new monthly budget to keep track the expenses and achieve the goal
-  13. Enhanced **Home Page** UI features that help users track income, budget, savings, and spending.
-  14. Created **Goals** and **Budgets** features which provide a summary for saving and budget.
-  15. Created **Sorting** features for expenses based on time period.
-  16. Read/Write/Update data analysis with **Pandas**
-
 <!-- SQL -->
 <br/>
 <h3>Relational Databases</h3>
@@ -87,8 +50,45 @@ The application has 4 tables:
 
 <img align="center" src="Images/Database ER diagram.png" width="900" height="700" title='SQL_Table'/>
 
+<!-- TECH STACK -->
+
+## 👨‍💻 Tech Stack
+
+Here's a brief high-level overview of the tech stack the app uses:
+
+1. Web Framework: **Flask**
+2. Front-end Library: **Bootstrap**
+3. HTML forms with our Flask server: **Flask-WTF**
+4. Storing User Data: **SQLAlchemy**
+5. Advanced Database: **SQLLite** for testing and **PostgreSQL** for production
+6. SMS memssage: **Twilio API** and **Python**
+7. Essential data science tool: **Pandas**
+8. Data visualization tool: **Mathplotlib**
+
+<!-- ZENHUB -->
+
+## 🚀 Release Notes
+
+1. Created **Login/Register** feature pages
+2. Set up a **Database** and Stored User Data with SQLAlchemy
+3. Created **User Authentication** to keep passwords and information safe using `BCrypt Algorithm`
+4. Implemented **TOTP 2FA** with **Google Authenticator** in Python and Flask when logging in
+5. Created **User Account** feature with Profile picture where user can update their info
+6. Created **Add Expense** feature in navbar so that user can now add a new expense
+7. Created **Table view of Expenses** feature in homepage contains the list of all transactions, sorted with newest date of spend.
+8. Created **Expense Details** feature where user can review/update/delete expense's details
+9. Created **Edit/Delete** feature so that user can now edit/delete an existing expense
+10. Created **Pagination** feature for pages
+11. Sending **SMS via the Twilio API**. Message will be sent out when users register new account, update account info, add/edit/delete an expense.
+12. Created **Goal** feature where user can now create/update/delete a new saving goal
+13. Created **Budget** feature where user can now create a new monthly budget to keep track the expenses and achieve the goal
+14. Enhanced **Home Page** UI features that help users track income, budget, savings, and spending.
+15. Created **Goals** and **Budgets** features which provide a summary for saving and budget.
+16. Created **Sorting** features for expenses based on time period.
+17. Read/Write/Update data analysis with **Pandas**
+
 <!-- DOCUMENTATION -->
-<br/>
-<h2 align="center">Documentation</h2>
+
+## Documentation
 
 The documentation for this app can be found [here](https://github.com/tnguyen606-cs/AI-ExpenseApp/tree/main/Documentation).

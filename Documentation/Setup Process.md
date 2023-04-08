@@ -22,7 +22,7 @@ $ flask shell
 
 15. Install _User_ model: Run `from app import db` - `from app.models import User` - `User.query.all()` - `user`
 16. Install `pip install Flask-Migrate` to everything is handled by Alembic so you get exactly the same functionality.
-17. Install `pip install Pandas` is an open-source library that is built on top of NumPy library. 
+17. Install `pip install Pandas` is an open-source library that is built on top of NumPy library.
 
 ### Resources
 
@@ -35,3 +35,5 @@ $ flask shell
 - [Predicting Money Spending Direction using Support Vector Machines](https://jakevdp.github.io/PythonDataScienceHandbook/05.07-support-vector-machines.html)
 - [Heroku Deployment](https://www.youtube.com/watch?v=6DI_7Zja8Zc&t=613s)
 - [How to access environment variables from Python](https://www.twilio.com/blog/environment-variables-python)
+- [Learn Pandas](https://sparkbyexamples.com/pandas/pandas-check-column-contains-a-value-in-dataframe/)
+- [Pandas Examples](https://www.statology.org/pandas-sum-column-with-condition/)

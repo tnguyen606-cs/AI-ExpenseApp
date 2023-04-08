@@ -1,45 +1,31 @@
-from flask import request
+import os
+import pandas as pd
+from flask import request, current_app
 from app import db
-from app.models import Expense, Budget
+from app.models import Expense, Budget, Goal
 from datetime import datetime, timedelta
 
 
-def get_num_expenses(from_date):
-    num_item = 0
-    table = Expense.query.all()
-    for row in table:
-        if row.date_spend >= from_date:
-            print(row.date_spend)
-            num_item = num_item + 1
-    return num_item
+def get_total_income(from_month, to_month, from_year, to_year):
+    df_budgets = pd.read_csv("./instance/files/user_budgets.csv")
+    delta_years = to_year - from_year
+    if delta_years == 0 and from_month < to_month:
+        return df_budgets.loc[(df_budgets['ID'] >= from_month)
+                              & (df_budgets['ID'] <= to_month), 'Income'].sum()
+    else:
+        income = df_budgets.loc[(df_budgets['ID'] >= from_month)
+                                & (df_budgets['ID'] <= 12), 'Income'].sum()
+        return income + df_budgets.loc[(df_budgets['ID'] >= 1)
+                                       & (df_budgets['ID'] <= to_month), 'Income'].sum()
 
 
-def get_total_expenses(from_date, to_date):
-    sum = Expense.query.with_entities(
-        db.func.round(db.func.sum(Expense.amount), 2)).filter(Expense.date_spend >= from_date, Expense.date_spend <= to_date).all()[0]
-    return sum
-
-
-def get_total_income():
-    # Case 1: from_month < to_month
-    # if from_month < to_month:
-    #     sum = Budget.query.with_entities(
-    #         db.func.round(db.func.sum(Budget.income), 2)).filter(Budget.id >= from_month, Budget.id <= to_month).all()[0]
-    #     print("1", sum[0])
-    #     return sum[0]
-    # elif from_month > to_month:
-    #     sum = Budget.query.with_entities(
-    #         db.func.round(db.func.sum(Budget.income), 2)).filter(Budget.id >= from_month, Budget.id <= 12).all()[0]
-    #     # sum_2 = Budget.query.with_entities(
-    #     #     db.func.round(db.func.sum(Budget.income), 2)).filter(Budget.id >= 1, Budget.id <= to_month).all()[0]
-    #     print("2", to_month)
-    #     return sum[0]
-    # else:
-    #     sum = Budget.query.with_entities(
-    #         db.func.round(db.func.sum(Budget.income), 2)).filter(Budget.id >= from_month, Budget.id < to_month).all()[0]
-    #     print("3", to_month)
-    #     return sum[0]
-    return Budget.query.with_entities(db.func.round(db.func.sum(Budget.income), 2)).all()[0]
+def pagination(data, ROWS_PER_PAGE):
+    # Set the pagination configuration
+    page = request.args.get('page', 1, type=int)
+    # This line creates a list of all the expenses sorted by date_spend
+    expenses = data.query.order_by(
+        data.date_spend.desc()).paginate(page=page, per_page=ROWS_PER_PAGE)
+    return expenses
 
 
 def get_date_str(date_time, format):
@@ -48,19 +34,6 @@ def get_date_str(date_time, format):
 
 def get_date_datetime(str, format):
     return datetime.strptime(str, format)
-
-
-def get_date_str_to_num(str):
-    return datetime.strptime(str, '%B').month
-
-
-def pagination(Table, ROWS_PER_PAGE):
-    # Set the pagination configuration
-    page = request.args.get('page', 1, type=int)
-    # This line creates a list of all the expenses sorted by date_spend
-    expenses = Table.query.order_by(
-        Table.date_spend.desc()).paginate(page=page, per_page=ROWS_PER_PAGE)
-    return expenses
 
 
 def get_time_period(period, date):
@@ -92,3 +65,50 @@ def get_time_period(period, date):
         return Expense.query.filter(
             Expense.date_spend >= last2months).order_by(
             Expense.date_spend.desc()).all()
+
+
+#  Queries all Expenses from the database, converts them to a pandas DataFrame, and writes the DataFrame to a CSV file.
+def expenses_csv():
+    # Create csv file in python_ flask
+    path = os.path.join(
+        current_app.root_path, '../instance/files')
+    if not os.path.exists(path):
+        os.makedirs(path)
+    cvs_path = os.path.join(path, 'user_expenses.csv')
+    expenses = Expense.query.all()
+    if expenses is not None:
+        df = pd.DataFrame([(e.id, e.title, e.amount, e.date_spend.strftime('%m/%d/%Y'), e.category, e.merchant, e.user_id, e.date_posted)
+                           for e in expenses], columns=['ID', 'Title', 'Amount', 'Date Spend', 'Category', 'Merchant', 'User_ID', 'Date Posted'])
+        df.to_csv(cvs_path, index=False)
+
+#  Queries all Budget from the database, converts them to a pandas DataFrame, and writes the DataFrame to a CSV file.
+
+
+def budgets_csv():
+    # Create csv file in python_ flask
+    path = os.path.join(
+        current_app.root_path, '../instance/files')
+    if not os.path.exists(path):
+        os.makedirs(path)
+    cvs_path = os.path.join(path, 'user_budgets.csv')
+    budgets = Budget.query.all()
+    if budgets is not None:
+        df = pd.DataFrame([(e.id, e.month, e.income, e.budget, e.left_cash, e.user_id, e.date_posted)
+                           for e in budgets], columns=['ID', 'Month', 'Income', 'Budget', 'Leftover Cash', 'User_ID', 'Date Posted'])
+        df.to_csv(cvs_path, index=False)
+
+#  Queries all Goal from the database, converts them to a pandas DataFrame, and writes the DataFrame to a CSV file.
+
+
+def goals_csv():
+    path = os.path.join(
+        current_app.root_path, '../instance/files')
+    if not os.path.exists(path):
+        os.makedirs(path)
+    cvs_path = os.path.join(path, 'user_goals.csv')
+    goals = Goal.query.all()
+    if goals is not None:
+        df = pd.DataFrame([(e.id, e.title, e.purpose, e.amount, e.date_start, e.date_end, e.period, e.amount_saving, e.user_id, e.date_posted)
+                           for e in goals], columns=['ID', 'Title', 'Purpose', 'Amount', 'Date Start', 'Date End', 'Period', 'Amount Saving', 'User_ID', 'Date Posted'])
+        # Create csv file in python_ flask
+        df.to_csv(cvs_path, index=False)

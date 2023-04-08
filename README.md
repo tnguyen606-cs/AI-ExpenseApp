@@ -74,6 +74,7 @@ Here's a brief high-level overview of the tech stack the app uses:
   13. Enhanced **Home Page** UI features that help users track income, budget, savings, and spending.
   14. Created **Goals** and **Budgets** features which provide a summary for saving and budget.
   15. Created **Sorting** features for expenses based on time period.
+  16. Read/Write/Update data analysis with **Pandas**
 
 <!-- DOCUMENTATION -->
 <br/>

@@ -2,7 +2,6 @@ from flask_wtf import FlaskForm
 from wtforms import SubmitField, IntegerField, SelectField, DecimalField
 from wtforms.validators import DataRequired, ValidationError
 from app.models import Budget
-from app.budgets.utils import convert_monthTextToInt
 
 
 class BudgetForm(FlaskForm):

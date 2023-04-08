@@ -18,7 +18,7 @@ def new_goal():
         date_start = form.date_start.data
         date_end = form.date_end.data
         dur = duration(date_start, date_end)
-        if dur >= 30 and dur <= 365:
+        if dur >= 30:
             amount = form.amount.data
             period = form.period.data
             new_goal = Goal(title=form.title.data,
@@ -34,7 +34,7 @@ def new_goal():
             return redirect(url_for('goals.list_goal'))
         else:
             flash(
-                'Please select the number of saving dates greater than 30 days and less than one year!', 'danger')
+                'Please select the number of saving dates greater than 30 days!', 'danger')
     return render_template('create_goal.html', title='New Goal', form=form, legend='New Goal')
 
 
@@ -53,7 +53,7 @@ def goal_update(goal_id):
     form = GoalUpdateForm()
     if form.validate_on_submit():
         dur = duration(form.date_start.data, form.date_end.data)
-        if dur >= 30 and dur <= 365:
+        if dur >= 30:
             goal.title = form.title.data
             goal.amount = form.amount.data
             goal.date_start = form.date_start.data
@@ -64,7 +64,7 @@ def goal_update(goal_id):
             return redirect(url_for('goals.list_goal'))
         else:
             flash(
-                'Please select the number of saving dates greater than 30 days and less than one year!', 'danger')
+                'Please select the number of saving dates greater than 30 days!', 'danger')
     elif request.method == 'GET':
         form.title.data = goal.title
         form.amount.data = goal.amount

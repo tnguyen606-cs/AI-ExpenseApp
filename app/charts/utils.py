@@ -1,17 +1,21 @@
+from io import BytesIO
+import base64
+from app.models import Budget
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import matplotlib
 matplotlib.use('agg')
-import matplotlib.pyplot as plt
-from app.models import Budget
-import base64
-from io import BytesIO
 
 
 def get_column_values(path_string, column_name):
     df = pd.read_csv(path_string)
     column_values = df[column_name].tolist()
     return column_values
+
+
+def create_hover_text(values):
+    return [f"${value:,.2f}" for value in values]
 
 
 def generate_categories(months):
@@ -39,44 +43,41 @@ def generate_categories(months):
 
     return months_amount
 
-def grouped_bars_chart(dict, x_data):
+
+def plot_bars_chart(dict, x_data):
 
     # create a figure and axis object
     fig, ax = plt.subplots(layout='constrained')
 
-    # Array for horizontal bar's position
+    #  set the position of the bars on the x-axis: Array for horizontal bar's position
     x_indexes = np.arange(len(x_data))  # the label locations
-    width = 0.5  # the width of the bars
-    multiplier = 0
+    # set the width of each bar
+    bar_width = 0.45
 
-    # plot the grouped bars
-    colors = ['#54f0c9', '#f5788e']
-    i = 0
-    for l in dict:
-        offset = width * multiplier
-        rects = ax.bar(x_indexes + offset,
-                       dict[l], width, color=colors[i], label=l)
-        ax.bar_label(rects, padding=5)
-        multiplier += 0.75
-        i += 1
+    # create the bars for each group
+    ax.bar(x_indexes - bar_width/2 + 0.1,
+           dict['Earned'], width=bar_width, color='#54f0c9', label='Earned')
+    ax.bar(x_indexes + bar_width/2 - 0.05,
+           dict['Spent'], width=bar_width, color='#f5788e', label='Spent')
 
-    # Add some text for labels, title and custom x-axis tick labels, etc.
+    # Add some text for labels, removing spines and custom x-axis, y-axis tick labels, etc.
+    max_y = max(max(dict['Earned']), max(dict['Spent']))
     ax.spines['top'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
     ax.spines['left'].set_visible(False)
     ax.spines['right'].set_visible(False)
-    max_y = max(max(dict['Earned']), max(dict['Spent']))
-    min_y = min(min(dict['Earned']), min(dict['Spent']))
-    ax.set_xticks(x_indexes + 0.25, x_data)
-    ax.set_yticks([])
-    ax.set_ylabel('Amount ($)')
-    ax.set_ylim(min_y, max_y + 250)
-    ax.legend()
+    ax.set_xticks(x_indexes)
+    ax.set_xticklabels(x_data)
+    ax.set_ylim(0, max_y + 200)
+    ax.tick_params(left=True)
+    # add a legend
+    ax.legend(frameon=False, fontsize=15)
 
     # convert the plot to an image and encode it as base64
-    buffer = BytesIO()
+    buffer = BytesIO()  # Save it to a temporary buffer.
     fig.savefig(buffer, format='png')
     buffer.seek(0)
     image_base64 = base64.b64encode(
         buffer.getvalue()).decode('utf-8').replace('\n', '')
-    
+
     return image_base64

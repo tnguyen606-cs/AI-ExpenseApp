@@ -1,4 +1,4 @@
-from app.charts.utils import generate_categories, grouped_bars_chart
+from app.charts.utils import generate_categories, plot_bars_chart
 from flask_login import login_required
 from flask import render_template, Blueprint
 
@@ -17,7 +17,7 @@ def chart_overview():
     months_amount = generate_categories(months)
 
     # Create grouped bars chart display monthly cash flow
-    image_base64 = grouped_bars_chart(months_amount, months)
+    image_base64 = plot_bars_chart(months_amount, months)
 
     # # Pass the chart path and the grouped DataFrame to the template
     return render_template('charts.html', image=image_base64)

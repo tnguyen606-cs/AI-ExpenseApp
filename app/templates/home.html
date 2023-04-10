@@ -1,6 +1,16 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="cardContainer">
+  <!-- LEFTOVER CASH FLOW -->
+  <div class="card" >
+    <div class="left_front">
+      <div>
+        <hr>
+        <h2>Leftover Cash</h2>
+        <p>$ {{ left_cash }}</p>
+      </div>
+    </div>
+  </div>
   <!-- EXPENSES TRACK-->
   <div class="card" >
     <div class="front">
@@ -12,46 +22,39 @@
     </div>
     <div class="back">
       <div>
-        <h4>This month</h4>
+        <h4>This month ($)</h4>
         <p>{{ total_expenses }}</p>
         <a href="{{ url_for('expenses.new_expense') }}">Add Expense</a>
       </div>
     </div>
   </div>
-  <!-- LEFTOVER CASH FLOW -->
-  <div class="card" >
-    <div class="left_front">
-      <div>
-        <hr>
-        <h2>Leftover Cash</h2>
-        <p>$ {{ left_cash }}</p>
-      </div>
-    </div>
-  </div>
   <!-- BUDGET TRACK -->
   <div class="card" >
-    <div class="front">
-      <div>
-        <hr>
-        <h2>Budget</h2>
-        <p>{{ currentMonth }}</p>
-      </div>
-    </div>
-    <div class="back">
-      {% if current_budget %}
+    {% if current_budget %}
+      <div class="front">
         <div>
-          <h4>Amount</h4>
+          <hr>
+          <h2>{{ currentMonth }} Income</h2>
+          <p>$ {{ current_budget.income }}</p>
+        </div>
+      </div>
+      <div class="back">
+        <div>
+          <h4>Budget ($)</h4>
           <p>{{ current_budget.budget }}</p>
           <a href="{{ url_for('budgets.budget_update', budget_id=current_budget.id) }}">Update Budget</a>
         </div>
-      {% else %}  
+      </div>
+    {% else %}  
+      <div class="left_front">
         <div>
-          <h4>Amount</h4>
+          <hr>
+          <h2>{{ currentMonth }} Income</h2>
           <p>None</p>
           <a href="{{ url_for('budgets.new_budget') }}">Add Budget</a>
         </div>
-      {% endif %}
-    </div>
+      </div>
+    {% endif %}
   </div>
   <!-- GOAL TRACK -->
   <div class="card" >
@@ -65,7 +68,7 @@
       </div>
       <div class="back">
         <div>
-          <h4>Saving</h4>
+          <h4>Saving ($)</h4>
           <p>{{ current_goal.amount_saving }}</p>
           <a href="{{ url_for('goals.goal_update', goal_id=current_goal.id) }}">Update Goal</a>
         </div>
@@ -89,7 +92,7 @@
       <form method="POST" action="">
         {{ form.hidden_tag() }}
         <div class="form-group">
-          <label>Time period (up to 2 months are available)</label>
+          <label>Time period: </label>
           {{ form.time_period(class="col-2") }}
           {{ form.submit }}
         </div>

@@ -11,12 +11,12 @@ def get_total_income(from_month, to_month, from_year, to_year):
     delta_years = to_year - from_year
     if delta_years == 0 and from_month < to_month:
         return df_budgets.loc[(df_budgets['ID'] >= from_month)
-                              & (df_budgets['ID'] <= to_month), 'Income'].sum()
+                              & (df_budgets['ID'] <= to_month), 'Budget'].sum()
     else:
-        income = df_budgets.loc[(df_budgets['ID'] >= from_month)
-                                & (df_budgets['ID'] <= 12), 'Income'].sum()
-        return income + df_budgets.loc[(df_budgets['ID'] >= 1)
-                                       & (df_budgets['ID'] <= to_month), 'Income'].sum()
+        budget = df_budgets.loc[(df_budgets['ID'] >= from_month)
+                                & (df_budgets['ID'] <= 12), 'Budget'].sum()
+        return budget + df_budgets.loc[(df_budgets['ID'] >= 1)
+                                       & (df_budgets['ID'] <= to_month), 'Budget'].sum()
 
 
 def pagination(data, ROWS_PER_PAGE):

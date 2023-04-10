@@ -4,7 +4,7 @@ from app import db
 from datetime import datetime
 from app.budgets.forms import BudgetForm, BudgetUpdateForm
 from app.models import Budget
-from app.budgets.utils import convert_monthTextToInt, percent_saving, get_total_expenses, get_date_str_to_num
+from app.budgets.utils import percent_saving, get_total_expenses, get_date_str_to_num
 
 budgets = Blueprint('budgets', __name__)
 
@@ -17,9 +17,10 @@ def new_budget():
     if form.validate_on_submit():
         if percent_saving(form.income.data, form.budget.data):
             m = get_date_str_to_num(form.month.data)
-            left_cash = get_total_expenses(
-                datetime(2023, m, 1), datetime(2023, m, 28))[0]
-            new_budget = Budget(id=convert_monthTextToInt(form.month.data),
+            left_cash = get_total_expenses(m)[0]
+            if left_cash is None:
+                left_cash = 0
+            new_budget = Budget(id=m,
                                 month=form.month.data,
                                 income=form.income.data,
                                 budget=form.budget.data,
@@ -39,7 +40,7 @@ def new_budget():
 @login_required
 def list_budget():
     # This line creates a list of all the budgets sorted by month
-    all_budgets = Budget.query.order_by(Budget.id).all()
+    all_budgets = Budget.query.all()
     return render_template('budgets.html', title="Budgets", budgets=all_budgets)
 
 
@@ -51,7 +52,7 @@ def budget_update(budget_id):
     if form.validate_on_submit():
         if percent_saving(form.income.data, form.budget.data):
             if budget.month != form.month.data or budget.income != form.income.data or budget.left_cash != form.left_cash.data or budget.budget != form.budget.data:
-                budget.id = convert_monthTextToInt(form.month.data)
+                budget.id = get_date_str_to_num(form.month.data)
                 budget.month = form.month.data
                 budget.income = form.income.data
                 budget.budget = form.budget.data
@@ -66,25 +67,10 @@ def budget_update(budget_id):
             flash(
                 'Please enter the income higher than your budget', 'danger')
     elif request.method == 'GET':
+        m = get_date_str_to_num(budget.month)
         form.month.data = budget.month
         form.income.data = budget.income
         form.budget.data = budget.budget
-        form.left_cash.data = budget.left_cash
+        form.left_cash.data = budget.income - get_total_expenses(m)[0]
     return render_template('budget_update.html', title='Update Budget',
                            form=form, legend='Update Budget', budget_id=budget_id)
-
-
-@budgets.route("/budget/<int:budget_id>/delete", methods=['POST'])
-@login_required
-def delete_budget(budget_id):
-    budget = Budget.query.get_or_404(budget_id)
-    # message = client.messages.create(
-    #     to=send_sms_to(),
-    #     from_="+18776647341",
-    #     body="We noticed you just deleted an expense with an amount of {}!".format(
-    #         expense.amount)
-    # )
-    db.session.delete(budget)
-    db.session.commit()
-    flash('Your budget has been deleted!', 'success')
-    return redirect(url_for('budgets.list_budget'))

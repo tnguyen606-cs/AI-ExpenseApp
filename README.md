@@ -63,7 +63,7 @@ Here's a brief high-level overview of the tech stack the app uses:
 5. Advanced Database: **SQLLite** for testing and **PostgreSQL** for production
 6. SMS memssage: **Twilio API** and **Python**
 7. Essential data science tool: **Pandas**
-8. Data visualization tool: **Mathplotlib**
+8. Data visualization tool: **Mathplotlib**, **Plotly**
 
 <!-- ZENHUB -->
 
@@ -86,6 +86,7 @@ Here's a brief high-level overview of the tech stack the app uses:
 15. Created **Goals** and **Budgets** features which provide a summary for saving and budget.
 16. Created **Sorting** features for expenses based on time period.
 17. Read/Write/Update data analysis with **Pandas**
+18. Created **Charts** feature to show full detailed records of expenses through charts.
 
 <!-- DOCUMENTATION -->
 

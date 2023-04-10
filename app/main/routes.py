@@ -38,8 +38,9 @@ def home():
     df_expenses['Date Spend'] = pd.to_datetime(df_expenses['Date Spend'])
     num_expenses = df_expenses.loc[df_expenses['Date Spend']
                                    >= datetime(2023, int_m, 1), 'Amount'].count()
-    total_expenses = df_expenses.loc[df_expenses['Date Spend']
-                                     >= datetime(2023, int_m, 1), 'Amount'].sum()
+    total_expenses = float(df_expenses.loc[df_expenses['Date Spend']
+                                           >= datetime(2023, int_m, 1), 'Amount'].sum())
+    total_expenses = round(total_expenses, 2)
 
     # TODO: QUERY BUDGET AND CALCULATE LEFTOVER CASH FLOW
     left_cash = 0
@@ -64,13 +65,13 @@ def home():
         to_year = get_date_datetime(get_date_str(
             current_goal.date_end, "%Y"), '%Y').year
         # SUM all budgets based on months
-        total_income = get_total_income(
+        total_budget = get_total_income(
             from_month, to_month, from_year, to_year)
         # SUM all expenses from date_start to date_end
         total_expenses_from_to = df_expenses.loc[(df_expenses['Date Spend'] >= current_goal.date_start)
                                                  & (df_expenses['Date Spend'] <= current_goal.date_end), 'Amount'].sum()
         current_goal.amount_saving = round(
-            total_income - total_expenses_from_to, 2)
+            total_budget - total_expenses_from_to, 2)
         db.session.commit()
     else:
         current_goal = []

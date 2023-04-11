@@ -1,6 +1,7 @@
 from io import BytesIO
 import base64
 from app.models import Budget
+from datetime import datetime
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -60,18 +61,18 @@ def plot_bars_chart(dict, x_data):
     ax.bar(x_indexes + bar_width/2 - 0.05,
            dict['Spent'], width=bar_width, color='#f5788e', label='Spent')
 
+    # Remove axes splines
+    for s in ['top', 'bottom', 'left', 'right']:
+        ax.spines[s].set_visible(False)
+
     # Add some text for labels, removing spines and custom x-axis, y-axis tick labels, etc.
     max_y = max(max(dict['Earned']), max(dict['Spent']))
-    ax.spines['top'].set_visible(False)
-    ax.spines['bottom'].set_visible(False)
-    ax.spines['left'].set_visible(False)
-    ax.spines['right'].set_visible(False)
     ax.set_xticks(x_indexes)
     ax.set_xticklabels(x_data)
     ax.set_ylim(0, max_y + 200)
     ax.tick_params(left=True)
     # add a legend
-    ax.legend(frameon=False, fontsize=15)
+    ax.legend(fontsize=15)
 
     # convert the plot to an image and encode it as base64
     buffer = BytesIO()  # Save it to a temporary buffer.
@@ -81,3 +82,50 @@ def plot_bars_chart(dict, x_data):
         buffer.getvalue()).decode('utf-8').replace('\n', '')
 
     return image_base64
+
+
+def plot_horizontal_chart(money_earned, money_limit, money_spent):
+    # Calculate the difference between earned and spent
+    diff = money_earned - money_spent
+
+    # Create the figure and axis objects
+    fig, ax = plt.subplots(figsize=(3, 0.3))
+
+    # Create the stacked bar chart
+    ax.barh([0], diff, color='#f5788e', label='Money Spent')
+    ax.barh([0], money_earned, left=diff,
+            color='#e5e5e6', label='Money Earned')
+
+    # Add the threshold line
+    ax.axvline(money_limit, color='#656565')
+
+    # Remove axes splines
+    for s in ['top', 'bottom', 'left', 'right']:
+        ax.spines[s].set_visible(False)
+
+    # Set the x-axis, y-axis label and limits to nothing
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    # Add a legend
+    ax.legend().remove()
+
+    buffer = BytesIO()  # Save it to a temporary buffer.
+    fig.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_base64 = base64.b64encode(
+        buffer.getvalue()).decode('utf-8').replace('\n', '')
+
+    return image_base64
+
+
+def generate_top_expenses(curr_month):
+    df_expenses = pd.read_csv("./instance/files/user_expenses.csv")
+    df_expenses['Date Spend'] = pd.to_datetime(df_expenses['Date Spend'])
+    df_expenses.loc[(df_expenses['Date Spend'] >= datetime(2023, curr_month, 1))
+                    & (df_expenses['Date Spend'] <= datetime(2023, curr_month, 28))]
+    groupedDF = df_expenses.groupby(
+        'Category', as_index=False, sort=False).sum()
+    sortedDF = groupedDF.sort_values('Amount', ascending=False)
+
+    return sortedDF

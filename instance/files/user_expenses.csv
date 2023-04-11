@@ -2,7 +2,7 @@ ID,Title,Amount,Date Spend,Category,Merchant,User_ID,Date Posted
 1,1st Expense,23.0,03/06/2023,Food & Dining,DoorDash,1,2023-03-22 20:21:19.831765
 2,2nd Expense to test new updates,555.0,03/15/2023,Bills & Utilities,Rent,1,2023-03-23 00:01:37.054483
 3,3rd Expense23,34.44,03/24/2023,Travel,New Zealand,1,2023-03-24 22:14:00.753688
-6,test the cvs file updated,34.0,03/24/2023,Food & Dining,ewr,1,2023-04-07 20:24:06.036619
+6,test the cvs file ,34.0,03/24/2023,Food & Dining,CVS,1,2023-04-10 22:15:28.626238
 7,Feb expense,33.0,02/20/2023,Food & Dining,Mac,1,2023-03-25 02:04:29.856518
 8,test Expense,23.34,03/09/2023,Gas & Fuel,Bp,1,2023-03-25 02:37:26.472028
 9,April 1st Expense,230.0,04/01/2023,Bills & Utilities,TMobile,1,2023-04-07 18:49:44.568886

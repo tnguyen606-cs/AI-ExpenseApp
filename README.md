@@ -15,19 +15,19 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
   </p>
   <h2>Expense form</h2>
   <p>Expense form is designed to capture all relevant expense data including amount, category, departments. <p>
-  <img align="center" src="Images/add_expense.png" width="700" height="800"/>
+  <img align="center" src="Images/add_expense.png" width="800" height="600"/>
   <h2>Expense dashboard</h2>
   <p>The expense dashboard is the central location where user can view expenses of the current month across different fields such as Cash, Budget, and Goal.<p>
-  <img align="center" src="Images/dashboard.gif" width="800" height="700"/>
+  <img align="center" src="Images/dashboard.gif" width="800" height="600"/>
   <h2>Budgets</h2>
   <p>The Budget is where user can view/create each monthly budget, which includes income, the budget that has been set, and any remaining cash.<p>
-  <img align="center" src="Images/budget.gif" width="800" height="700"/>
+  <img align="center" src="Images/budget.gif" width="800" height="600"/>
   <h2>Goals</h2>
   <p>The Goal is where user can view/create the financial goals with personalized spending targets.<p>
-  <img align="center" src="Images/goal.gif" width="700" height="700"/>
+  <img align="center" src="Images/goal.gif" width="800" height="600"/>
   <h2>Charts</h2>
   <p>The Charts help user analyze expenses month by month and move closer to user's goals.<p>
-  <img align="center" src="Images/charts.png" width="700" height="700"/>
+  <img align="center" src="Images/charts.png" width="800" height="600"/>
 </p>
 
 <!-- DESIGN SYSTEM -->

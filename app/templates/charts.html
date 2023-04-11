@@ -6,21 +6,35 @@
         <div class="content-section">
             <legend>Monthly cash flow</legend>
             <div>
-                <img src="data:image/png;base64,{{ image }}" alt="Grouped Bar Chart">
+                <img src="data:image/png;base64,{{ image_bars }}" alt="Grouped Bar Chart">
             </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="content-section">
-          <h3>Our Sidebar</h3>
-          <p class='text-muted'>You can put any information here you'd like.
+          <legend>{{ current_budget.month }} budget</legend>
+          {% if current_budget.income == 0 %}
+            <b><p>Generate the budget for this month</p></b>
+            <a href="{{ url_for('budgets.new_budget') }}">Add Budget</a>
+          {% elif current_budget.left_cash < current_budget.income %}  
+            <p>Great job! You have <b style="color: rgb(26, 152, 137);">${{ current_budget.left_cash }} left</b></p>
+          {% elif current_budget.left_cash > current_budget.income %}  
+            <p>You have spent <b style="color: rgb(242, 58, 58);">${{ current_budget.left_cash - current_budget.income }} over</b></p>
+          {% else %} 
+            <p>Try to spend less next month</b></p>
+          {% endif %}
+          <div>
+            <img src="data:image/png;base64,{{ image_hor_bar }}" alt="Grouped Bar Chart">
+            <p class='text-muted'><b style="color: #1c1919;">${{ current_budget.income - current_budget.left_cash }}</b> of ${{ current_budget.income }} spent</p>
+          </div>
+          <div>
+            <b><p>Top monthly expenses</b>
             <ul class="list-group">
-              <li class="list-group-item list-group-item-light">Latest Posts</li>
-              <li class="list-group-item list-group-item-light">Announcements</li>
-              <li class="list-group-item list-group-item-light">Calendars</li>
-              <li class="list-group-item list-group-item-light">etc</li>
+              {% for key, value in data_dict.items() %}
+                <li class="list-group-item"><em>{{ key }}:</em> ${{ value }}</li>
+              {% endfor %}
             </ul>
-          </p>
+          </div>
         </div>
       </div>
     </div>

@@ -14,20 +14,23 @@
 Furthermore, the app allows users to set a limit of spare change, which the app will set aside as savings, improving the overall financial wellness of the user. This app is a game-changer for anyone looking to save money and achieve their financial goals!
   </p>
   <h2>Expense form</h2>
-  <p>Expense form is designed to capture all relevant expense data including amount, category, departments. <p>
+  <p>Expense form is designed to capture all relevant expense data including amount, certain categories, departments. <p>
   <img align="center" src="Images/add_expense.png" width="800" height="600"/>
   <h2>Expense dashboard</h2>
   <p>The expense dashboard is the central location where user can view expenses of the current month across different fields such as Cash, Budget, and Goal.<p>
   <img align="center" src="Images/dashboard.gif" width="800" height="600"/>
   <h2>Budgets</h2>
-  <p>The Budget is where user can view/create each monthly budget, which includes income, the budget that has been set, and any remaining cash.<p>
+  <p>The Budget is where user can view/create monthly budget, which includes income, the budget that has been set, and any remaining cash.<p>
   <img align="center" src="Images/budget.gif" width="800" height="600"/>
   <h2>Goals</h2>
   <p>The Goal is where user can view/create the financial goals with personalized spending targets.<p>
   <img align="center" src="Images/goal.gif" width="800" height="600"/>
   <h2>Charts</h2>
-  <p>The Charts help user analyze expenses month by month and move closer to user's goals.<p>
+  <p>The Charts help user analyze expenses month by month and move closer to the financial goals.<p>
   <img align="center" src="Images/charts.png" width="800" height="600"/>
+  <h2>Real-time expense managements</h2>
+  <p>Get instant notifications on expenses or updated information via text, and receive real-time transaction data<p>
+  <img align="center" src="Images/sms.png" width="800" height="600"/>
 </p>
 
 <!-- DESIGN SYSTEM -->
@@ -52,14 +55,14 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
 <br/>
 <h3>Relational Databases</h3>
 
-The following diagram shows which tables will be created and what is their One-to-Many relationship between tables.
+The following diagram shows which tables will be created and what is their One-to-Many relationship.
 
 The application has 4 tables:
 
-1. Users will store the personal data of our user such as their name, email, password.
+1. Users will store the personal data of user such as name, email, password.
 2. Expenses will store the information about the type of expenses, a description, the date of purchase/expense and finally the amount spent.
-3. Budgets will store the information about each month's budget and income.
-4. Goals will store the information about saving goal to achieve.
+3. Budgets will store the user's monthly income and limit of spare change.
+4. Goals will store user's saving purpose to achieve.
 
 <img align="center" src="Images/Database ER diagram.png" width="900" height="700" title='SQL_Table'/>
 

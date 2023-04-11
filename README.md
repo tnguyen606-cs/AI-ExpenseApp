@@ -30,7 +30,7 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
   <img align="center" src="Images/charts.png" width="800" height="600"/>
   <h2>Real-time expense managements</h2>
   <p>Get instant notifications on expenses or updated information via text, and receive real-time transaction data<p>
-  <img align="center" src="Images/sms.png" width="800" height="400"/>
+  <img align="center" src="Images/sms.png" width="400" height="600"/>
 </p>
 
 <!-- DESIGN SYSTEM -->

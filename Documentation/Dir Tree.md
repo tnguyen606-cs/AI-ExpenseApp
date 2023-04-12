@@ -33,6 +33,11 @@
     │   │   └── routes.py
     │   │   ├── forms.py
     │   │   └── utils.py
+    │   ├── charts               # The charts blueprint contains analytical data
+    │   │   ├── __init__.py
+    │   │   └── routes.py
+    │   │   ├── forms.py
+    │   │   └── utils.py
     │   ├── static
     │   │   ├── images
     │   │   │   ├── 54b147f2e1c9f467.png

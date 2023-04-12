@@ -3,7 +3,7 @@ from flask_login import login_required
 from app import db
 from app.models import Expense, Budget, Goal
 from app.main.forms import SearchForm
-from app.main.utils import get_date_str, pagination, get_time_period, get_total_income, get_date_datetime, expenses_csv, budgets_csv, goals_csv
+from app.main.utils import get_date_str, pagination, get_time_period, get_total_budget, get_date_datetime, expenses_csv, budgets_csv, goals_csv
 from datetime import datetime
 import pandas as pd
 
@@ -47,7 +47,7 @@ def home():
     # get the value of the 'budget' column where the 'month' column is 'currentMonth'
     current_budget = Budget.query.filter_by(month=CURR_MONTH).first()
     if current_budget is not None:
-        left_cash = round(current_budget.budget - total_expenses, 2)
+        left_cash = round(current_budget.income - total_expenses, 2)
         current_budget.left_cash = left_cash
         db.session.commit()
     else:  # No month has been created, display it as NONE
@@ -65,7 +65,7 @@ def home():
         to_year = get_date_datetime(get_date_str(
             current_goal.date_end, "%Y"), '%Y').year
         # SUM all budgets based on months
-        total_budget = get_total_income(
+        total_budget = get_total_budget(
             from_month, to_month, from_year, to_year)
         # SUM all expenses from date_start to date_end
         total_expenses_from_to = df_expenses.loc[(df_expenses['Date Spend'] >= current_goal.date_start)

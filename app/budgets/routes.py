@@ -71,6 +71,6 @@ def budget_update(budget_id):
         form.month.data = budget.month
         form.income.data = budget.income
         form.budget.data = budget.budget
-        form.left_cash.data = budget.income - get_total_expenses(m)[0]
+        form.left_cash.data = budget.left_cash
     return render_template('budget_update.html', title='Update Budget',
                            form=form, legend='Update Budget', budget_id=budget_id)

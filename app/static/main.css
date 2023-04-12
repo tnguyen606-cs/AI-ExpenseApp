@@ -9,7 +9,7 @@ h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  color: #;
+  color: #1c1919;
 }
 
 hr {
@@ -297,4 +297,10 @@ a.article-title:hover {
   height: 330px;
   float:left;
   border-radius: 10px;
+}
+
+.dot-img {
+  height: 15px;
+  width: 15px;
+  margin-right: 7.5px;
 }

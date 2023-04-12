@@ -6,19 +6,6 @@ from app.models import Expense, Budget, Goal
 from datetime import datetime, timedelta
 
 
-def get_total_income(from_month, to_month, from_year, to_year):
-    df_budgets = pd.read_csv("./instance/files/user_budgets.csv")
-    delta_years = to_year - from_year
-    if delta_years == 0 and from_month < to_month:
-        return df_budgets.loc[(df_budgets['ID'] >= from_month)
-                              & (df_budgets['ID'] <= to_month), 'Budget'].sum()
-    else:
-        budget = df_budgets.loc[(df_budgets['ID'] >= from_month)
-                                & (df_budgets['ID'] <= 12), 'Budget'].sum()
-        return budget + df_budgets.loc[(df_budgets['ID'] >= 1)
-                                       & (df_budgets['ID'] <= to_month), 'Budget'].sum()
-
-
 def pagination(data, ROWS_PER_PAGE):
     # Set the pagination configuration
     page = request.args.get('page', 1, type=int)
@@ -112,3 +99,17 @@ def goals_csv():
                            for e in goals], columns=['ID', 'Title', 'Purpose', 'Amount', 'Date Start', 'Date End', 'Period', 'Amount Saving', 'User_ID', 'Date Posted'])
         # Create csv file in python_ flask
         df.to_csv(cvs_path, index=False)
+
+
+def get_total_budget(from_month, to_month, from_year, to_year):
+    df_budgets = pd.read_csv("./instance/files/user_budgets.csv")
+    delta_years = to_year - from_year
+    if delta_years == 0 and from_month < to_month:
+        return df_budgets.loc[(df_budgets['ID'] >= from_month)
+                              & (df_budgets['ID'] <= to_month), 'Budget'].sum()
+    else:
+        budget_first_year = df_budgets.loc[(df_budgets['ID'] >= from_month)
+                                           & (df_budgets['ID'] <= 12), 'Budget'].sum()
+        budget_second_year = df_budgets.loc[(df_budgets['ID'] >= 1)
+                                            & (df_budgets['ID'] <= to_month), 'Budget'].sum()
+        return budget_first_year + budget_second_year

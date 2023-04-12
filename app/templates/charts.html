@@ -13,25 +13,35 @@
       <div class="col-md-4">
         <div class="content-section">
           <legend>{{ current_budget.month }} budget</legend>
+          <!-- If No Budget is created, create it -->
           {% if current_budget.income == 0 %}
-            <b><p>Generate the budget for this month</p></b>
+            <b><p>Create the budget for this month!</p></b>
             <a href="{{ url_for('budgets.new_budget') }}">Add Budget</a>
+          <!-- If the leftover cash is less than income, Great! -->
           {% elif current_budget.left_cash < current_budget.income %}  
             <p>Great job! You have <b style="color: rgb(26, 152, 137);">${{ current_budget.left_cash }} left</b></p>
-          {% elif current_budget.left_cash > current_budget.income %}  
-            <p>You have spent <b style="color: rgb(242, 58, 58);">${{ current_budget.left_cash - current_budget.income }} over</b></p>
+          <!-- If the spending is over the budget, Warning! -->
+          {% elif spending_amount > current_budget.budget %}  
+            <p>You have spent <b style="color: rgb(242, 58, 58);">${{ amount_over }} over!</b></p>
           {% else %} 
-            <p>Try to spend less next month</b></p>
+            <p><b style="color: rgb(242, 58, 58);">Try to spend less next month!</b></p>
           {% endif %}
           <div>
-            <img src="data:image/png;base64,{{ image_hor_bar }}" alt="Grouped Bar Chart">
-            <p class='text-muted'><b style="color: #1c1919;">${{ current_budget.income - current_budget.left_cash }}</b> of ${{ current_budget.income }} spent</p>
+            <img style = "position:relative; left:-20px; top:2px;" src="data:image/png;base64,{{ image_hor_bar }}" alt="Single Bar Chart">
+            <p class='text-muted'><b style="color: #1c1919;">${{ spending_amount }}</b> of ${{ current_budget.budget }} budget limit spent</p>
           </div>
           <div>
-            <b><p>Top monthly expenses</b>
+            <b><p>Expenses</b>
+          </div>
+          <div style = "position:relative; left:-20px; top:-20px">
+            <img src="data:image/png;base64,{{ image_pie }}" alt="Pie Chart">
+          </div>
+          <div>
             <ul class="list-group">
               {% for key, value in data_dict.items() %}
-                <li class="list-group-item"><em>{{ key }}:</em> ${{ value }}</li>
+                <li class="list-group-item">
+                  <img class="dot-img" style="background-color: {{ value[1] }};" src=""> {{ key }}: <b>${{ value[0] }}</b>
+                </li>
               {% endfor %}
             </ul>
           </div>

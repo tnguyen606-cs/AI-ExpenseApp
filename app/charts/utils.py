@@ -1,5 +1,6 @@
 from io import BytesIO
 import base64
+import random
 from app.models import Budget
 from datetime import datetime
 import matplotlib.pyplot as plt
@@ -7,6 +8,10 @@ import pandas as pd
 import numpy as np
 import matplotlib
 matplotlib.use('agg')
+
+
+def round_number(num):
+    return round(float(num), 2)
 
 
 def get_column_values(path_string, column_name):
@@ -19,8 +24,8 @@ def create_hover_text(values):
     return [f"${value:,.2f}" for value in values]
 
 
-def generate_categories(months):
-    months_amount = {
+def calculate_amount_spent(months):
+    monthly_amount = {
         'Earned': [],
         'Spent': [],
     }
@@ -29,20 +34,20 @@ def generate_categories(months):
         Budget.month).order_by(Budget.id.asc()).all()]
     income_values = [row[0] for row in Budget.query.with_entities(
         Budget.income).order_by(Budget.id.asc()).all()]
-    left_values = [row[0] for row in Budget.query.with_entities(
+    leftover_values = [row[0] for row in Budget.query.with_entities(
         Budget.left_cash).order_by(Budget.id.asc()).all()]
     index = 0
     for key in months:
         if index < len(month_values) and key in month_values[index]:
-            months_amount['Earned'].append(income_values[index])
-            months_amount['Spent'].append(
-                income_values[index] - left_values[index])
+            monthly_amount['Earned'].append(income_values[index])
+            monthly_amount['Spent'].append(
+                income_values[index] - leftover_values[index])
             index += 1
         else:
-            months_amount['Earned'].append(0)
-            months_amount['Spent'].append(0)
+            monthly_amount['Earned'].append(0)
+            monthly_amount['Spent'].append(0)
 
-    return months_amount
+    return monthly_amount
 
 
 def plot_bars_chart(dict, x_data):
@@ -89,7 +94,7 @@ def plot_horizontal_chart(money_earned, money_limit, money_spent):
     diff = money_earned - money_spent
 
     # Create the figure and axis objects
-    fig, ax = plt.subplots(figsize=(3, 0.3))
+    fig, ax = plt.subplots(figsize=(3.3, 0.3))
 
     # Create the stacked bar chart
     ax.barh([0], diff, color='#f5788e', label='Money Spent')
@@ -119,13 +124,47 @@ def plot_horizontal_chart(money_earned, money_limit, money_spent):
     return image_base64
 
 
-def generate_top_expenses(curr_month):
+def generate_expenses(curr_month):
     df_expenses = pd.read_csv("./instance/files/user_expenses.csv")
     df_expenses['Date Spend'] = pd.to_datetime(df_expenses['Date Spend'])
-    df_expenses.loc[(df_expenses['Date Spend'] >= datetime(2023, curr_month, 1))
-                    & (df_expenses['Date Spend'] <= datetime(2023, curr_month, 28))]
-    groupedDF = df_expenses.groupby(
+    filteredDF = df_expenses.loc[(df_expenses['Date Spend'] >=
+                                  datetime(2023, curr_month, 1))]
+    # Calculate the total expenses group by categories
+    groupedDF = filteredDF.groupby(
         'Category', as_index=False, sort=False).sum()
     sortedDF = groupedDF.sort_values('Amount', ascending=False)
 
     return sortedDF
+
+
+def generate_random_cl():
+    color = "#ff"+''.join([random.choice('0123456789ABCDEF')
+                          for _ in range(4)])
+    return color
+
+
+def my_autopct(pct):
+    return ('%1.1f%%' % pct) if pct > 5 else ''
+
+
+def plot_pie_chart(mydict, myColors):
+    # Calculate the total expenses:
+    total_expenses = sum(mydict.values())
+
+    # Calculate the percentage of each category of expenses:
+    percentages = [mydict[val]/total_expenses*100 for val in mydict]
+
+    fig, ax = plt.subplots(figsize=(3.3, 3.5))
+    # Plot the pie graph:
+    _, _, autopcts = ax.pie(percentages, autopct=my_autopct, colors=myColors, radius=1.35, startangle=90,
+                            wedgeprops=dict(width=0.65, edgecolor='w'), pctdistance=0.75)
+    plt.setp(autopcts, **{'color': '#1c1919',
+             'weight': 'bold', 'fontsize': 12.5})
+    # Save it to a temporary buffer.
+    buffer = BytesIO()
+    fig.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_data = base64.b64encode(
+        buffer.getvalue()).decode('utf-8').replace('\n', '')
+
+    return plot_data

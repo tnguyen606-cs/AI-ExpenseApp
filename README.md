@@ -102,7 +102,7 @@ Here's a brief high-level overview of the tech stack the app uses:
 15. Created **Goals** and **Budgets** features which provide a summary for saving and budget.
 16. Created **Sorting** features for expenses based on time period.
 17. Read/Write/Update data analysis with **Pandas**
-18. Created **Charts** feature to show full detailed records of expenses/budget/goal through charts.
+18. Created **Charts** feature to show full detailed records of expenses/budgets/goals.
 
 <!-- DOCUMENTATION -->
 

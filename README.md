@@ -33,6 +33,7 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
   <img align="center" src="Images/sms.png" width="350" height="600"/>
 </p>
 
+<br/>
 <!-- DESIGN SYSTEM -->
 <h2 align="center">DESIGN SYSTEM</h2>
 
@@ -52,7 +53,6 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
 - **Agile automations**: Zenhub.
 
 <!-- SQL -->
-<br/>
 <h3>Relational Databases</h3>
 
 The following diagram shows which tables will be created and what is their One-to-Many relationship.

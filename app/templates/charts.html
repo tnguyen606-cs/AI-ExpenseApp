@@ -3,11 +3,37 @@
 <div class="container">
     <div class="row">
       <div class="col-md-8">
+        <div>
+          <ul>
+            <li><a class="active" href="">Monthly cash</a></li>
+            <li><a href="">Spending</a></li>
+            <li><a href="">Income</a></li>
+            <li><a href="">Saving</a></li>
+          </ul>
+        </div>
+
+        <!-- Spending Line chart -->
         <div class="content-section">
-            <legend>Monthly cash flow</legend>
-            <div>
-                <img src="data:image/png;base64,{{ image_bars }}" alt="Grouped Bar Chart">
-            </div>
+          <legend>Spending</legend>
+          <div>
+            {% if diff_spent == 0 %}
+              <p>Spending the same amount of money as you did last month <b>all spending</b></p>
+            {% elif diff_spent > 0 %}  
+              <p><b>${{ diff_spent }}</b> less than last month <b>all spending</b></p>
+            {% else %} 
+              <p><b>${{ diff_spent }}</b> greater than last month <b>all spending</b></p>
+            {% endif %}
+          </div>
+          <div>
+            <img src="data:image/png;base64,{{ image_area }}" alt="Spending Trend">
+          </div>
+        </div>
+        <!-- Monthly Bar chart -->
+        <div class="content-section">
+          <legend>Monthly cash flow</legend>
+          <div>
+              <img src="data:image/png;base64,{{ image_bars }}" alt="Grouped Bar Chart">
+          </div>
         </div>
       </div>
       <div class="col-md-4">

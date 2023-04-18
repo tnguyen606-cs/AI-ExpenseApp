@@ -2,7 +2,7 @@ from io import BytesIO
 import base64
 import random
 from app.models import Budget
-from datetime import datetime
+from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -72,12 +72,12 @@ def plot_bars_chart(dict, x_data):
 
     # Add some text for labels, removing spines and custom x-axis, y-axis tick labels, etc.
     max_y = max(max(dict['Earned']), max(dict['Spent']))
-    ax.set_xticks(x_indexes)
+    ax.set_xticks(x_indexes, fontsize=10, horizontalalignment='center')
     ax.set_xticklabels(x_data)
     ax.set_ylim(0, max_y + 200)
     ax.tick_params(left=True)
     # add a legend
-    ax.legend(fontsize=15)
+    ax.legend(loc='best', fontsize=12)
 
     # convert the plot to an image and encode it as base64
     buffer = BytesIO()  # Save it to a temporary buffer.
@@ -124,17 +124,21 @@ def plot_horizontal_chart(money_earned, money_limit, money_spent):
     return image_base64
 
 
-def generate_expenses(curr_month):
+def get_expenses(before_date):
     df_expenses = pd.read_csv("./instance/files/user_expenses.csv")
     df_expenses['Date Spend'] = pd.to_datetime(df_expenses['Date Spend'])
-    filteredDF = df_expenses.loc[(df_expenses['Date Spend'] >=
-                                  datetime(2023, curr_month, 1))]
+    filteredDF = df_expenses.loc[(df_expenses['Date Spend'] >= before_date)]
+    return filteredDF
+
+
+def get_month_expense(fist_date_of_month):
     # Calculate the total expenses group by categories
+    filteredDF = get_expenses(fist_date_of_month)
     groupedDF = filteredDF.groupby(
         'Category', as_index=False, sort=False).sum()
     sortedDF = groupedDF.sort_values('Amount', ascending=False)
-
-    return sortedDF
+    amount_dict = sortedDF.set_index('Category')['Amount'].to_dict()
+    return amount_dict
 
 
 def generate_random_cl():
@@ -167,4 +171,57 @@ def plot_pie_chart(mydict, myColors):
     plot_data = base64.b64encode(
         buffer.getvalue()).decode('utf-8').replace('\n', '')
 
+    return plot_data
+
+
+def get_spending(since_date):
+    filteredDF = get_expenses(since_date)
+    return filteredDF.groupby('Date Spend', as_index=False, sort=True).sum()
+
+
+def update_data_list(data_list, insert_val, append_val):
+    data_list.insert(0, insert_val)
+    data_list.append(append_val)
+    return data_list
+
+
+def plot_area_chart(date_data, spending_data, last_spending_data):
+    # create data frames for the current and last month
+    current_month_data = pd.DataFrame(
+        {'Current Month Spending': spending_data},
+        index=np.arange(len(spending_data)))
+    last_month_data = pd.DataFrame(
+        {'Last Month Spent': last_spending_data},
+        index=np.arange(len(last_spending_data)))
+
+    # merge the two data frames and fill missing values with 0
+    data = current_month_data.merge(
+        last_month_data, how='outer', left_index=True, right_index=True).fillna(0)
+
+    # create a plot of the data
+    fig, ax = plt.subplots(layout='constrained')
+    ax.fill_between(date_data, data['Current Month Spending'],
+                    color='#54f0c9', alpha=0.6, linewidth=2)
+    ax.plot(date_data, data['Current Month Spending'],
+            color='#118c6b', linewidth=2)
+    ax.plot(date_data, data['Last Month Spent'],
+            color='#118c6b', alpha=0.4, linewidth=2)
+    min_val = min(min(data['Current Month Spending']),
+                  min(data['Last Month Spent']))
+    max_val = max(max(data['Current Month Spending']),
+                  max(data['Last Month Spent']))
+    ax.set_ylim(min_val - 10, max_val + 20)
+    plt.xticks(date_data[::2], fontsize=10, horizontalalignment='center')
+
+    # Remove axes splines
+    for s in ['top', 'bottom', 'left', 'right']:
+        ax.spines[s].set_visible(False)
+
+    # save the plot to a PNG image in memory
+    buf = BytesIO()
+    fig.savefig(buf, format='png')
+    buf.seek(0)
+
+    # encode the image in base64 format and return it as a string
+    plot_data = base64.b64encode(buf.getvalue()).decode('utf-8')
     return plot_data

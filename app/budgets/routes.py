@@ -47,7 +47,7 @@ def list_budget():
 @budgets.route("/budget/<int:budget_id>/update", methods=['GET', 'POST'])
 @login_required
 def budget_update(budget_id):
-    budget = Budget.query.get_or_404(budget_id)
+    budget = Budget.query.filter(Budget.id == budget_id).first()
     form = BudgetUpdateForm()
     if form.validate_on_submit():
         if percent_saving(form.income.data, form.budget.data):
@@ -74,3 +74,13 @@ def budget_update(budget_id):
         form.left_cash.data = budget.left_cash
     return render_template('budget_update.html', title='Update Budget',
                            form=form, legend='Update Budget', budget_id=budget_id)
+
+
+@budgets.route("/budgets/<int:budget_id>/delete", methods=['POST'])
+@login_required
+def delete_budget(budget_id):
+    budget = Budget.query.filter(Budget.id == budget_id).first()
+    db.session.delete(budget)
+    db.session.commit()
+    flash('Your budget has been deleted!', 'success')
+    return redirect(url_for('budgets.list_budget'))

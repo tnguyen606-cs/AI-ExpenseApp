@@ -28,7 +28,7 @@ hr {
 }
 
 .bg-steel {
-  background-color: rgb(54, 200, 164);
+  background-color: #36c8a4;
 }
 
 /* Style the links inside the navigation bar */
@@ -45,13 +45,12 @@ hr {
 .site-header .navbar-nav .nav-link:hover {
   background-color: #d87189;
   color: black;
-  border-radius: 20px;
+  border-radius: 18px;
 }
-/* Add a color to the active/current link */
-.site-header .navbar-nav .nav-link.active {
-  background-color: rgb(104, 132, 149);
-  color: white;
-  border-radius: 25px;
+
+.navbar-active {
+  background-color: #129f90;
+  border-radius: 15px;
 }
 
 .site-header .navbar-nav .nav-link-log-out {
@@ -303,4 +302,23 @@ a.article-title:hover {
   height: 15px;
   width: 15px;
   margin-right: 7.5px;
+}
+
+/* Style tab links */
+.panel { display: none; }
+.button { 
+  background-color: #e5e5e6;
+  text-transform: uppercase; 
+  color: black;
+  float: left;
+  border:rgb(73, 71, 71);
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  font-size: 15px;
+  width: 25%;
+}
+.button:hover { 
+  background-color: #c5c5c5; 
 }

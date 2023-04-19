@@ -23,7 +23,7 @@ Furthermore, the app allows users to set a limit of spare change, which the app 
   <p>The Budget is where user can view/create monthly budget, which includes income, the budget that has been set, and any remaining cash.<p>
   <img align="center" src="Images/budget.gif" width="800" height="600"/>
   <h2>Goals</h2>
-  <p>The Goal is where user can view/create the financial goals with personalized spending targets.<p>
+  <p>The Goal is where user can view/create financial goals with personalized spending targets.<p>
   <img align="center" src="Images/goal.gif" width="800" height="600"/>
   <h2>Charts</h2>
   <p>The Charts help user analyze expenses month by month and move closer to the financial goals.<p>

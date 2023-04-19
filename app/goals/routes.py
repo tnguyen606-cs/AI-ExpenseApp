@@ -43,13 +43,15 @@ def new_goal():
 def list_goal():
     # This line creates a list of all the goals
     all_goals = Goal.query.all()
-    return render_template('goals.html', title="Budgets", goals=all_goals, calSavingPeriod=calSavingPeriod)
+    print(all_goals)
+    return render_template('goals.html', title="Goals", goals=all_goals)
 
 
 @goals.route("/goal/<int:goal_id>/update", methods=['GET', 'POST'])
 @login_required
 def goal_update(goal_id):
-    goal = Goal.query.get_or_404(goal_id)
+    goal = Goal.query.filter(Goal.id == goal_id).first()
+    print(goal.id)
     form = GoalUpdateForm()
     if form.validate_on_submit():
         dur = duration(form.date_start.data, form.date_end.data)
@@ -80,7 +82,8 @@ def goal_update(goal_id):
 @goals.route("/goals/<int:goal_id>/delete", methods=['POST'])
 @login_required
 def delete_goal(goal_id):
-    goal = Goal.query.get_or_404(goal_id)
+    goal = Goal.query.filter(Goal.id == goal_id).first()
+    print(goal)
     # message = client.messages.create(
     #     to=send_sms_to(),
     #     from_="+18776647341",

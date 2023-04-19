@@ -37,9 +37,3 @@ class GoalUpdateForm(FlaskForm):
     period = SelectField('Track your saving every:', choices=["Daily", "Weekly", "Bi-Weekly", "Monthly"],
                          validators=[DataRequired()])
     submit = SubmitField('Save Goal')
-
-    def validate_date_start(self, date_start):
-        # The date_start has to be after the current date to start
-        if date_start.data.strftime("%Y-%m-%d") < datetime.now().strftime("%Y-%m-%d"):
-            raise ValidationError(
-                "Please enter the saving date begins from today or afterwards!")

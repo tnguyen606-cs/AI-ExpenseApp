@@ -2,7 +2,6 @@ from io import BytesIO
 import base64
 import random
 from app.models import Budget
-from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -50,6 +49,44 @@ def calculate_amount_spent(months):
     return monthly_amount
 
 
+def get_expenses(before_date):
+    df_expenses = pd.read_csv("./instance/files/user_expenses.csv")
+    df_expenses['Date Spend'] = pd.to_datetime(df_expenses['Date Spend'])
+    filteredDF = df_expenses.loc[(df_expenses['Date Spend'] >= before_date)]
+    return filteredDF
+
+
+def get_month_expense(fist_date_of_month):
+    # Calculate the total expenses group by categories
+    filteredDF = get_expenses(fist_date_of_month)
+    groupedDF = filteredDF.groupby(
+        'Category', as_index=False, sort=False).sum()
+    sortedDF = groupedDF.sort_values('Amount', ascending=False)
+    amount_dict = sortedDF.set_index('Category')['Amount'].to_dict()
+    return amount_dict
+
+
+def generate_random_cl():
+    color = "#ff"+''.join([random.choice('0123456789ABCDEF')
+                          for _ in range(4)])
+    return color
+
+
+def my_autopct(pct):
+    return ('%1.1f%%' % pct) if pct > 5 else ''
+
+
+def get_spending(since_date):
+    filteredDF = get_expenses(since_date)
+    return filteredDF.groupby('Date Spend', as_index=False, sort=True).sum()
+
+
+def update_data_list(data_list, insert_val, append_val):
+    data_list.insert(0, insert_val)
+    data_list.append(append_val)
+    return data_list
+
+
 def plot_bars_chart(dict, x_data):
 
     # create a figure and axis object
@@ -70,14 +107,20 @@ def plot_bars_chart(dict, x_data):
     for s in ['top', 'bottom', 'left', 'right']:
         ax.spines[s].set_visible(False)
 
-    # Add some text for labels, removing spines and custom x-axis, y-axis tick labels, etc.
-    max_y = max(max(dict['Earned']), max(dict['Spent']))
-    ax.set_xticks(x_indexes, fontsize=10, horizontalalignment='center')
-    ax.set_xticklabels(x_data)
-    ax.set_ylim(0, max_y + 200)
-    ax.tick_params(left=True)
     # add a legend
     ax.legend(loc='best', fontsize=12)
+
+    # Add some text for labels, removing spines and custom x-axis, y-axis tick labels, etc.
+    max_y = max(max(dict['Earned']), max(dict['Spent']))
+    plt.xticks(x_indexes, fontsize=10, horizontalalignment='center')
+    ax.set_xticklabels(x_data)
+    plt.yticks(np.arange(500, max_y, 500), fontsize=10)
+    ax.tick_params(left=True)
+
+    # Draw Horizontal Tick lines
+    for y in range(500, max_y, 500):
+        ax.hlines(y, xmin=-0.5, xmax=len(x_data)-0.5, color='grey', alpha=0.2,
+                  linewidth=0.5, linestyles='-')
 
     # convert the plot to an image and encode it as base64
     buffer = BytesIO()  # Save it to a temporary buffer.
@@ -124,33 +167,6 @@ def plot_horizontal_chart(money_earned, money_limit, money_spent):
     return image_base64
 
 
-def get_expenses(before_date):
-    df_expenses = pd.read_csv("./instance/files/user_expenses.csv")
-    df_expenses['Date Spend'] = pd.to_datetime(df_expenses['Date Spend'])
-    filteredDF = df_expenses.loc[(df_expenses['Date Spend'] >= before_date)]
-    return filteredDF
-
-
-def get_month_expense(fist_date_of_month):
-    # Calculate the total expenses group by categories
-    filteredDF = get_expenses(fist_date_of_month)
-    groupedDF = filteredDF.groupby(
-        'Category', as_index=False, sort=False).sum()
-    sortedDF = groupedDF.sort_values('Amount', ascending=False)
-    amount_dict = sortedDF.set_index('Category')['Amount'].to_dict()
-    return amount_dict
-
-
-def generate_random_cl():
-    color = "#ff"+''.join([random.choice('0123456789ABCDEF')
-                          for _ in range(4)])
-    return color
-
-
-def my_autopct(pct):
-    return ('%1.1f%%' % pct) if pct > 5 else ''
-
-
 def plot_pie_chart(mydict, myColors):
     # Calculate the total expenses:
     total_expenses = sum(mydict.values())
@@ -172,17 +188,6 @@ def plot_pie_chart(mydict, myColors):
         buffer.getvalue()).decode('utf-8').replace('\n', '')
 
     return plot_data
-
-
-def get_spending(since_date):
-    filteredDF = get_expenses(since_date)
-    return filteredDF.groupby('Date Spend', as_index=False, sort=True).sum()
-
-
-def update_data_list(data_list, insert_val, append_val):
-    data_list.insert(0, insert_val)
-    data_list.append(append_val)
-    return data_list
 
 
 def plot_area_chart(date_data, spending_data, last_spending_data):
@@ -224,4 +229,76 @@ def plot_area_chart(date_data, spending_data, last_spending_data):
 
     # encode the image in base64 format and return it as a string
     plot_data = base64.b64encode(buf.getvalue()).decode('utf-8')
+    return plot_data
+
+
+def plot_balance_chart(dict, x_data):
+
+    # create a figure and axis object
+    fig, ax = plt.subplots(layout='constrained')
+
+    #  set the position of the bars on the x-axis: Array for horizontal bar's position
+    x_indexes = np.arange(len(x_data))  # the label locations
+    # set the width of each bar
+    bar_width = 0.9
+
+    # Calculate the balance
+    balance = list()
+    for item1, item2 in zip(dict['Earned'], dict['Spent']):
+        item = item1 - item2
+        balance.append(item)
+
+    # create the bars for each group
+    ax.bar(x_indexes,
+           balance, width=bar_width, align='center', color='#f5788e', alpha=0.8)
+    # Add some text for labels, removing spines and custom x-axis, y-axis tick labels, etc.
+    # This is the location for the annotated text
+    i = 1.0
+    j = 30
+    # Annotating the bar plot with the values (total death count)
+    for i in range(len(x_data)):
+        if (balance[i] > 0):
+            string = '${:,.1f}'.format(balance[i])[0:4]
+            plt.annotate("{}k".format(string), (i, balance[i] + j),
+                         ha='center')
+
+    ax.set_xticks(x_indexes, fontsize=10, horizontalalignment='center')
+    ax.set_xticklabels(x_data)
+    ax.set_yticks([])
+    ax.set_yticklabels([])
+    # remove a legend
+    ax.legend().remove()
+
+    # Remove axes splines
+    for s in ['top', 'bottom', 'left', 'right']:
+        ax.spines[s].set_visible(False)
+
+    # convert the plot to an image and encode it as base64
+    buffer = BytesIO()  # Save it to a temporary buffer.
+    fig.savefig(buffer, format='png')
+    buffer.seek(0)
+    image_base64 = base64.b64encode(
+        buffer.getvalue()).decode('utf-8').replace('\n', '')
+
+    return image_base64
+
+
+def plot_saving_chart(total, saving):
+
+    # Calculate the percentage of each category of expenses:
+    percentages = [(total-saving)/total*100, saving/total*100]
+
+    fig, ax = plt.subplots(layout='constrained')
+    # Plot the pie graph:
+    _, _, autopcts = ax.pie(percentages, autopct=my_autopct, colors=[
+                            "#e5e5e6", "#54f0c9"], radius=0.9, startangle=90, wedgeprops=dict(width=0.5, edgecolor='w'), pctdistance=0.75)
+    plt.setp(autopcts, **{'color': '#1c1919',
+             'weight': 'bold', 'fontsize': 12.5})
+    # Save it to a temporary buffer.
+    buffer = BytesIO()
+    fig.savefig(buffer, format='png')
+    buffer.seek(0)
+    plot_data = base64.b64encode(
+        buffer.getvalue()).decode('utf-8').replace('\n', '')
+
     return plot_data

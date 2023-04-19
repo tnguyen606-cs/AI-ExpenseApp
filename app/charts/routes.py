@@ -1,9 +1,10 @@
-from app.charts.utils import round_number, calculate_amount_spent, update_data_list, get_spending, get_month_expense, plot_bars_chart, plot_horizontal_chart, plot_pie_chart, plot_area_chart, generate_random_cl
+from app.charts.utils import round_number, calculate_amount_spent, update_data_list, get_spending, get_month_expense, plot_saving_chart, plot_balance_chart, plot_bars_chart, plot_horizontal_chart, plot_pie_chart, plot_area_chart, generate_random_cl
 from app import db
+from app.models import Goal
 from flask_login import login_required
 from flask import render_template, Blueprint
 from datetime import datetime, timedelta
-from app.models import Expense, Budget
+from app.models import Budget
 
 
 charts = Blueprint('charts', __name__)
@@ -23,6 +24,9 @@ def chart_overview():
     monthly_amount = calculate_amount_spent(months)
     # Create grouped bars chart for monthly cash flow
     image_base64_bars = plot_bars_chart(monthly_amount, months)
+
+    # Create Balance Bar Chart
+    image_base64_balance = plot_balance_chart(monthly_amount, months)
 
     # Create the bar chart for the current-month's cash flow
     current_budget = Budget.query.filter_by(month=CURR_MONTH).first()
@@ -82,14 +86,22 @@ def chart_overview():
         date_list, current_month_list, last_month_list)
     # Calculate the different between two months
     diff_spent = sum(last_month_list) - sum(current_month_list)
-    print(diff_spent)
+
+    # Create the Saving Pie Chart
+    goal = Goal.query.first()
+    total = goal.amount
+    saving = goal.amount_saving
+    target_date = goal.date_end.strftime('%B, %Y')
+    image_base64_saving = plot_saving_chart(total, saving)
 
     # Pass the chart path and the grouped DataFrame to the template
-    return render_template('charts.html', image_bars=image_base64_bars,
+    return render_template('charts.html', image_balance=image_base64_balance,
+                           image_saving=image_base64_saving,
+                           image_bars=image_base64_bars,
                            image_hor_bar=image_base64_hor_bars,
                            image_pie=image_base64_pie,
                            image_area=image_base64_area,
                            current_budget=current_budget,
                            amount_over=amount_over,
                            spending_amount=spending_amount,
-                           data_dict=new_dict, diff_spent=diff_spent)
+                           data_dict=new_dict, diff_spent=diff_spent, total=total, saving=saving, target_date=target_date)
